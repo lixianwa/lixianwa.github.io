@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>统一账户管理系统RESTful api设计 | Lionel&#39;Blog</title>
+  <meta name="author" content="Lionel">
+  
+  <meta name="description" content="LDAPAdmin, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。
+下面主要对LDAPAdmin 的REST Api做个简单介绍：
+##Func">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="统一账户管理系统RESTful api设计"/>
+  <meta property="og:site_name" content="Lionel&#39;Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Lionel&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Lionel&#39;Blog</a></h1>
+  <h2><a href="/">记录&amp;分享</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-12T06:30:43.000Z"><a href="/2015/10/12/2015-04-10-ldapadmin-design/">2015-10-12</a></time>
+      
+      
+  
+    <h1 class="title">统一账户管理系统RESTful api设计</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong><em>LDAPAdmin</em></strong>, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。</p>
+<p>下面主要对LDAPAdmin 的REST Api做个简单介绍：</p>
+<p>##Functionality</p>
+<p>###Terminology</p>
+<p>###User stories</p>
+<ul>
+<li>利用该组件的HTTP API，通过提交一组描述 用户／部门／系统／管理员的JSON数据，添加、删除、更新、查询数据；</li>
+<li>利用该组件的HTTP API，可以方便的添加一条 用户／部门／系统／管理员记录；</li>
+<li>利用该组件的HTTP API，可以方便的更新一条指定的 用户／部门／系统／管理员记录；</li>
+<li>利用该组件的HTTP API，可以方便的将指定的 用户／部门／系统／管理员删除；</li>
+</ul>
+<p>###Scope and Non-Scope</p>
+<p>####Scope</p>
+<ul>
+<li>用户／部门／系统／管理员 信息相关数据的添加、更新、删除；</li>
+<li>查询 用户／部门／系统／管理员的信息；</li>
+<li>用户／部门／系统／管理员 的有效性；</li>
+</ul>
+<p>###Non-Scope</p>
+<ul>
+<li>用户数据的可靠性，数据由管理员负责维护</li>
+</ul>
+<p>##Low-level Design</p>
+<p>###Response Code</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Code</th>
+<th style="text-align:left">Remind</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">OK – [GET]</td>
+<td style="text-align:left">成功返回用户请求的数据</td>
+</tr>
+<tr>
+<td style="text-align:left">201</td>
+<td style="text-align:left">CREATED – [POST/PUT]</td>
+<td style="text-align:left">新建/修改数据成功</td>
+</tr>
+<tr>
+<td style="text-align:left">204</td>
+<td style="text-align:left">NO CONTENT – [DELETE]</td>
+<td style="text-align:left">删除数据成功</td>
+</tr>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">INVALID REQUEST – [POST/PUT</td>
+<td style="text-align:left">用户发出请求有误，服务器没有新建/修改数据</td>
+</tr>
+<tr>
+<td style="text-align:left">401</td>
+<td style="text-align:left">Unauthorized – [*]</td>
+<td style="text-align:left">token认证失败，token过期等情况</td>
+</tr>
+<tr>
+<td style="text-align:left">403</td>
+<td style="text-align:left">Forbidden – [*]</td>
+<td style="text-align:left">用户认证成功，但没有权限进行相应操作（权限细分）</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">NOT FOUND – [*]</td>
+<td style="text-align:left">请求的资源（在这里是表、字段不存在等情况）</td>
+</tr>
+<tr>
+<td style="text-align:left">406</td>
+<td style="text-align:left">NOT Acceptable – [GET]</td>
+<td style="text-align:left">用户请求的格式不可得</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">INTERNAL SERVER ERROR – [*]</td>
+<td style="text-align:left">服务器内部错误，用户无法判断请求是否成功</td>
+</tr>
+</tbody>
+</table>
+<p>###Response| Result</p>
+<p>#####除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">返回被查询对象的列表，或为空（查询结果为空）</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">返回是否插入成功（1为成功，0为失败）</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:left">返回被修改的行数</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">返回被删除的行数</td>
+</tr>
+</tbody>
+</table>
+<p>###Http methods table</p>
+<p>####1.用户<br>HTTP Method|URI|Description<br>:—————|:————–|:————-<br>GET    |/v1/user    |获取所有用户记录<br>GET    |/v1/user/:id    |根据id获取记录<br>POST|    /v1/user    |添加用户记录<br>PUT    |/v1/user/:id    |修改某个用户记录<br>DELETE|    /v1/user/:id    |删除某个用户记录</p>
+<p>####2. 部门<br>HTTP Method|URI|Description<br>:——————-|:————–|:————-<br>GET    | /v1/department    |获取所有部门记录<br>GET    | /v1/department/:id    |根据id获取部门记录<br>GET    | /v1/department/:id?type=subtree    |根据id获取该部门下所有的用户和子部门记录<br>POST|    /v1/department    |添加部门记录<br>PUT    | /v1/department/:id    |修改某个部门记录<br>DELETE|    /v1/department/:id    |删除某个部门记录</p>
+<p>####3. 系统<br>HTTP Method|URI|Description<br>:—————|:————–|:————-<br>GET    |/v1/system    |获取所有组记录<br>GET    |/v1/system/:id    |根据id获取记录<br>POST|    /v1/system    |添加组记录<br>PUT    |/v1/system/:id    |修改某个组记录<br>DELETE|    /v1/system/:id    |删除某个组记录</p>
+<p>####4. 管理员<br>HTTP Method|URI|Description<br>:—————|:————–|:————-<br>GET    | /v1/admin    |获取所有管理员记录<br>GET    | /v1/admin/:id    |根据id获取记录<br>POST|    /v1/admin    |添加管理员记录<br>PUT    | /v1/admin/:id    |修改某个管理员记录<br>DELETE|    /v1/admin/:id|    删除某个管理员记录</p>
+<p>###Record infomations</p>
+<p>####1.用户<br>Response</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>id&#125;,                  <span class="regexp">//</span>用户<span class="constant">ID</span></span><br><span class="line">    <span class="string">"UserName"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>user name&#125;,     <span class="regexp">//</span>用户名</span><br><span class="line">    <span class="string">"Password"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>password&#125;,      <span class="regexp">//</span>密码</span><br><span class="line">    <span class="string">"Department"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>department&#125;,  <span class="regexp">//</span>所属部门</span><br><span class="line">    <span class="string">"Mail"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>mail&#125;,              <span class="regexp">//</span>邮件</span><br><span class="line">    <span class="string">"Telephone"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>telephone&#125;,    <span class="regexp">//</span>电话</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####2.部门<br>Response</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span>: <span class="variable">$&#123;id&#125;</span>,                  <span class="comment">//部门ID</span></span><br><span class="line">    <span class="string">"Name"</span>: <span class="variable">$&#123;name&#125;</span>,              <span class="comment">//部门名</span></span><br><span class="line">    <span class="string">"Parent"</span>, <span class="variable">$&#123;parent&#125;</span>           <span class="comment">//上级部门   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####3.系统<br>Response</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span>: <span class="variable">$&#123;id&#125;</span>,                  <span class="comment">//组ID</span></span><br><span class="line">    <span class="string">"Name"</span>: <span class="variable">$&#123;name&#125;</span>,              <span class="comment">//组名</span></span><br><span class="line">    <span class="string">"Member"</span>, <span class="variable">$&#123;member&#125;</span>           <span class="comment">//成员</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####4. 管理员<br>Response</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span>: <span class="variable">$&#123;id&#125;</span>,                  <span class="comment">//管理员ID</span></span><br><span class="line">    <span class="string">"Name"</span>: <span class="variable">$&#123;name&#125;</span>,              <span class="comment">//名字</span></span><br><span class="line">    <span class="string">"Password"</span>, <span class="variable">$&#123;password&#125;</span>       <span class="comment">//密码   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###RESTful API</p>
+<p>####1. 用户</p>
+<ul>
+<li>GET /v1/user</li>
+</ul>
+<p>此API用于查询所有 用户记录</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Request:</span></span><br><span class="line">GET <span class="regexp">/ HTTP/</span><span class="number">1.1</span></span><br><span class="line"><span class="string">Response:</span></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-<span class="string">Type:</span> application/json</span><br><span class="line"> </span><br><span class="line">&#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Example<br>下面的示例将查询用户信息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">GET /v1/user HTTP/<span class="number">1.1</span></span><br><span class="line">Response</span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Type: application/json</span><br><span class="line"> </span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  ......</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>GET /v1/user/:id<br>此API用于查询指定的用户记录</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">GET /v1/user/:id HTTP/<span class="number">1.1</span></span><br><span class="line">Response</span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Type: application/json</span><br><span class="line"> </span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Example<br>下面的示例将查询id为1的用户录</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">GET /v1/user/<span class="number">1</span> HTTP/<span class="number">1.1</span></span><br><span class="line">Response</span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Type: application/json</span><br><span class="line"> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"code"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">"rows"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"result"</span>: [&#123;<span class="string">"id"</span>: <span class="string">"1"</span>, <span class="string">"name"</span>: <span class="string">"xxxx"</span>, <span class="string">"password"</span>: <span class="string">"xxxx"</span>, <span class="string">"department"</span>:[<span class="number">1</span>, <span class="number">2</span>], </span><br><span class="line">    <span class="string">"mail"</span>:<span class="string">"xxx@xywy.com"</span>, <span class="string">"telephone"</span>:<span class="string">"15212233445"</span>&#125;]</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"> </span><br><span class="line">* POST /v1/user</span><br><span class="line">此API用于新增 用户记录记录</span><br></pre></td></tr></table></figure>
+<p>Request<br>POST /v1/user HTTP/1.1<br>Content-Type: application/json</p>
+<p>{<br>    ${Record informations}<br>}</p>
+<p>Response<br>HTTP/1.1 201 CREATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”:${code},   //type is int<br>    “id”: ${id}       //type is string, specifing the id inserted, which can be used in querying through the id<br>}<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title">Example</span></span><br><span class="line">下面的示例将插入 用户记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>POST /v1/user HTTP/1.1<br>Content-Type: application/json</p>
+<p>{<br>    ${Record informations}<br>}<br>Response<br>HTTP/1.1 201 CREATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”: 0,<br>    “id”: 1<br>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> </span><br><span class="line">* PUT /v1/user/:<span class="property">id</span></span><br><span class="line">此API用于修改用户记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>POST /v1/user/:id HTTP/1.1<br>Content-Type: application/json</p>
+<p>{</p>
+<p>}<br>Response<br>HTTP/1.1 201 CREATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”:0,<br>    “rows”: ${line}       //type is int<br>}<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Example</span></span><br><span class="line">下面的示例将修改用户信息</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>PUT /v1/user/1 HTTP/1.1<br>Content-Type: application/json</p>
+<p>{</p>
+<p>}<br>Response<br>HTTP/1.1 201 UPDATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”: 0,<br>    “rows”：3<br>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* DELETE /v1/user/:<span class="property">id</span></span><br><span class="line">此API用于删除用户记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>DELETE /v1/user/:id<br>{</p>
+<p>}<br>Response<br>HTTP/1.1 204 NO CONTENT<br>Content-Type: application/json<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Example</span></span><br><span class="line">下面的示例将删除用户记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>DELETE  /v1/user/1 HTTP/1.1<br>{<br>}<br>Response<br>HTTP/1.1 204 NO CONTENT<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="number">2</span>. 部门</span><br><span class="line"> </span><br><span class="line">* <span class="preprocessor">GET</span> /<span class="literal">v1</span>/department </span><br><span class="line">此API用于查询所有部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>GET /v1/department HTTP/1.1<br>Response<br>HTTP/1.1 200 OK<br>Content-Type: application/json</p>
+<p>{<br>   ${Record informentions}<br>}<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Example</span></span><br><span class="line">下面的示例将查询部门信息</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>GET /v1/department HTTP/1.1<br>Response<br>HTTP/1.1 200 OK<br>Content-Type: application/json</p>
+<p>[<br>  {</p>
+<p>  },<br>  {<br>  },<br>  ……<br>]<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">* <span class="preprocessor">GET</span> /<span class="literal">v1</span>/department/:id</span><br><span class="line">此API用于查询指定的部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>GET /v1/department/:id HTTP/1.1<br>Response<br>HTTP/1.1 200 OK<br>Content-Type: application/json</p>
+<p>{</p>
+<p>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example</span><br><span class="line">下面的示例将查询<span class="property">id</span>为<span class="number">1</span>的部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>GET /v1/department/1 HTTP/1.1<br>Response<br>HTTP/1.1 200 OK<br>Content-Type: application/json</p>
+<p>{<br>    “code”: 0,<br>    “rows”: 1,<br>    “result”: [{“id”: “1”, “name”: “zonghezhikongzhongxin”, “parent”: “”]<br>}<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">* <span class="constant">GET</span> /v1/department/<span class="symbol">:id?type=subtree</span></span><br><span class="line">此<span class="constant">API</span>用于查询指定的部门的所有子用户和子部门记录（树形结构）</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>GET /v1/department/:id?type=subtree HTTP/1.1<br>Response<br>HTTP/1.1 200 OK<br>Content-Type: application/json</p>
+<p>{</p>
+<p>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example</span><br><span class="line">下面的示例将查询<span class="property">id</span>为<span class="number">1</span>的部门的详细信息（包括子部门和用户）记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>GET /v1/department/1?type=subtree HTTP/1.1</p>
+<p>Response<br>HTTP/1.1 200 OK<br>Content-Type: application/json</p>
+<p>{<br>    “code”: 0,<br>    “rows”: 1,<br>    “result”: {<br>                “user”:[<br>                        {“id”: 1, “name”: “xxxx”, “department”:[1], “mail”:”xxxx@xywy.com”, “telephone”:”xxxxx”},<br>                        {“id”: 2, “name”: “xxxxx”,”department”:[1, 2], “mail”:”xxxxx@xywy.com”, “telephone”:”xxxxx”},<br>                        ……<br>                       ]<br>               “department”:[<br>                              {“id”: 1 “name”:”sa”,   “parent”:1},<br>                              { “ id”: 1, “name” : “anquan”, “parent” : 1 }<br>                                ……<br>                            ]<br>             }</p>
+ <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">* POST /<span class="literal">v1</span>/department</span><br><span class="line">此API用于新增 部门记录</span><br></pre></td></tr></table></figure>
+<p>Request<br>POST /v1/department HTTP/1.1<br>Content-Type: application/json</p>
+<p>{<br>    ${Record informations}<br>}</p>
+<p>Response<br>HTTP/1.1 201 CREATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”:${code},   //type is int<br>    “id”: ${id}       //type is string, specifing the id inserted, which can be used in querying through the id<br>}<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title">Example</span></span><br><span class="line">下面的示例将插入部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>POST /v1/department HTTP/1.1<br>Content-Type: application/json</p>
+<p>{<br>    ${Record informations}<br>}</p>
+<p>Response<br>HTTP/1.1 201 CREATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”: 0,<br>    “id”: 1<br>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">* PUT /v1/department/:<span class="property">id</span></span><br><span class="line">此API用于修改部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>POST /v1/department/:id HTTP/1.1<br>Content-Type: application/json</p>
+<p>{</p>
+<p>}<br>Response<br>HTTP/1.1 201 CREATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”:0,<br>    “rows”: ${line}       //type is int<br>}<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example</span><br><span class="line">下面的示例将修改ID为<span class="number">1</span>的部门信息</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>PUT /v1/department/1 HTTP/1.1<br>Content-Type: application/json</p>
+<p>{</p>
+<p>}</p>
+<p>Response<br>HTTP/1.1 201 UPDATED<br>Content-Type: application/json</p>
+<p>{<br>    “code”: 0,<br>    “rows”：3<br>}<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">* DELETE /v1/department/:<span class="property">id</span></span><br><span class="line">此API用于删除部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>DELETE /v1/department/:id<br>{</p>
+<p>}</p>
+<p>Response<br>HTTP/1.1 204 NO CONTENT<br>Content-Type: application/json<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title">Example</span></span><br><span class="line">下面的示例将删除部门记录</span><br></pre></td></tr></table></figure></p>
+<p>Request<br>DELETE  /v1/department/1 HTTP/1.1<br>{<br>}</p>
+<p>Response<br>HTTP/1.1 204 NO CONTENT<br>```</p>
+<p>###3. 系统／管理员 与 用户Api很类似，只是URI稍有不同</p>
+<p>####系统： /v1/system</p>
+<p>####管理员： /v1/admin<br>返回记录信息在 Record informations中有说明。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/pages/">pages</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://lionel0806.github.io/2015/10/12/2015-04-10-ldapadmin-design/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:lionel0806.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/gggggg/fffffffff/">fffffffff</a><small>0</small></li>
+  
+    <li><a href="/categories/gggggg/">gggggg</a><small>0</small></li>
+  
+    <li><a href="/categories/pages/">pages</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/aa/">aa</a><small>0</small></li>
+  
+    <li><a href="/tags/archlinux/">archlinux</a><small>1</small></li>
+  
+    <li><a href="/tags/bb/">bb</a><small>0</small></li>
+  
+    <li><a href="/tags/bug/">bug</a><small>1</small></li>
+  
+    <li><a href="/tags/cc/">cc</a><small>0</small></li>
+  
+    <li><a href="/tags/dd/">dd</a><small>0</small></li>
+  
+    <li><a href="/tags/ee/">ee</a><small>0</small></li>
+  
+    <li><a href="/tags/nginx/">nginx</a><small>1</small></li>
+  
+    <li><a href="/tags/pcre/">pcre</a><small>1</small></li>
+  
+    <li><a href="/tags/内存/">内存</a><small>1</small></li>
+  
+    <li><a href="/tags/安装/">安装</a><small>1</small></li>
+  
+    <li><a href="/tags/工具/">工具</a><small>1</small></li>
+  
+    <li><a href="/tags/开源，redis/">开源，redis</a><small>1</small></li>
+  
+    <li><a href="/tags/横琴/">横琴</a><small>1</small></li>
+  
+    <li><a href="/tags/死机/">死机</a><small>1</small></li>
+  
+    <li><a href="/tags/游记/">游记</a><small>1</small></li>
+  
+    <li><a href="/tags/自行车/">自行车</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Lionel
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

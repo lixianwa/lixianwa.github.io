@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>安装archlinux | Lionel&#39;Blog</title>
+  <meta name="author" content="Lionel">
+  
+  <meta name="description" content="从头到尾定制属于自的Linux系统">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="安装archlinux"/>
+  <meta property="og:site_name" content="Lionel&#39;Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Lionel&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Lionel&#39;Blog</a></h1>
+  <h2><a href="/">记录&amp;分享</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-12T06:30:43.000Z"><a href="/2015/10/12/2014-04-26-install-archlinux/">2015-10-12</a></time>
+      
+      
+  
+    <h1 class="title">安装archlinux</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>活着就是为了折腾，Ubuntu已经用了4年多了吧，从最近几年看来，ubuntu的发展目的是要面向大众化，由于要适合大众，所以他的操作更简单，图形界面更美观，这就导致它越来越笨重。对于一个追求速度，喜欢命令模式的程序猿，ubuntu已然不能满足我的要求，所以安装archlinux的想法产生了，活着不就是为了折腾嘛，于是一步一步定制专属自己的linux系统。</p>
+<p>1.下载archlinux镜像文件<br>2.制作usb安装盘</p>
+<pre><code><span class="preprocessor"># dd bs=<span class="number">4</span>M <span class="keyword">if</span>=&lt;/archlinux-<span class="number">2014.04</span><span class="number">.01</span>-dual.iso/的/路径&gt; of=/dev/&lt;U盘文件&gt; &amp;&amp; sync</span>
+</code></pre><p>3.从U盘启动选择Boot Arch Linux<br>4.配置安装<br> 1)连接网络<br>   有线连接：</p>
+<pre><code><span class="preprocessor"># dhcpcd</span>
+</code></pre><p>   无线连接：</p>
+<pre><code><span class="preprocessor"># wifi-menu</span>
+</code></pre><p>   ADSL 宽带连接：<br>   配置：</p>
+<pre><code><span class="preprocessor"># pppoe-setup</span>
+</code></pre><p>   连接：</p>
+<pre><code><span class="preprocessor"># systemctl start adsl</span>
+</code></pre><p>  2)选择软件源</p>
+<pre><code>    <span class="preprocessor"># vi /etc/pacman.d/mirrorlist</span>
+
+更新本地数据库：
+
+    <span class="preprocessor"># pacman -Syy</span>
+</code></pre><p>5.分区<br>   1)分区方案：</p>
+<pre><code>$ lsblk /dev/sda -o NAME,FSTYPE,SIZE,MOUNTPOINT
+  NAME   FSTYPE   SIZE MOUNTPOINT
+  sda           <span class="number">120</span>G 
+  ├─sda1 ext4    <span class="number">36</span>G /
+  ├─sda2 ext4    <span class="number">80</span>G /home
+  └─sda3 swap     <span class="number">4</span>G [SWAP]
+</code></pre><p>   注意：swap分区大小建议等于或两倍于内存。<br>   2)分区：<br>      MBR 分区：</p>
+<pre><code>   <span class="comment"># cfdisk /dev/sda</span>
+
+<span class="title">GPT</span> 分区：
+
+   <span class="comment"># cgdisk /dev/sda</span>
+</code></pre><p>6.创建文件系统：<br>   创建 ext4 分区：</p>
+<pre><code><span class="preprocessor"># mkfs.ext4 /dev/sda1</span>
+<span class="preprocessor"># mkfs.ext4 /dev/sda2</span>
+</code></pre><p>   创建并激活 swap 分区：</p>
+<pre><code><span class="preprocessor"># mkswap /dev/sda3</span>
+<span class="preprocessor"># swapon /dev/sda3</span>
+</code></pre><p>7.系统安装<br>   1)挂载分区：<br>       挂在 / 分区：</p>
+<pre><code>  <span class="preprocessor"># mount /dev/sda? /mnt</span>
+
+挂在home分区：
+
+  <span class="preprocessor"># mkdir /mnt/home</span>
+  <span class="preprocessor"># mount /dev/sda?  /mnt/home</span>
+</code></pre><p>   2)安装基础系统：</p>
+<pre><code><span class="comment"># pacstrap -i /mnt base</span>
+</code></pre><p>   3)生成fstab</p>
+<pre><code># genfstab -U -p <span class="regexp">/mnt &gt;&gt; /m</span>nt<span class="regexp">/etc/</span>fstab
+</code></pre><p>8.进入新系统</p>
+<pre><code><span class="preprocessor"># arch-chroot /mnt /bin/bash</span>
+</code></pre><p>9.配置local</p>
+<pre><code><span class="number">1</span>）编辑/etc/locale.gen，移除需要的行前的 <span class="preprocessor">#：</span>
+
+    <span class="preprocessor"># vi /etc/locale.gen</span>
+
+  简体中文用户，可移除下列行前的 <span class="preprocessor"># ：</span>
+
+    <span class="preprocessor">#zh_CN.UTF-<span class="number">8</span> UTF-<span class="number">8</span> </span>
+
+<span class="number">2</span>)更新设置：
+
+    <span class="preprocessor"># locale-gen</span>
+
+<span class="number">3</span>)设置默认语言
+
+    <span class="preprocessor"># echo LANG=&lt;语言&gt;  &gt; /etc/locale.conf</span>
+
+<span class="number">4</span>)简体中文用户可执行：
+
+    <span class="preprocessor"># echo LANG=zh_CN.UTF-<span class="number">8</span>  &gt; /etc/locale.conf</span>
+
+<span class="number">5</span>)时区
+
+查看时区：
+时区：
+
+      <span class="preprocessor"># ls /usr/share/zoneinfo/</span>
+
+子时区：
+
+      <span class="preprocessor"># ls /usr/share/zoneinfo/&lt;时区&gt;/</span>
+
+设置时区：
+
+      <span class="preprocessor"># ln -s /usr/share/zoneinfo/&lt;时区&gt;/&lt;子时区&gt; /etc/localtime</span>
+
+中国大陆用户可执行：
+
+      <span class="preprocessor"># ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span>
+
+<span class="number">6</span>)硬件时间：
+
+推荐）使用UTC时间：
+
+      <span class="preprocessor"># hwclock --systohc --utc</span>
+
+ 使用本地时间：
+
+  !__ 使用本地时间可能会引起某些不可修复的bug。
+
+     <span class="preprocessor"># hwclock --systohc --localtime</span>
+</code></pre><p>10.创建 ramdisk 环境</p>
+<p>（可选）配置</p>
+<pre><code><span class="preprocessor"># vi /etc/mkinitcpio.conf</span>
+</code></pre><p>  创建：</p>
+<pre><code><span class="preprocessor"># mkinitcpio -p linux</span>
+</code></pre><p>11.为 root 用户设置密码</p>
+<pre><code><span class="preprocessor"># passwd</span>
+</code></pre><ol>
+<li><p>安装Grub引导器</p>
+<p>  1)安装 BIOS + MBR：</p>
+<pre><code><span class="preprocessor"># pacman -S grub</span>
+<span class="preprocessor"># grub-install --target=i386-pc --recheck /dev/sda</span>
+</code></pre><p>   2）生成配置文件：</p>
+<pre><code><span class="preprocessor"># grub-mkconfig -o /boot/grub/grub.cfg</span>
+</code></pre><p>   3）欲引导其他系统，如 Windows ，可执行：</p>
+<pre><code><span class="preprocessor"># pacman -S os-prober</span>
+<span class="preprocessor"># grub-mkconfig -o /boot/grub/grub.cfg</span>
+</code></pre></li>
+</ol>
+<ol>
+<li>退出安装环境</li>
+</ol>
+<p>退回安装环境</p>
+<pre><code><span class="preprocessor"># exit</span>
+</code></pre><p>卸载新分区</p>
+<pre><code><span class="preprocessor"># umount -R /mnt</span>
+</code></pre><p>重启</p>
+<pre><code><span class="preprocessor"># reboot</span>
+</code></pre><ol>
+<li><p>用户管理</p>
+<p> 1）添加一个典型的桌面用户：</p>
+<pre><code>#  useradd -<span class="keyword">m</span> -<span class="keyword">g</span> users -<span class="keyword">G</span> wheel -s /bin/bash &lt;用户名&gt;
+</code></pre><p>   2）设置密码：</p>
+<pre><code><span class="preprocessor"># passwd <span class="title">&lt;用户名&gt;</span></span>
+</code></pre><p>   4)配置 sudo:</p>
+<pre><code> 安装 sudo：
+
+  <span class="preprocessor"># pacman -S sudo</span>
+
+配置：
+  <span class="preprocessor"># EDITOR=nano visudo</span>
+
+反注释该行（删去 <span class="preprocessor"># ）：</span>
+
+  <span class="preprocessor"># %wheel ALL=(ALL) ALL</span>
+</code></pre><p>   5)将允许获取 root 权限的用户加入 wheel 用户组（若用户已在该组则跳过）</p>
+<pre><code><span class="comment"># gpasswd -a &lt;用户名&gt; wheel</span>
+</code></pre><p>   6)使用 sudo 时，在输入 &lt;命令&gt; 部分 Tab 补全会失效。如需启用 sudo 的 Tab 补全，执行：</p>
+<pre><code><span class="variable">$ </span>sudo pacman -<span class="constant">S</span>  bash-completion
+<span class="variable">$ </span>echo complete -cf sudo <span class="prompt">&gt;&gt; </span>~<span class="regexp">/.bashrc</span>
+</code></pre></li>
+</ol>
+<p>15.声音管理</p>
+<pre><code><span class="number">1</span>)安装 alsa-utils 
+
+         <span class="preprocessor"># pacman -S alsa-utils</span>
+
+ <span class="number">2</span>)配置：
+
+         <span class="preprocessor"># alsamixer</span>
+</code></pre><ol>
+<li><p>配置 GUI（图形用户界面）</p>
+<p>  1) 安装显卡驱动:</p>
+<pre><code> 确定显卡型号：
+
+           $ lspci <span class="string">| grep VGA</span>
+
+对应可选驱动包：
+</code></pre><p>   Intel 显卡：xf86-video-intel<br>   nVidia 显卡：<br>   GeForce 7 以上：xf86-video-nouveau；nvidia<br>   GeForce 6/7：xf86-video-nouveau；nvidia-304xx<br>   AMD/ATI 显卡：xf86-video-ati；AMD Catalyst（Arch Wiki）</p>
+<p>安装驱动：</p>
+<pre><code><span class="preprocessor"># pacman -S <span class="title">&lt;驱动包&gt;</span></span>
+</code></pre></li>
+</ol>
+<pre><code><span class="number">2</span>)  安装 X 窗口系统:
+
+  X 窗口系统（X11/X）是诸多桌面环境的基础。
+
+  安装 Xorg Server
+
+              <span class="preprocessor"># pacman -S xorg-server xorg-server-utils xorg-xinit</span>
+
+  添加<span class="number">3</span>D支持
+
+            <span class="preprocessor"># pacman -S mesa</span>
+
+   添加触摸板支持
+
+             <span class="preprocessor"># pacman -S xf86-input-synaptics</span>
+   安装字体
+
+ （推荐）Dejavu和文泉驿-微米黑：
+
+             <span class="preprocessor"># pacman -S ttf-dejavu wqy-microhei</span>
+</code></pre><ol>
+<li>安装桌面环境</li>
+</ol>
+<p>Arch Linux 官方提供支持的桌面环境：<br>Cinnamon（官网）：cinnamon<br>Enlightenment（官网）：enlightenment17<br>GNOME（官网)：gnome、gnome-extra（附加功能包）<br>KDE（官网)：kde（完全版）、kdebase（基础版）、kde-l10n-zh_cn（简体中文包）<br>LXDE（官网)：lxde。<br>Xfce（官网)：xfce4、xfce4-goodies（附加功能包）<br>其他桌面环境：Arch Wiki<br>更加轻量级的窗口管理器：：Arch Wiki</p>
+<p>安装：</p>
+<pre><code><span class="preprocessor"># pacman -S <span class="title">&lt;桌面环境组&gt;</span></span>
+</code></pre><ol>
+<li>启动桌面环境</li>
+</ol>
+<p>启动方式有两种：从命令行以 startx 启动；使用显示管理器（Display Manager）。</p>
+<p>startx：（以GNOME为例）</p>
+<p>配置：</p>
+<pre><code><span class="variable">$ </span>cp /etc/skel/.xinitrc ~
+<span class="variable">$ </span>vi ~<span class="regexp">/.xinitrc</span>
+</code></pre><p>反注释对应行：</p>
+<pre><code><span class="preprocessor"># exec gnome-session</span>
+</code></pre><p>启动：</p>
+<pre><code><span class="variable">$ </span>startx
+</code></pre><p>显示管理器：（以GDM为例）<br>从命令行启动：</p>
+<pre><code><span class="preprocessor"># systemctl start gdm.service</span>
+</code></pre><p>随系统启动：</p>
+<pre><code><span class="preprocessor"># systemctl enable gdm.service</span>
+</code></pre><ol>
+<li><p>安装输入法</p>
+<p>fcitx：</p>
+</li>
+</ol>
+<p>安装：</p>
+<pre><code><span class="preprocessor"># pacman -S fcitx-im</span>
+</code></pre><p>配置：</p>
+<pre><code><span class="built_in">export</span> GTK_IM_MODULE=fcitx
+<span class="built_in">export</span> QT_IM_MODULE=fcitx
+<span class="built_in">export</span> XMODIFIERS=<span class="string">"@im=fcitx"</span>
+</code></pre><p>KDM、GDM、LightDM 等显示管理器的用户，向 ~/.xprofile添加以上内容。<br>使用 startx 或 slim 的用户，向 ~/.xinitrc 添加以上内容。<br>为在GNOME上使用fcitx，需禁用iBus：</p>
+<pre><code>$ gsettings set org<span class="class">.gnome</span><span class="class">.settings-daemon</span><span class="class">.plugins</span><span class="class">.keyboard</span> active false
+</code></pre><ol>
+<li>AUR（Arch 用户软件仓库）</li>
+</ol>
+<p>Arch Linux预设几个软件仓库中可能没有用户需要的软件包。遇到这种情况时，<br>可上AUR检索。AUR是是为用户而建、由用户主导的Arch软件仓库。AUR中的<br>软件包以软件包生成脚本（PKGBUILD）的形式提供，用户自己通过makepkg<br>生成包，再由pacman安装。创建AUR的初衷是方便用户维护和分享新软件包，<br>并由官方定期从中挑选软件包进入[community]仓库。<br>Yaourt是由社区编写的脚本，方便用户从AUR上获取需要的软件。以下介绍<br>Yaourt的安装和使用。</p>
+<p>1) 安装</p>
+<p>Yaourt并不在官方软件源中，除从AUR中安装，还可通过第三方软件源进行安装：</p>
+<p>添加软件源：</p>
+<p>将下列内容添加至 /etc/pacman.conf ：</p>
+<p>源1：</p>
+<pre><code>[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/<span class="variable">$arch</span>
+</code></pre><p>源2（Arch Linux CN 友情提供 :) ）：</p>
+<pre><code>[archlinuxcn]
+SigLevel = Never
+Server = http://repo.archlinuxcn.org/<span class="variable">$arch</span>
+</code></pre><p>安装：</p>
+<pre><code><span class="preprocessor"># pacman -Sy base-devel yaourt</span>
+</code></pre><p>2) 使用</p>
+<p>Yaourt 可以安装来自官方源的软件：</p>
+<pre><code>$ yaourt <span class="tag">&lt;<span class="title">软件名</span>&gt;</span>
+</code></pre><p>更新所有包（包括来自官方源的包）：</p>
+<pre><code><span class="variable">$ </span>yaourt -<span class="constant">Syua</span>
+</code></pre><p>搜索：</p>
+<p>$ yaourt &lt;关键字&gt;</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/archlinux/">archlinux</a>, <a href="/tags/安装/">安装</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://lionel0806.github.io/2015/10/12/2014-04-26-install-archlinux/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:lionel0806.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/gggggg/fffffffff/">fffffffff</a><small>0</small></li>
+  
+    <li><a href="/categories/gggggg/">gggggg</a><small>0</small></li>
+  
+    <li><a href="/categories/pages/">pages</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/aa/">aa</a><small>0</small></li>
+  
+    <li><a href="/tags/archlinux/">archlinux</a><small>1</small></li>
+  
+    <li><a href="/tags/bb/">bb</a><small>0</small></li>
+  
+    <li><a href="/tags/bug/">bug</a><small>1</small></li>
+  
+    <li><a href="/tags/cc/">cc</a><small>0</small></li>
+  
+    <li><a href="/tags/dd/">dd</a><small>0</small></li>
+  
+    <li><a href="/tags/ee/">ee</a><small>0</small></li>
+  
+    <li><a href="/tags/nginx/">nginx</a><small>1</small></li>
+  
+    <li><a href="/tags/pcre/">pcre</a><small>1</small></li>
+  
+    <li><a href="/tags/内存/">内存</a><small>1</small></li>
+  
+    <li><a href="/tags/安装/">安装</a><small>1</small></li>
+  
+    <li><a href="/tags/工具/">工具</a><small>1</small></li>
+  
+    <li><a href="/tags/开源，redis/">开源，redis</a><small>1</small></li>
+  
+    <li><a href="/tags/横琴/">横琴</a><small>1</small></li>
+  
+    <li><a href="/tags/死机/">死机</a><small>1</small></li>
+  
+    <li><a href="/tags/游记/">游记</a><small>1</small></li>
+  
+    <li><a href="/tags/自行车/">自行车</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Lionel
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
