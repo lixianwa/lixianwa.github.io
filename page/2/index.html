@@ -62,6 +62,46 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2015/10/12/2014-04-10-install-nginx-on-ubuntu/">
+  <time datetime="2015-10-12T06:30:43.000Z">
+    2015-10-12
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/10/12/2014-04-10-install-nginx-on-ubuntu/">nginx编译报错</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：</p>
+<pre><code>./configure: error: <span class="operator">the</span> HTTP rewrite module requires <span class="operator">the</span> PCRE library.
+You can either disable <span class="operator">the</span> module <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--without-http_rewrite_module</span>
+option, <span class="operator">or</span> install <span class="operator">the</span> PCRE library <span class="keyword">into</span> <span class="operator">the</span> <span class="keyword">system</span>, <span class="operator">or</span> build <span class="operator">the</span> PCRE library
+statically <span class="built_in">from</span> <span class="operator">the</span> source <span class="operator">with</span> nginx <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--with-pcre=&lt;path&gt; option.</span>
+</code></pre><p>貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。<br>可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：</p>
+<pre><code># sudo apt-<span class="built_in">get</span> install libpcre3 libpcre3-<span class="built_in">dev</span>
+</code></pre>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2015/10/12/hello-world/">
   <time datetime="2015-10-12T05:53:28.000Z">
     2015-10-12
