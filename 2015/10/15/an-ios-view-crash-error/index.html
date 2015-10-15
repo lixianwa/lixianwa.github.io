@@ -4,24 +4,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   
-  <title>nginx编译报错 | Lionel&#39;s Blog</title>
+  <title>一个iOS View crash问题 | Lionel&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   
     <meta name="author" content="Lionel">
   
   
-    <meta name="description" content="在ubuntu上安装nginx遇到的编译错误">
+    <meta name="description" content="[2015-10-15]用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    
+
+Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one">
   
-  <meta name="description" content="在ubuntu上安装nginx遇到的编译错误">
+  <meta name="description" content="[2015-10-15]用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    
+
+Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx编译报错">
-<meta property="og:url" content="http://lionel0806.github.io/2015/10/12/2014-04-10-install-nginx-on-ubuntu/index.html">
+<meta property="og:title" content="一个iOS View crash问题">
+<meta property="og:url" content="http://lionel0806.github.io/2015/10/15/an-ios-view-crash-error/index.html">
 <meta property="og:site_name" content="Lionel's Blog">
-<meta property="og:description" content="在ubuntu上安装nginx遇到的编译错误">
-<meta property="og:updated_time" content="2015-10-12T06:30:43.000Z">
+<meta property="og:description" content="[2015-10-15]用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    
+
+Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one">
+<meta property="og:updated_time" content="2015-10-15T07:33:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx编译报错">
-<meta name="twitter:description" content="在ubuntu上安装nginx遇到的编译错误">
+<meta name="twitter:title" content="一个iOS View crash问题">
+<meta name="twitter:description" content="[2015-10-15]用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    
+
+Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one">
   
     <link rel="alternate" href="/atom.xml" title="Lionel&#39;s Blog" type="application/atom+xml">
   
@@ -59,39 +67,32 @@
   <header>
     
       <div class="icon"></div>
-      <a href="/2015/10/12/2014-04-10-install-nginx-on-ubuntu/">
-  <time datetime="2015-10-12T06:30:43.000Z">
-    2015-10-12
+      <a href="/2015/10/15/an-ios-view-crash-error/">
+  <time datetime="2015-10-15T07:00:29.000Z">
+    2015-10-15
   </time>
 </a>
     
     
   
-    <h1 class="title">nginx编译报错</h1>
+    <h1 class="title">一个iOS View crash问题</h1>
   
 
   </header>
   
   <div class="entry">
     
-      <p>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：</p>
-<pre><code>./configure: error: <span class="operator">the</span> HTTP rewrite module requires <span class="operator">the</span> PCRE library.
-You can either disable <span class="operator">the</span> module <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--without-http_rewrite_module</span>
-option, <span class="operator">or</span> install <span class="operator">the</span> PCRE library <span class="keyword">into</span> <span class="operator">the</span> <span class="keyword">system</span>, <span class="operator">or</span> build <span class="operator">the</span> PCRE library
-statically <span class="built_in">from</span> <span class="operator">the</span> source <span class="operator">with</span> nginx <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--with-pcre=&lt;path&gt; option.</span>
-</code></pre><p>貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。<br>可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：</p>
-<pre><code># sudo apt-<span class="built_in">get</span> install libpcre3 libpcre3-<span class="built_in">dev</span>
-</code></pre>
+      <p>[2015-10-15]<br>用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    </p>
+<blockquote>
+<p>Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one view controller at a time! View <uiview: 414="" 0x7f914af22610;="" frame="(0" 0;="" 736);="" autoresize="W+H;" layer="<CALayer:" 0x7f914af22980="">&gt; is associated with <uiviewcontroller: 0x7f914ae49a90="">. Clear this association before associating this view with <testviewcontroller: 0x7f914ac7f680="">.’</testviewcontroller:></uiviewcontroller:></uiview:></p>
+</blockquote>
+
     
   </div>
   <footer>
     
       
       
-  <div class="tags">
-    <a class="tags-link" href="/tags/nginx/">nginx</a>, <a class="tags-link" href="/tags/pcre/">pcre</a>
-  </div>
-
     
     <div class="clearfix"></div>
   </footer>
@@ -100,7 +101,7 @@ statically <span class="built_in">from</span> <span class="operator">the</span> 
 
 <section id="comment">
   <h1 class="title">评论</h1>
-  <div class="ds-thread" data-title="nginx编译报错">
+  <div class="ds-thread" data-title="一个iOS View crash问题">
   </div>
 </section>
 </div>

@@ -62,6 +62,43 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2015/10/15/an-ios-view-crash-error/">
+  <time datetime="2015-10-15T07:00:29.000Z">
+    2015-10-15
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/10/15/an-ios-view-crash-error/">一个iOS View crash问题</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>[2015-10-15]<br>用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    </p>
+<blockquote>
+<p>Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one view controller at a time! View <uiview: 414="" 0x7f914af22610;="" frame="(0" 0;="" 736);="" autoresize="W+H;" layer="<CALayer:" 0x7f914af22980="">&gt; is associated with <uiviewcontroller: 0x7f914ae49a90="">. Clear this association before associating this view with <testviewcontroller: 0x7f914ac7f680="">.’</testviewcontroller:></uiviewcontroller:></uiview:></p>
+</blockquote>
+
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2015/10/13/blog-from-jekyll-to-hexo/">
   <time datetime="2015-10-13T15:37:00.000Z">
     2015-10-13
@@ -384,6 +421,40 @@
 <p>###3. 系统／管理员 与 用户Api很类似，只是URI稍有不同</p>
 <p>####系统： /v1/system</p>
 <p>####管理员： /v1/admin<br>返回记录信息在 Record informations中有说明。</p>
+
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/10/12/2014-03-02-smart-questions/">
+  <time datetime="2015-10-12T06:30:43.000Z">
+    2015-10-12
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/10/12/2014-03-02-smart-questions/">提问的智慧</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>作为一个技术人员，在学习和工作中，经常会遇到各种各样的问题，有时候我们没法解答的时候？也许最好的办法就是去<br>求助与他人，不管是通过网络，还是面对面的方式。 于是如何问问题就变的尤为重要，下面这篇<br><a href="http://www.wapm.cn/smart-questions/smart-questions-zh.html" target="_blank" rel="external">How to Ask Questions The Smart Way</a>会给你答案，相信看完之后你会有很大收获。</p>
 
     
   </div>
@@ -734,6 +805,46 @@ Server = http://repo.archlinuxcn.org/<span class="variable">$arch</span>
   <header>
     
       <div class="icon"></div>
+      <a href="/2015/10/12/2014-04-10-install-nginx-on-ubuntu/">
+  <time datetime="2015-10-12T06:30:43.000Z">
+    2015-10-12
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/10/12/2014-04-10-install-nginx-on-ubuntu/">nginx编译报错</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：</p>
+<pre><code>./configure: error: <span class="operator">the</span> HTTP rewrite module requires <span class="operator">the</span> PCRE library.
+You can either disable <span class="operator">the</span> module <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--without-http_rewrite_module</span>
+option, <span class="operator">or</span> install <span class="operator">the</span> PCRE library <span class="keyword">into</span> <span class="operator">the</span> <span class="keyword">system</span>, <span class="operator">or</span> build <span class="operator">the</span> PCRE library
+statically <span class="built_in">from</span> <span class="operator">the</span> source <span class="operator">with</span> nginx <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--with-pcre=&lt;path&gt; option.</span>
+</code></pre><p>貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。<br>可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：</p>
+<pre><code># sudo apt-<span class="built_in">get</span> install libpcre3 libpcre3-<span class="built_in">dev</span>
+</code></pre>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2015/10/12/2014-04-04-about-redis/">
   <time datetime="2015-10-12T06:30:43.000Z">
     2015-10-12
@@ -750,143 +861,6 @@ Server = http://repo.archlinuxcn.org/<span class="variable">$arch</span>
   <div class="entry">
     
       <p>最近读redis代码，redis是一个key-value存储系统,详情请看官网介绍<a href="http://redis.io/" target="_blank" rel="external">redis</a>，仅2万多行代码，实现如此强大的<br>功能，真是让人不由的惊叹！而且代码是非常之漂亮, <a href="http://redisbook.com/en/latest/" target="_blank" rel="external">《redis设计与实现》</a>可以帮助你了解redis<br>的具体实现，<a href="https://github.com/antirez/redis" target="_blank" rel="external">redis的github地址</a>。</p>
-
-    
-  </div>
-  <footer class="end-sep">
-    
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2015/10/12/2014-03-24-cycling-to-hengqin/">
-  <time datetime="2015-10-12T06:30:43.000Z">
-    2015-10-12
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2015/10/12/2014-03-24-cycling-to-hengqin/">横琴岛游记</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p>每次游玩回来，或多或少总会有那么一些感想,而这次感触颇深，也许与我最近的心<br>情有关吧。从小到大，语文一直不好，因此而没少挨老师的批，以至于现在坐在电脑前<br>想写点东西的时候，总感觉缺少一些词藻，把心里的想法和感受用语言这种奇怪的东西表<br>达出来。犹豫了许久，决定还是把它记下来吧，也许二十年、三十年或者更老，记不起事<br>的时候翻出来看看，也许能勾起对年轻时的回忆,也不失为一件美好的事！再说对于我这种<br>记性不是很好的动物来说,记下来总归是安全的。</p>
-<p>最近心情一直不怎么好，可能是这段时间工作上的事少，我这人有点贱，一闲下来就<br>有点不淡定，容易想一些乱七八糟的事情，一想就郁闷。什么结婚啊、买房啊，最近听这些<br>话题太多太多了,听多了不由的让人不想啊,唉！平时由于工作忙，没有太多时间去想这些,<br>其实我压根不愿意想去这些事情，总抱着一种该来的总会来的态度。</p>
-<p>昨天一同事说打算骑自行车去横琴岛玩，问我去不去，想了想去就去呗，反正也没啥坏处，<br>还可以锻炼下身体，减减肥肉，说不定还会有一些意外的收获，何乐而不为。就是可<br>怜了我那坐骑,跟随了我大半年时间，最近老是咯吱咯吱响，不知道还能不能坚持下来，要<br>是在半路上罢工，那就麻烦啦。</p>
-<p>早上十点从家里出发，路边随便买了点早餐，按照提前约好的时间来到华发广场集合，<br>一行总共六人。天气特给力，不冷不热，偶尔还有点微风，真是出去玩的好时间。蹬着单车，<br>微风从脸颊吹过，那感觉就一个字“爽”！有点可惜的是自行车后刹车不灵，一路上不敢骑<br>太快，单怕和那些奔驰宝马亲吻一下。</p>
-<p>大约两个小时，到了横琴，又累又饿，也到了午饭的时候，路边找了家快餐店，随便点了份<br>快餐和一杯奶茶，我勒个去，奶茶杯怎么那么旧，感觉很脏似的，不过那快餐还是蛮好吃的，<br>或许是饿了的缘故吧，大家狼吞虎咽地几下吃完了，然后稍微坐了一会，又开始出发了，直<br>奔海边。</p>
-<p>沿着海边有一条很长的水泥路，两边有护栏，路很平坦，毫无遮挡,一路飞奔,真是爽歪了!<br>到了海边，大家一起合了个影，帮我们照相的是一中年大叔，那大叔蛮有意思，照完之后他拿着我<br>手机摆出个姿势，示意要扔给我，我还以为这大叔发疯了,急忙一边跑一边喊“别别别，<br>我接不住”，后来大叔笑着给我手机，说“我跟你开个玩笑而已，我怎么会扔呢”，呵呵,是<br>我想多了.在海边碰到一小伙，跟我年龄差不多，聊了几句，说是专门过来看海，<br>却没看到蓝色的大海，有点遗憾。卷起裤腿,跑到水里时,突然一个浪过来,悲剧啊,裤子全湿了.<br>在海边,微风吹过,听着海浪的声音,心情一下子舒畅了好多，所有负担、所有不愉快的<br>事统统抛到九霄云外,全身感觉格外的轻松!要是再有一个心爱的姑娘一起,那就完美了.</p>
-<p>转眼四点多了,该回去了,我们没有原路返回,本来打算找一条近路,结果长隆隧道不让自行车走,我去,摩托车<br>让通过,就是不让自行车走,要我说直接冲过去得类,反正那守卫也没有车,肯定追不上.可另外一哥们太<br>谨慎了,不同意.我们只好再寻找路线了.接着就悲剧更悲剧了,一路上都在修路,坑坑洼洼还是小事,<br>关键土太厚了,一辆大车过去,整个人感觉被土埋了,人没老,头发先变白了.有种回到老家的感觉.<br>这一路就不太爽了,坑坑洼洼的人家新车可以很轻松的骑过去,我那破车咋整也骑不快,一路他们一直都<br>在等我,搞得我都有些不好意思,更不幸的是不小心摔到,腿上刮掉一层皮,还好,谁叫咱是土生土长的农村人,<br>这点小伤算个屁,站起来拍拍屁股继续走着.</p>
-<p>晚上八点多才到市区,大家都饿坏了,突然路边冒出一家酱饼小摊,刚出锅的实在是太好吃了,没想到珠海<br>还有这货,真是太让人意外了,想想还是在大学时吃过,差不多两年没见过这玩意了.最后找了家饭馆,吃完饭<br>各回各家,该干嘛干嘛!</p>
-<p>回到家坐下来想想,这次出去还是蛮有意思的.我想当时如果不去的话,这一天就在家睡觉啊什么的,同样会过去,<br>然后感叹,唉!周末就这样过去了.人生也一样,不能老是处在当时没做,过了后悔这种无限循环中.跟着心走,想<br>做就做,这样即使到死的时候,也不会因当初错过而后悔.</p>
-<figure><br>    <figcaption>横琴.</figcaption><br>    <a href="/images/hengqin0.jpg"><img src="/images/hengqin0.jpg"></a><br></figure>
-
-<figure><br>    <figcaption>海边集体照.</figcaption><br>    <a href="/images/hengqin1.jpg"><img src="/images/hengqin1.jpg"></a><br></figure>
-
-<figure><br>    <figcaption>海浪.</figcaption><br>    <a href="/images/hengqin2.jpg"><img src="/images/hengqin2.jpg"></a><br></figure>
-
-<figure><br>    <figcaption></figcaption><br>    <a href="/images/hengqin4.jpg"><img src="/images/hengqin4.jpg"></a><br></figure>
-
-<figure><br>    <figcaption>回去的路上.</figcaption><br>    <a href="/images/hengqin3.jpg"><img src="/images/hengqin3.jpg"></a><br></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  </div>
-  <footer class="end-sep">
-    
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2015/10/12/2014-03-10-crash-about-memory/">
-  <time datetime="2015-10-12T06:30:43.000Z">
-    2015-10-12
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2015/10/12/2014-03-10-crash-about-memory/">内存死机问题</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p>最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。</p>
-<p>Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时间，<br>最后查出来尽然是珠海有线的码流里边有一个bouquet id是 -256，而代码里边没有处理到这种情况，获取到空指针，<br>而在使用的时候又没有检测。幸亏有gdb可以用，可以定位到是那个模块出了问题。完了想想本来这个问题要不<br>了那么长时间，一开始感觉这个变量有点问题，可就被脑子里那种 “不可能这儿出问题啊”的想法打消了，也许<br>很多程序员会犯这种错误，总是很确信的说”这个不可能”，难道这个真的不可能吗？其实自己也不知道，不知道<br>从哪儿来的这种莫名其妙的自信。<br>由这个问题想到：</p>
-<p>  1)不要轻易做任何假设，负责可能会影响你做出准确的判断。</p>
-<p>  2)时时刻刻在使用指针时要检测是否为空，这个构建健壮软件的必要条件。</p>
-<p>  3)要让程序能经得起一些意味发生的情况，比如获取到错误变量等。</p>
-
-    
-  </div>
-  <footer class="end-sep">
-    
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2015/10/12/2014-03-02-smart-questions/">
-  <time datetime="2015-10-12T06:30:43.000Z">
-    2015-10-12
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2015/10/12/2014-03-02-smart-questions/">提问的智慧</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p>作为一个技术人员，在学习和工作中，经常会遇到各种各样的问题，有时候我们没法解答的时候？也许最好的办法就是去<br>求助与他人，不管是通过网络，还是面对面的方式。 于是如何问问题就变的尤为重要，下面这篇<br><a href="http://www.wapm.cn/smart-questions/smart-questions-zh.html" target="_blank" rel="external">How to Ask Questions The Smart Way</a>会给你答案，相信看完之后你会有很大收获。</p>
 
     
   </div>
@@ -928,6 +902,18 @@ Server = http://repo.archlinuxcn.org/<span class="variable">$arch</span>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lionel0806' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 
 
 
