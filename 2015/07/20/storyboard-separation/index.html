@@ -3,39 +3,32 @@
 <head>
   <meta charset="utf-8">
   
-  <title>工具 | Lionel&#39;s Blog | 记录&amp;分享</title>
+  <title>Storyboard 分离 | Lionel&#39;s Blog | 记录&amp;分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="工具">
-  <meta name="description" content="工具
-jira:项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域.
-confluence:企业知识管理与协同软件，也可以用于构建企业wiki。
-GitLab:基于Git的开源项目，客用于搭建私有的Github。
-Riemann:报警系统，函数式编程语言clojure编写，可配置性强，可以和OpenTSDB等时间序列存贮系统结合，构建企业">
+  <meta name="keywords" content="Storyboard,iOS">
+  <meta name="description" content="毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用S">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工具">
-<meta property="og:url" content="http://lionel0806.github.io/2015/10/12/2015-03-14-tools/index.html">
+<meta property="og:title" content="Storyboard 分离">
+<meta property="og:url" content="http://lionel0806.github.io/2015/07/20/storyboard-separation/index.html">
 <meta property="og:site_name" content="Lionel's Blog">
-<meta property="og:description" content="工具
-jira:项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域.
-confluence:企业知识管理与协同软件，也可以用于构建企业wiki。
-GitLab:基于Git的开源项目，客用于搭建私有的Github。
-Riemann:报警系统，函数式编程语言clojure编写，可配置性强，可以和OpenTSDB等时间序列存贮系统结合，构建企业">
-<meta property="og:updated_time" content="2015-11-04T09:01:32.000Z">
+<meta property="og:description" content="毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用S">
+<meta property="og:image" content="http://lionel0806.github.io/storyboard1.png">
+<meta property="og:image" content="http://lionel0806.github.io/storyboard2.png">
+<meta property="og:image" content="http://lionel0806.github.io/storyboard3.png">
+<meta property="og:image" content="http://lionel0806.github.io/storyboard5.png">
+<meta property="og:image" content="http://lionel0806.github.io/storyboard4.png">
+<meta property="og:updated_time" content="2016-07-20T16:06:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工具">
-<meta name="twitter:description" content="工具
-jira:项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域.
-confluence:企业知识管理与协同软件，也可以用于构建企业wiki。
-GitLab:基于Git的开源项目，客用于搭建私有的Github。
-Riemann:报警系统，函数式编程语言clojure编写，可配置性强，可以和OpenTSDB等时间序列存贮系统结合，构建企业">
+<meta name="twitter:title" content="Storyboard 分离">
+<meta name="twitter:description" content="毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用S">
   
     <link rel="alternative" href="/atom.xml" title="Lionel&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+  <meta name="summary" content="&lt;p&gt;毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用Storyboard规避它的不足，让优势得到更大的发挥呢？&lt;br&gt;">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
@@ -113,7 +106,7 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">工具</div>
+        <div class="flex-col header-title ellipsis">Storyboard 分离</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -134,11 +127,11 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">工具</h1>
+    <h1 class="author">Storyboard 分离</h1>
     <h5 class="subtitle">
         
-            <time datetime="2015-10-12T11:03:00.000Z" itemprop="datePublished" class="page-time">
-  2015-10-12
+            <time datetime="2015-07-20T15:02:08.000Z" itemprop="datePublished" class="page-time">
+  2015-07-20
 </time>
 
 
@@ -148,11 +141,11 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
 </header>
 
     <div class="container body-wrap">
-      <article id="post-2015-03-14-tools" 
+      <article id="post-storyboard-separation" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Storyboard/">Storyboard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -199,7 +192,7 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工具"><span class="post-toc-text">工具</span></a></li></ol>
+            
             </nav>
             
         </aside>
@@ -207,17 +200,21 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="工具">工具</h2><ol>
-<li><strong>jira</strong>:项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域.</li>
-<li><strong>confluence</strong>:企业知识管理与协同软件，也可以用于构建企业wiki。</li>
-<li><strong><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a></strong>:基于Git的开源项目，客用于搭建私有的Github。</li>
-<li><strong><a href="http://riemann.io/" target="_blank" rel="external">Riemann</a></strong>:报警系统，函数式编程语言clojure编写，可配置性强，可以和OpenTSDB等时间序列存贮系统结合，构建企业报警系统。</li>
-</ol>
+            <p>毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用Storyboard规避它的不足，让优势得到更大的发挥呢？<br><a id="more"></a></p>
+<p>分离Storyboard。将Storyboard尽量分成一个人处理的范围，每个Storyboard尽量控制少用5个试图，这样的好处是大大减少的多个人修改一个Storyboard时冲突的情况，同时多个小的Storyboard的读取和渲染性能笔单独一个大的Storyboard好的多。</p>
+<p>分离Storyboard很简单，如下图, TabBarViewController 包含两个子视图控制器，同时每个子视图控制器又指向其它视图控制器，我们的目标是将两个子视图控制器以及它指向的视图控制器分离成单独的Storyboard：</p>
+<p><img src="storyboard1.png" alt="Storyboard1"></p>
+<p>首先，选中需要分离成单独的Storyboard的所有视图，然后Editor -&gt; Refactor to Storyboard ,如下图：</p>
+<p><img src="storyboard2.png" alt="Storyboard2"></p>
+<p>这样就将一个大的Storyboard分成3个小的Storyboard，如下图：</p>
+<p><img src="storyboard3.png" alt="Storyboard3"></p>
+<p><img src="storyboard5.png" alt="Storyboard5"></p>
+<p><img src="storyboard4.png" alt="Storyboard4"></p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://lionel0806.github.io/2015/10/12/2015-03-14-tools/" target="_blank" rel="external">http://lionel0806.github.io/2015/10/12/2015-03-14-tools/</a>
+                <a href="http://lionel0806.github.io/2015/07/20/storyboard-separation/" target="_blank" rel="external">http://lionel0806.github.io/2015/07/20/storyboard-separation/</a>
                 </p>
                 <footer><cite><a href="http://lionel0806.github.io">@Lionel's Blog</a></cite></footer>
             </blockquote>
@@ -226,9 +223,9 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2015/10/12/markdown语法/" id="post-prev" class="post-nav-link">
+      <a href="/2015/10/13/blog-from-jekyll-to-hexo/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">markdown语法</h4>
+        <h4 class="title">开始使用hexo生成blog</h4>
       </a>
     </div>
   
@@ -248,7 +245,7 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2015-03-14-tools" data-title="工具" data-url="http://lionel0806.github.io/2015/10/12/2015-03-14-tools/index.html"></div>
+	<div class="ds-thread" data-thread-key="storyboard-separation" data-title="Storyboard 分离" data-url="http://lionel0806.github.io/2015/07/20/storyboard-separation/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -279,10 +276,10 @@ Riemann:报警系统，函数式编程语言clojure编写，可配置性强，�
 
 <script>
 var BLOG_SHARE = {
-    title: "工具",
+    title: "Storyboard 分离",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://lionel0806.github.io/2015/10/12/2015-03-14-tools/index.html"
+    url: "http://lionel0806.github.io/2015/07/20/storyboard-separation/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
