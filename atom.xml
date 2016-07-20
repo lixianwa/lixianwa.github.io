@@ -272,7 +272,7 @@
     <link href="http://lionel0806.github.io/2015/10/14/hello-world/"/>
     <id>http://lionel0806.github.io/2015/10/14/hello-world/</id>
     <published>2015-10-14T01:25:10.000Z</published>
-    <updated>2016-07-20T16:04:00.000Z</updated>
+    <updated>2016-07-20T16:04:03.000Z</updated>
     
     <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;http://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -356,33 +356,25 @@
     <link href="http://lionel0806.github.io/2015/04/10/2015-04-10-ldapadmin-design/"/>
     <id>http://lionel0806.github.io/2015/04/10/2015-04-10-ldapadmin-design/</id>
     <published>2015-04-09T16:00:00.000Z</published>
-    <updated>2016-07-20T16:01:44.000Z</updated>
+    <updated>2016-07-20T16:13:52.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;LDAPAdmin&lt;/em&gt;&lt;/strong&gt;, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;下面主要对LDAPAdmin 的REST Api做个简单介绍：&lt;/p&gt;
-&lt;p&gt;##Functionality&lt;/p&gt;
-&lt;p&gt;###Terminology&lt;/p&gt;
-&lt;p&gt;###User stories&lt;/p&gt;
-&lt;ul&gt;
+&lt;h2 id=&quot;Functionality&quot;&gt;Functionality&lt;/h2&gt;&lt;h3 id=&quot;Terminology&quot;&gt;Terminology&lt;/h3&gt;&lt;h3 id=&quot;User_stories&quot;&gt;User stories&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;利用该组件的HTTP API，通过提交一组描述 用户／部门／系统／管理员的JSON数据，添加、删除、更新、查询数据；&lt;/li&gt;
 &lt;li&gt;利用该组件的HTTP API，可以方便的添加一条 用户／部门／系统／管理员记录；&lt;/li&gt;
 &lt;li&gt;利用该组件的HTTP API，可以方便的更新一条指定的 用户／部门／系统／管理员记录；&lt;/li&gt;
 &lt;li&gt;利用该组件的HTTP API，可以方便的将指定的 用户／部门／系统／管理员删除；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;###Scope and Non-Scope&lt;/p&gt;
-&lt;p&gt;####Scope&lt;/p&gt;
-&lt;ul&gt;
+&lt;h3 id=&quot;Scope_and_Non-Scope&quot;&gt;Scope and Non-Scope&lt;/h3&gt;&lt;h4 id=&quot;Scope&quot;&gt;Scope&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;用户／部门／系统／管理员 信息相关数据的添加、更新、删除；&lt;/li&gt;
 &lt;li&gt;查询 用户／部门／系统／管理员的信息；&lt;/li&gt;
 &lt;li&gt;用户／部门／系统／管理员 的有效性；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;###Non-Scope&lt;/p&gt;
-&lt;ul&gt;
+&lt;h3 id=&quot;Non-Scope&quot;&gt;Non-Scope&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;用户数据的可靠性，数据由管理员负责维护&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;##Low-level Design&lt;/p&gt;
-&lt;p&gt;###Response Code&lt;/p&gt;
-&lt;table&gt;
+&lt;h2 id=&quot;Low-level_Design&quot;&gt;Low-level Design&lt;/h2&gt;&lt;h3 id=&quot;Response_Code&quot;&gt;Response Code&lt;/h3&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&quot;text-align:left&quot;&gt;Code&lt;/th&gt;
@@ -438,9 +430,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;###Response| Result&lt;/p&gt;
-&lt;p&gt;#####除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：&lt;/p&gt;
-&lt;table&gt;
+&lt;h3 id=&quot;Response|_Result&quot;&gt;Response| Result&lt;/h3&gt;&lt;h5 id=&quot;除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：&quot;&gt;除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：&lt;/h5&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&quot;text-align:left&quot;&gt;Method&lt;/th&gt;
@@ -466,23 +456,164 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;###Http methods table&lt;/p&gt;
-&lt;p&gt;####1.用户&lt;br&gt;HTTP Method|URI|Description&lt;br&gt;:—————|:————–|:————-&lt;br&gt;GET    |/v1/user    |获取所有用户记录&lt;br&gt;GET    |/v1/user/:id    |根据id获取记录&lt;br&gt;POST|    /v1/user    |添加用户记录&lt;br&gt;PUT    |/v1/user/:id    |修改某个用户记录&lt;br&gt;DELETE|    /v1/user/:id    |删除某个用户记录&lt;/p&gt;
-&lt;p&gt;####2. 部门&lt;br&gt;HTTP Method|URI|Description&lt;br&gt;:——————-|:————–|:————-&lt;br&gt;GET    | /v1/department    |获取所有部门记录&lt;br&gt;GET    | /v1/department/:id    |根据id获取部门记录&lt;br&gt;GET    | /v1/department/:id?type=subtree    |根据id获取该部门下所有的用户和子部门记录&lt;br&gt;POST|    /v1/department    |添加部门记录&lt;br&gt;PUT    | /v1/department/:id    |修改某个部门记录&lt;br&gt;DELETE|    /v1/department/:id    |删除某个部门记录&lt;/p&gt;
-&lt;p&gt;####3. 系统&lt;br&gt;HTTP Method|URI|Description&lt;br&gt;:—————|:————–|:————-&lt;br&gt;GET    |/v1/system    |获取所有组记录&lt;br&gt;GET    |/v1/system/:id    |根据id获取记录&lt;br&gt;POST|    /v1/system    |添加组记录&lt;br&gt;PUT    |/v1/system/:id    |修改某个组记录&lt;br&gt;DELETE|    /v1/system/:id    |删除某个组记录&lt;/p&gt;
-&lt;p&gt;####4. 管理员&lt;br&gt;HTTP Method|URI|Description&lt;br&gt;:—————|:————–|:————-&lt;br&gt;GET    | /v1/admin    |获取所有管理员记录&lt;br&gt;GET    | /v1/admin/:id    |根据id获取记录&lt;br&gt;POST|    /v1/admin    |添加管理员记录&lt;br&gt;PUT    | /v1/admin/:id    |修改某个管理员记录&lt;br&gt;DELETE|    /v1/admin/:id|    删除某个管理员记录&lt;/p&gt;
-&lt;p&gt;###Record infomations&lt;/p&gt;
-&lt;p&gt;####1.用户&lt;br&gt;Response&lt;/p&gt;
+&lt;h3 id=&quot;Http_methods_table&quot;&gt;Http methods table&lt;/h3&gt;&lt;h4 id=&quot;1-用户&quot;&gt;1.用户&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;HTTP Method&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;URI&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/user&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;获取所有用户记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/user/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;根据id获取记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;POST&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/user&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;添加用户记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;PUT&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/user/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;修改某个用户记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;DELETE&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/user/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;删除某个用户记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;2-_部门&quot;&gt;2. 部门&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;HTTP Method&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;URI&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/department&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;获取所有部门记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/department/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;根据id获取部门记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/department/:id?type=subtree&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;根据id获取该部门下所有的用户和子部门记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;POST&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/department&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;添加部门记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;PUT&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/department/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;修改某个部门记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;DELETE&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/department/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;删除某个部门记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;3-_系统&quot;&gt;3. 系统&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;HTTP Method&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;URI&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/system&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;获取所有组记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/system/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;根据id获取记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;POST&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/system&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;添加组记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;PUT&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/system/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;修改某个组记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;DELETE&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/system/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;删除某个组记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;4-_管理员&quot;&gt;4. 管理员&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;HTTP Method&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;URI&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/admin&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;获取所有管理员记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;GET&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/admin/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;根据id获取记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;POST&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/admin&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;添加管理员记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;PUT&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/admin/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;修改某个管理员记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;DELETE&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;/v1/admin/:id&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;删除某个管理员记录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;Record_infomations&quot;&gt;Record infomations&lt;/h3&gt;&lt;h4 id=&quot;1-用户-1&quot;&gt;1.用户&lt;/h4&gt;&lt;p&gt;Response&lt;/p&gt;
 &lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Id&quot;&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;&lt;/span&gt;id&amp;#125;,                  &lt;span class=&quot;regexp&quot;&gt;//&lt;/span&gt;用户&lt;span class=&quot;constant&quot;&gt;ID&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;UserName&quot;&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;&lt;/span&gt;user name&amp;#125;,     &lt;span class=&quot;regexp&quot;&gt;//&lt;/span&gt;用户名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Password&quot;&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;&lt;/span&gt;password&amp;#125;,      &lt;span class=&quot;regexp&quot;&gt;//&lt;/span&gt;密码&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Department&quot;&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;&lt;/span&gt;department&amp;#125;,  &lt;span class=&quot;regexp&quot;&gt;//&lt;/span&gt;所属部门&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Mail&quot;&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;&lt;/span&gt;mail&amp;#125;,              &lt;span class=&quot;regexp&quot;&gt;//&lt;/span&gt;邮件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Telephone&quot;&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;&lt;/span&gt;telephone&amp;#125;,    &lt;span class=&quot;regexp&quot;&gt;//&lt;/span&gt;电话&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;####2.部门&lt;br&gt;Response&lt;/p&gt;
+&lt;h4 id=&quot;2-部门&quot;&gt;2.部门&lt;/h4&gt;&lt;p&gt;Response&lt;/p&gt;
 &lt;figure class=&quot;highlight mel&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Id&quot;&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;id&amp;#125;&lt;/span&gt;,                  &lt;span class=&quot;comment&quot;&gt;//部门ID&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Name&quot;&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;name&amp;#125;&lt;/span&gt;,              &lt;span class=&quot;comment&quot;&gt;//部门名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Parent&quot;&lt;/span&gt;, &lt;span class=&quot;variable&quot;&gt;$&amp;#123;parent&amp;#125;&lt;/span&gt;           &lt;span class=&quot;comment&quot;&gt;//上级部门   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;####3.系统&lt;br&gt;Response&lt;/p&gt;
+&lt;h4 id=&quot;3-系统&quot;&gt;3.系统&lt;/h4&gt;&lt;p&gt;Response&lt;/p&gt;
 &lt;figure class=&quot;highlight mel&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Id&quot;&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;id&amp;#125;&lt;/span&gt;,                  &lt;span class=&quot;comment&quot;&gt;//组ID&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Name&quot;&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;name&amp;#125;&lt;/span&gt;,              &lt;span class=&quot;comment&quot;&gt;//组名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Member&quot;&lt;/span&gt;, &lt;span class=&quot;variable&quot;&gt;$&amp;#123;member&amp;#125;&lt;/span&gt;           &lt;span class=&quot;comment&quot;&gt;//成员&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;####4. 管理员&lt;br&gt;Response&lt;/p&gt;
+&lt;h4 id=&quot;4-_管理员-1&quot;&gt;4. 管理员&lt;/h4&gt;&lt;p&gt;Response&lt;/p&gt;
 &lt;figure class=&quot;highlight mel&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Id&quot;&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;id&amp;#125;&lt;/span&gt;,                  &lt;span class=&quot;comment&quot;&gt;//管理员ID&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Name&quot;&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;name&amp;#125;&lt;/span&gt;,              &lt;span class=&quot;comment&quot;&gt;//名字&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;Password&quot;&lt;/span&gt;, &lt;span class=&quot;variable&quot;&gt;$&amp;#123;password&amp;#125;&lt;/span&gt;       &lt;span class=&quot;comment&quot;&gt;//密码   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###RESTful API&lt;/p&gt;
-&lt;p&gt;####1. 用户&lt;/p&gt;
-&lt;ul&gt;
+&lt;h3 id=&quot;RESTful_API&quot;&gt;RESTful API&lt;/h3&gt;&lt;h4 id=&quot;1-_用户&quot;&gt;1. 用户&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;GET /v1/user&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;此API用于查询所有 用户记录&lt;/p&gt;
@@ -552,9 +683,7 @@
 &lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Request&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;operator&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;DELETE&lt;/span&gt; /v1/department/:&lt;span class=&quot;keyword&quot;&gt;id&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Response&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;number&quot;&gt;1.1&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;204&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NO&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;CONTENT&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;keyword&quot;&gt;Type&lt;/span&gt;: application/&lt;span class=&quot;keyword&quot;&gt;json&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Example&lt;br&gt;下面的示例将删除部门记录&lt;/p&gt;
 &lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Request&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;operator&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;DELETE&lt;/span&gt;  /v1/department/&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;number&quot;&gt;1.1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Response&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;number&quot;&gt;1.1&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;204&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NO&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;CONTENT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###3. 系统／管理员 与 用户Api很类似，只是URI稍有不同&lt;/p&gt;
-&lt;p&gt;####系统： /v1/system&lt;/p&gt;
-&lt;p&gt;####管理员： /v1/admin&lt;br&gt;返回记录信息在 Record informations中有说明。&lt;/p&gt;
+&lt;h3 id=&quot;3-_系统／管理员_与_用户Api很类似，只是URI稍有不同&quot;&gt;3. 系统／管理员 与 用户Api很类似，只是URI稍有不同&lt;/h3&gt;&lt;h4 id=&quot;系统：_/v1/system&quot;&gt;系统： /v1/system&lt;/h4&gt;&lt;h4 id=&quot;管理员：_/v1/admin&quot;&gt;管理员： /v1/admin&lt;/h4&gt;&lt;p&gt;返回记录信息在 Record informations中有说明。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -603,7 +732,7 @@
     <link href="http://lionel0806.github.io/2015/03/12/markdown%E8%AF%AD%E6%B3%95/"/>
     <id>http://lionel0806.github.io/2015/03/12/markdown语法/</id>
     <published>2015-03-12T11:12:19.000Z</published>
-    <updated>2016-07-20T16:01:11.000Z</updated>
+    <updated>2016-07-20T16:02:32.000Z</updated>
     
     <content type="html">&lt;p&gt;本文转自&lt;a href=&quot;http://blog.izhangbo.cn/掌握这几种markdown语法你就够了/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;使用 Markdown 真的可以写出非常整洁的文档来，看到很多人都在使用，自己也忍不住学习了下。网上有很多讲解 markdown 语法的，资料庞大复杂不够简练，学个基础语法置于这么麻烦么。我做了一些整理，保证你学了这些，就可以使用 markdown 去秀文档了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;

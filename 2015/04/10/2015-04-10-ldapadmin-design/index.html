@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://lionel0806.github.io/2015/04/10/2015-04-10-ldapadmin-design/index.html">
 <meta property="og:site_name" content="Lionel's Blog">
 <meta property="og:description" content="LDAPAdmin, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。">
-<meta property="og:updated_time" content="2016-07-20T16:01:44.000Z">
+<meta property="og:updated_time" content="2016-07-20T16:13:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统一账户管理系统RESTful api设计">
 <meta name="twitter:description" content="LDAPAdmin, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。">
@@ -187,7 +187,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Functionality"><span class="post-toc-text">Functionality</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Terminology"><span class="post-toc-text">Terminology</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#User_stories"><span class="post-toc-text">User stories</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Scope_and_Non-Scope"><span class="post-toc-text">Scope and Non-Scope</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scope"><span class="post-toc-text">Scope</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Non-Scope"><span class="post-toc-text">Non-Scope</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Low-level_Design"><span class="post-toc-text">Low-level Design</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Response_Code"><span class="post-toc-text">Response Code</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Response|_Result"><span class="post-toc-text">Response| Result</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）："><span class="post-toc-text">除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Http_methods_table"><span class="post-toc-text">Http methods table</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-用户"><span class="post-toc-text">1.用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-_部门"><span class="post-toc-text">2. 部门</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-_系统"><span class="post-toc-text">3. 系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-_管理员"><span class="post-toc-text">4. 管理员</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Record_infomations"><span class="post-toc-text">Record infomations</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-用户-1"><span class="post-toc-text">1.用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-部门"><span class="post-toc-text">2.部门</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-系统"><span class="post-toc-text">3.系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-_管理员-1"><span class="post-toc-text">4. 管理员</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RESTful_API"><span class="post-toc-text">RESTful API</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-_用户"><span class="post-toc-text">1. 用户</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-_系统／管理员_与_用户Api很类似，只是URI稍有不同"><span class="post-toc-text">3. 系统／管理员 与 用户Api很类似，只是URI稍有不同</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#系统：_/v1/system"><span class="post-toc-text">系统： /v1/system</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#管理员：_/v1/admin"><span class="post-toc-text">管理员： /v1/admin</span></a></li></ol></li></ol></li></ol>
             </nav>
             
         </aside>
@@ -197,29 +197,21 @@
             <div class="post-content" id="post-content" itemprop="postContent">
             <p><strong><em>LDAPAdmin</em></strong>, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。<br><a id="more"></a></p>
 <p>下面主要对LDAPAdmin 的REST Api做个简单介绍：</p>
-<p>##Functionality</p>
-<p>###Terminology</p>
-<p>###User stories</p>
-<ul>
+<h2 id="Functionality">Functionality</h2><h3 id="Terminology">Terminology</h3><h3 id="User_stories">User stories</h3><ul>
 <li>利用该组件的HTTP API，通过提交一组描述 用户／部门／系统／管理员的JSON数据，添加、删除、更新、查询数据；</li>
 <li>利用该组件的HTTP API，可以方便的添加一条 用户／部门／系统／管理员记录；</li>
 <li>利用该组件的HTTP API，可以方便的更新一条指定的 用户／部门／系统／管理员记录；</li>
 <li>利用该组件的HTTP API，可以方便的将指定的 用户／部门／系统／管理员删除；</li>
 </ul>
-<p>###Scope and Non-Scope</p>
-<p>####Scope</p>
-<ul>
+<h3 id="Scope_and_Non-Scope">Scope and Non-Scope</h3><h4 id="Scope">Scope</h4><ul>
 <li>用户／部门／系统／管理员 信息相关数据的添加、更新、删除；</li>
 <li>查询 用户／部门／系统／管理员的信息；</li>
 <li>用户／部门／系统／管理员 的有效性；</li>
 </ul>
-<p>###Non-Scope</p>
-<ul>
+<h3 id="Non-Scope">Non-Scope</h3><ul>
 <li>用户数据的可靠性，数据由管理员负责维护</li>
 </ul>
-<p>##Low-level Design</p>
-<p>###Response Code</p>
-<table>
+<h2 id="Low-level_Design">Low-level Design</h2><h3 id="Response_Code">Response Code</h3><table>
 <thead>
 <tr>
 <th style="text-align:left">Code</th>
@@ -275,9 +267,7 @@
 </tr>
 </tbody>
 </table>
-<p>###Response| Result</p>
-<p>#####除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：</p>
-<table>
+<h3 id="Response|_Result">Response| Result</h3><h5 id="除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：">除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：</h5><table>
 <thead>
 <tr>
 <th style="text-align:left">Method</th>
@@ -303,23 +293,164 @@
 </tr>
 </tbody>
 </table>
-<p>###Http methods table</p>
-<p>####1.用户<br>HTTP Method|URI|Description<br>:—————|:————–|:————-<br>GET    |/v1/user    |获取所有用户记录<br>GET    |/v1/user/:id    |根据id获取记录<br>POST|    /v1/user    |添加用户记录<br>PUT    |/v1/user/:id    |修改某个用户记录<br>DELETE|    /v1/user/:id    |删除某个用户记录</p>
-<p>####2. 部门<br>HTTP Method|URI|Description<br>:——————-|:————–|:————-<br>GET    | /v1/department    |获取所有部门记录<br>GET    | /v1/department/:id    |根据id获取部门记录<br>GET    | /v1/department/:id?type=subtree    |根据id获取该部门下所有的用户和子部门记录<br>POST|    /v1/department    |添加部门记录<br>PUT    | /v1/department/:id    |修改某个部门记录<br>DELETE|    /v1/department/:id    |删除某个部门记录</p>
-<p>####3. 系统<br>HTTP Method|URI|Description<br>:—————|:————–|:————-<br>GET    |/v1/system    |获取所有组记录<br>GET    |/v1/system/:id    |根据id获取记录<br>POST|    /v1/system    |添加组记录<br>PUT    |/v1/system/:id    |修改某个组记录<br>DELETE|    /v1/system/:id    |删除某个组记录</p>
-<p>####4. 管理员<br>HTTP Method|URI|Description<br>:—————|:————–|:————-<br>GET    | /v1/admin    |获取所有管理员记录<br>GET    | /v1/admin/:id    |根据id获取记录<br>POST|    /v1/admin    |添加管理员记录<br>PUT    | /v1/admin/:id    |修改某个管理员记录<br>DELETE|    /v1/admin/:id|    删除某个管理员记录</p>
-<p>###Record infomations</p>
-<p>####1.用户<br>Response</p>
+<h3 id="Http_methods_table">Http methods table</h3><h4 id="1-用户">1.用户</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Method</th>
+<th style="text-align:left">URI</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/user</td>
+<td style="text-align:left">获取所有用户记录</td>
+</tr>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/user/:id</td>
+<td style="text-align:left">根据id获取记录</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">/v1/user</td>
+<td style="text-align:left">添加用户记录</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:left">/v1/user/:id</td>
+<td style="text-align:left">修改某个用户记录</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">/v1/user/:id</td>
+<td style="text-align:left">删除某个用户记录</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-_部门">2. 部门</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Method</th>
+<th style="text-align:left">URI</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/department</td>
+<td style="text-align:left">获取所有部门记录</td>
+</tr>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/department/:id</td>
+<td style="text-align:left">根据id获取部门记录</td>
+</tr>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/department/:id?type=subtree</td>
+<td style="text-align:left">根据id获取该部门下所有的用户和子部门记录</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">/v1/department</td>
+<td style="text-align:left">添加部门记录</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:left">/v1/department/:id</td>
+<td style="text-align:left">修改某个部门记录</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">/v1/department/:id</td>
+<td style="text-align:left">删除某个部门记录</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-_系统">3. 系统</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Method</th>
+<th style="text-align:left">URI</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/system</td>
+<td style="text-align:left">获取所有组记录</td>
+</tr>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/system/:id</td>
+<td style="text-align:left">根据id获取记录</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">/v1/system</td>
+<td style="text-align:left">添加组记录</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:left">/v1/system/:id</td>
+<td style="text-align:left">修改某个组记录</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">/v1/system/:id</td>
+<td style="text-align:left">删除某个组记录</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-_管理员">4. 管理员</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Method</th>
+<th style="text-align:left">URI</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/admin</td>
+<td style="text-align:left">获取所有管理员记录</td>
+</tr>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">/v1/admin/:id</td>
+<td style="text-align:left">根据id获取记录</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">/v1/admin</td>
+<td style="text-align:left">添加管理员记录</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:left">/v1/admin/:id</td>
+<td style="text-align:left">修改某个管理员记录</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">/v1/admin/:id</td>
+<td style="text-align:left">删除某个管理员记录</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Record_infomations">Record infomations</h3><h4 id="1-用户-1">1.用户</h4><p>Response</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>id&#125;,                  <span class="regexp">//</span>用户<span class="constant">ID</span></span><br><span class="line">    <span class="string">"UserName"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>user name&#125;,     <span class="regexp">//</span>用户名</span><br><span class="line">    <span class="string">"Password"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>password&#125;,      <span class="regexp">//</span>密码</span><br><span class="line">    <span class="string">"Department"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>department&#125;,  <span class="regexp">//</span>所属部门</span><br><span class="line">    <span class="string">"Mail"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>mail&#125;,              <span class="regexp">//</span>邮件</span><br><span class="line">    <span class="string">"Telephone"</span><span class="symbol">:</span> <span class="variable">$&#123;</span>telephone&#125;,    <span class="regexp">//</span>电话</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####2.部门<br>Response</p>
+<h4 id="2-部门">2.部门</h4><p>Response</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span>: <span class="variable">$&#123;id&#125;</span>,                  <span class="comment">//部门ID</span></span><br><span class="line">    <span class="string">"Name"</span>: <span class="variable">$&#123;name&#125;</span>,              <span class="comment">//部门名</span></span><br><span class="line">    <span class="string">"Parent"</span>, <span class="variable">$&#123;parent&#125;</span>           <span class="comment">//上级部门   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####3.系统<br>Response</p>
+<h4 id="3-系统">3.系统</h4><p>Response</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span>: <span class="variable">$&#123;id&#125;</span>,                  <span class="comment">//组ID</span></span><br><span class="line">    <span class="string">"Name"</span>: <span class="variable">$&#123;name&#125;</span>,              <span class="comment">//组名</span></span><br><span class="line">    <span class="string">"Member"</span>, <span class="variable">$&#123;member&#125;</span>           <span class="comment">//成员</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####4. 管理员<br>Response</p>
+<h4 id="4-_管理员-1">4. 管理员</h4><p>Response</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"Id"</span>: <span class="variable">$&#123;id&#125;</span>,                  <span class="comment">//管理员ID</span></span><br><span class="line">    <span class="string">"Name"</span>: <span class="variable">$&#123;name&#125;</span>,              <span class="comment">//名字</span></span><br><span class="line">    <span class="string">"Password"</span>, <span class="variable">$&#123;password&#125;</span>       <span class="comment">//密码   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###RESTful API</p>
-<p>####1. 用户</p>
-<ul>
+<h3 id="RESTful_API">RESTful API</h3><h4 id="1-_用户">1. 用户</h4><ul>
 <li>GET /v1/user</li>
 </ul>
 <p>此API用于查询所有 用户记录</p>
@@ -389,9 +520,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line"><span class="operator"><span class="keyword">DELETE</span> /v1/department/:<span class="keyword">id</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Response</span><br><span class="line"><span class="keyword">HTTP</span>/<span class="number">1.1</span> <span class="number">204</span> <span class="keyword">NO</span> <span class="keyword">CONTENT</span></span><br><span class="line"><span class="keyword">Content</span>-<span class="keyword">Type</span>: application/<span class="keyword">json</span></span></span><br></pre></td></tr></table></figure>
 <p>Example<br>下面的示例将删除部门记录</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line"><span class="operator"><span class="keyword">DELETE</span>  /v1/department/<span class="number">1</span> <span class="keyword">HTTP</span>/<span class="number">1.1</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Response</span><br><span class="line"><span class="keyword">HTTP</span>/<span class="number">1.1</span> <span class="number">204</span> <span class="keyword">NO</span> <span class="keyword">CONTENT</span></span></span><br></pre></td></tr></table></figure>
-<p>###3. 系统／管理员 与 用户Api很类似，只是URI稍有不同</p>
-<p>####系统： /v1/system</p>
-<p>####管理员： /v1/admin<br>返回记录信息在 Record informations中有说明。</p>
+<h3 id="3-_系统／管理员_与_用户Api很类似，只是URI稍有不同">3. 系统／管理员 与 用户Api很类似，只是URI稍有不同</h3><h4 id="系统：_/v1/system">系统： /v1/system</h4><h4 id="管理员：_/v1/admin">管理员： /v1/admin</h4><p>返回记录信息在 Record informations中有说明。</p>
 
             <blockquote>
                 <p>
