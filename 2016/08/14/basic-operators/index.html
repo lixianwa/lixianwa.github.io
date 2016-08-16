@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Lionel&#39;s Blog | 记录&amp;分享</title>
+  <title>ReactiveCocoa中的基本算子 | Lionel&#39;s Blog | 记录&amp;分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="undefined">
-  <meta name="description" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lionel's Blog">
-<meta property="og:url" content="http://lionel0806.github.io/index.html">
+  <meta name="keywords" content="FRP,ReactiveCocoa">
+  <meta name="description" content="原文链接: Basic Operators
+基本符号这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactiveCocoa中的基本算子">
+<meta property="og:url" content="http://lionel0806.github.io/2016/08/14/basic-operators/index.html">
 <meta property="og:site_name" content="Lionel's Blog">
-<meta property="og:description" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+<meta property="og:description" content="原文链接: Basic Operators
+基本符号这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。">
+<meta property="og:updated_time" content="2016-08-16T15:54:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lionel's Blog">
-<meta name="twitter:description" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+<meta name="twitter:title" content="ReactiveCocoa中的基本算子">
+<meta name="twitter:description" content="原文链接: Basic Operators
+基本符号这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。">
   
     <link rel="alternative" href="/atom.xml" title="Lionel&#39;s Blog" type="application/atom+xml">
   
@@ -30,7 +34,7 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu"  >
+  <nav id="menu" class="hide" >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>
@@ -46,7 +50,7 @@
   </div>
   <ul class="nav flex-col">
     
-        <li class="waves-block waves-effect active">
+        <li class="waves-block waves-effect">
           <a href="/"  >
             <i class="icon icon-lg icon-home"></i>
             Home
@@ -100,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Lionel&#39;s Blog</div>
+        <div class="flex-col header-title ellipsis">ReactiveCocoa中的基本算子</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -121,45 +125,80 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Lionel&#39;s Blog</h1>
+    <h1 class="author">ReactiveCocoa中的基本算子</h1>
     <h5 class="subtitle">
         
-        记录&amp;分享
+            <time datetime="2016-08-14T09:50:43.000Z" itemprop="datePublished" class="page-time">
+  2016-08-14
+</time>
+
+
         
     </h5>
   </div>
 </header>
 
     <div class="container body-wrap">
-      <ul class="post-list">
-  
-    <li class="post-list-item">
-        <article id="post-basic-operators" 
+      <article id="post-basic-operators" 
   class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/14/basic-operators/">ReactiveCocoa中的基本算子</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-14T09:50:43.000Z" itemprop="datePublished" class="post-time">
-  2016-08-14
-</time>
-
+    <div class="post-meat flex-row">
         
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FRP/">FRP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactiveCocoa/">ReactiveCocoa</a></li></ul>
 
- 
     </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md" target="_blank" rel="external">Basic Operators</a></p>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本符号"><span class="post-toc-text">基本符号</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件流副作用"><span class="post-toc-text">事件流副作用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#观察（Observation）"><span class="post-toc-text">观察（Observation）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Injecting_effects"><span class="post-toc-text">Injecting effects</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组合算子（Operator_composition）"><span class="post-toc-text">组合算子（Operator composition）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Lifting"><span class="post-toc-text">Lifting</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#转换事件流"><span class="post-toc-text">转换事件流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Mapping"><span class="post-toc-text">Mapping</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Filtering"><span class="post-toc-text">Filtering</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#聚集(Aggregating)"><span class="post-toc-text">聚集(Aggregating)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#合并事件流（Combining_event_streams）"><span class="post-toc-text">合并事件流（Combining event streams）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#合并最新的值（Combining_latest_values）"><span class="post-toc-text">合并最新的值（Combining latest values）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#压缩（Zipping）"><span class="post-toc-text">压缩（Zipping）</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md" target="_blank" rel="external">Basic Operators</a></p>
 <h3 id="基本符号">基本符号</h3><p>这个文档解释ReactiveCocoa中最常用的<code>Operator</code>，以及一些用例。<br>注意<code>Operators</code>，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，<br>换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。<br>该文档使用术语“事件流”来描述<code>Signal</code>和<code>SignalProducer</code>的概念。</p>
 <h4 id="事件流副作用">事件流副作用</h4><h5 id="观察（Observation）">观察（Observation）</h5><p><code>Signal</code>可以被观察通过<code>observe</code>函数，需要一个<code>Observer</code>作为参数，任何事件流都会发送给它。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">signal.observe(<span class="type">Signal</span>.<span class="type">Observer</span> &#123; event <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">switch</span> event &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">Next</span>(next):</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Next: <span class="subst">\(next)</span>"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">Failed</span>(error):</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Failed: <span class="subst">\(error)</span>"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Completed</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Completed"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Interrupted</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Interrupted"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -181,360 +220,57 @@
 <p><code>zipWith</code>算子功能相同，不同之处是它是一个算子。</p>
 <p>－－－未完－－－</p>
 
-    
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://lionel0806.github.io/2016/08/14/basic-operators/" target="_blank" rel="external">http://lionel0806.github.io/2016/08/14/basic-operators/</a>
+                </p>
+                <footer><cite><a href="http://lionel0806.github.io">@Lionel's Blog</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/05/20/自控力读书笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">《自控力》读书笔记</h4>
+      </a>
     </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FRP/">FRP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactiveCocoa/">ReactiveCocoa</a></li></ul>
-
-</article>
-    </li>
   
-    <li class="post-list-item">
-        <article id="post-自控力读书笔记" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/05/20/自控力读书笔记/">《自控力》读书笔记</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-05-20T09:50:43.000Z" itemprop="datePublished" class="post-time">
-  2016-05-20
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <h4 id="一-_意志力是什么？">一. 意志力是什么？</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">意志力其实是“我要做”，“我不要”和“我想要”这三种力量。</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h5 id="深入剖析:">深入剖析:</h5><ul>
-<li>更难的事是什么？想象你正面临一个意志力挑战，更难的事是什么？它为什么这么困难？</li>
-<li>认清两个自我。你的意志力挑战是，如何描述想抗衡的两个自我？冲动的你想要什么？明智的你想要什么？</li>
-</ul>
-<h5 id="意志力实验">意志力实验</h5><ul>
-<li>记录你的意志力选择。至少一天，注意观察你做的关于意志力的决定。</li>
-<li>5分钟大脑训练冥想。在脑海中默念“呼”和“吸”，把注意力集中在呼吸上。<br>当你走神的时候，重新集中注意力。</li>
-</ul>
-</blockquote>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自控力/">自控力</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-Xcode-keyboard-shortcuts" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/03/10/Xcode-keyboard-shortcuts/">Xcode快捷键</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-03-09T17:28:41.000Z" itemprop="datePublished" class="post-time">
-  2016-03-10
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>Xcode提供很多快捷键，我们不可能都记住，但平时的开发中如果能尽可能多的使用快捷键，效率会提高不少，下面总结了Xcode的一些常用快捷键：<br>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode-快捷键/">Xcode, 快捷键</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-the-solution-of-retain-cycle" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/28/the-solution-of-retain-cycle/">如何解决retain cycle</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-28T12:35:40.000Z" itemprop="datePublished" class="post-time">
-  2015-10-28
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>retain cycle</p>
-<p>当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题。 我们可以把存在retain cycle的两个对象看成是 父－子 关系。 在这个关系当中，父可以拥有子，但是子不可以拥有父，因此，在这个问题中，我们可以把作为 父 的对象定义为strong， 而作为 子 的对象定义为weak，这样就解决了retain cycle。</p>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-an-ios-view-crash-error" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/15/an-ios-view-crash-error/">一个iOS View crash问题</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-15T07:00:29.000Z" itemprop="datePublished" class="post-time">
-  2015-10-15
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>[2015-10-15]<br>用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    </p>
-<blockquote>
-<p>Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one view controller at a time! View <uiview: 414="" 0x7f914af22610;="" frame="(0" 0;="" 736);="" autoresize="W+H;" layer="<CALayer:" 0x7f914af22980="">&gt; is associated with <uiviewcontroller: 0x7f914ae49a90="">. Clear this association before associating this view with <testviewcontroller: 0x7f914ac7f680="">.’</testviewcontroller:></uiviewcontroller:></uiview:></p>
-</blockquote>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-hello-world" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/14/hello-world/">Hello Hexo</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-14T01:25:10.000Z" itemprop="datePublished" class="post-time">
-  2015-10-14
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-blog-from-jekyll-to-hexo" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/13/blog-from-jekyll-to-hexo/">开始使用hexo生成blog</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-13T15:37:00.000Z" itemprop="datePublished" class="post-time">
-  2015-10-13
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>hello, hexo ！</p>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-storyboard-separation" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/07/20/storyboard-separation/">Storyboard 分离</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-07-20T15:02:08.000Z" itemprop="datePublished" class="post-time">
-  2015-07-20
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用Storyboard规避它的不足，让优势得到更大的发挥呢？<br>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Storyboard/">Storyboard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-2015-04-10-ldapadmin-design" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/04/10/2015-04-10-ldapadmin-design/">统一账户管理系统RESTful api设计</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-04-09T16:00:00.000Z" itemprop="datePublished" class="post-time">
-  2015-04-10
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p><strong><em>LDAPAdmin</em></strong>, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。<br>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LDAP/">LDAP</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-2015-03-14-tools" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/03/14/2015-03-14-tools/">工具</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-03-14T11:03:00.000Z" itemprop="datePublished" class="post-time">
-  2015-03-14
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <ol>
-<li><strong>jira</strong>:项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域.</li>
-<li><strong>confluence</strong>:企业知识管理与协同软件，也可以用于构建企业wiki。</li>
-<li><strong><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a></strong>:基于Git的开源项目，客用于搭建私有的Github。</li>
-<li><strong><a href="http://riemann.io/" target="_blank" rel="external">Riemann</a></strong>:报警系统，函数式编程语言clojure编写，可配置性强，可以和OpenTSDB等时间序列存贮系统结合，构建企业报警系统。</li>
-</ol>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-</article>
-    </li>
-  
-</ul>
-
-<nav id="page-nav">
-    <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-    </div>
 </nav>
 
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="basic-operators" data-title="ReactiveCocoa中的基本算子" data-url="http://lionel0806.github.io/2016/08/14/basic-operators/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lionel0806"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
     </div>
   </main>
 <div class="mask" id="mask"></div>
@@ -542,10 +278,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "Lionel's Blog",
+    title: "ReactiveCocoa中的基本算子",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://lionel0806.github.io/index.html"
+    url: "http://lionel0806.github.io/2016/08/14/basic-operators/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
