@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何使用curl进行http请求 | Lionel&#39;s Blog | 记录&amp;分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="curl,工具">
+  <meta name="description" content="如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。
+curl是什么？
+curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用curl进行http请求">
+<meta property="og:url" content="http://lionel0806.github.io/2016/09/01/curl/index.html">
+<meta property="og:site_name" content="Lionel's Blog">
+<meta property="og:description" content="如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。
+curl是什么？
+curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传">
+<meta property="og:updated_time" content="2016-09-05T00:18:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用curl进行http请求">
+<meta name="twitter:description" content="如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。
+curl是什么？
+curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传">
+  
+    <link rel="alternative" href="/atom.xml" title="Lionel&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具&lt;code&gt;curl&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&quot;curl是什么？&quot;&gt;curl是什么？&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。&lt;br&gt;curl支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。(来自&lt;a href=&quot;https://zh.wikipedia.org/wiki/CURL&quot;&gt;wikipedia&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Lionel</h5>
+        <a href="mailto:undefined" title="lixiansir@gmail.com" class="mail">lixiansir@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/history"  >
+            <i class="icon icon-lg icon-history"></i>
+            History
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/about"  >
+            <i class="icon icon-lg icon-about"></i>
+            About
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Lionel&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何使用curl进行http请求</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">如何使用curl进行http请求</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-09-01T00:13:52.000Z" itemprop="datePublished" class="page-time">
+  2016-09-01
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-curl" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meat flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curl/">curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#curl是什么？"><span class="post-toc-text">curl是什么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP_请求"><span class="post-toc-text">HTTP 请求</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-POST请求"><span class="post-toc-text">1.POST请求</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-_GET请求"><span class="post-toc-text">2. GET请求</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-_DELETE请求"><span class="post-toc-text">3. DELETE请求</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具<code>curl</code>。</p>
+<h4 id="curl是什么？">curl是什么？</h4><blockquote>
+<p>curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。<br>curl支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。(来自<a href="https://zh.wikipedia.org/wiki/CURL" target="_blank" rel="external">wikipedia</a>)</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="HTTP_请求">HTTP 请求</h4><h5 id="1-POST请求">1.POST请求</h5><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -<span class="keyword">H</span> <span class="string">"Content-Type: application/json"</span> -X <span class="keyword">POST</span> -<span class="keyword">d</span> \</span><br><span class="line">  '&#123;</span><br><span class="line">    <span class="string">"key1"</span>: <span class="string">"value1"</span>,</span><br><span class="line">    <span class="string">"key2"</span>: <span class="string">"value2"</span>,</span><br><span class="line">    ......</span><br><span class="line">  &#125;' http:<span class="comment">//localhost:3000/</span></span><br></pre></td></tr></table></figure>
+<p>参数说明：<br>-H: 表示后面紧跟请求头部参数<br>-X: 后面紧跟请求指令，如:GET/POST/DELETE/PUT/UPDATE等，没有此参数时默认是GET请求。<br>-d: 后紧跟HTTP POST 数据。</p>
+<h5 id="2-_GET请求">2. GET请求</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET <span class="string">http:</span><span class="comment">//localhost:3000/</span></span><br></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">http:</span><span class="comment">//localhost:3000/</span></span><br></pre></td></tr></table></figure></p>
+<p>NOTE:可用此命令查看网页源码，如：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl www<span class="class">.google</span><span class="class">.com</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!doctype html&gt;</span><span class="tag">&lt;<span class="title">html</span> <span class="attribute">itemscope</span>=<span class="value">""</span> <span class="attribute">itemtype</span>=<span class="value">"http://schema.org/WebPage"</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span><span class="tag">&lt;<span class="title">head</span>&gt;</span><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">content</span>=<span class="value">"Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for."</span> <span class="attribute">name</span>=<span class="value">"description"</span>&gt;</span><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">content</span>=<span class="value">"noodp"</span> <span class="attribute">name</span>=<span class="value">"robots"</span>&gt;</span><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=UTF-8"</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span>&gt;</span><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">content</span>=<span class="value">"/images/branding/googleg/1x/googleg_standard_color_128dp.png"</span> <span class="attribute">itemprop</span>=<span class="value">"image"</span>&gt;</span><span class="tag">&lt;<span class="title">title</span>&gt;</span>Google<span class="tag">&lt;/<span class="title">title</span>&gt;</span><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.google=&#123;kEI:<span class="string">'s7bMV_-GFMTYjwPO_oqYDw'</span>,kEXPI:<span class="string">'2073312,3700302,4029815,4031109,4032678,4036509,4036527,4038012,4039268,4043492,4045841,4048347,4052304,4052811,4055242,4061155,4062185,4062703,4062706,4063220,4063879,4064815,4065787,4065794,4065959,4066654,4066708,4067175,4067860,4068550,4068816,4069148,4069839,4069841,4069907,4070127,4071231,4071590,4071603,4071783,4071835,4071842,4072289,4072364,4072777,4073405,4073418,4073758,4073776,4073959,4073980,4074348,4074797,4074801,4074956,4075041,4075731,4075787,4075788,4075860,4075966,4075974,4075982,4076095,4076114,4076542,4076797,4076856,4076931,4077219,4077221,4077622,4078175,4078430,4078641,8300273,8502184,8503585,8504846,8505150,8505152,8505585,8505790,8505816,8506255,10200084,10201990'</span>,authuser:<span class="number">0</span>,kscs:<span class="string">'c9c918f0_24'</span>&#125;;google.kHL=<span class="string">'en'</span>;&#125;)();(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;google.lc=[];google.li=<span class="number">0</span>;google.getEI=<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> b;a&amp;&amp;(!a.getAttribute||!(b=a.getAttribute(<span class="string">"eid"</span>)));)a=a.parentNode;<span class="keyword">return</span> b||google.kEI&#125;;google.getLEI=<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> b=<span class="literal">null</span>;a&amp;&amp;(!a.getAttribute||!(b=a.getAttribute(<span class="string">"leid"</span>)));)a=a.parentNode;<span class="keyword">return</span> b&#125;;google.https=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span><span class="string">"https:"</span>==<span class="built_in">window</span>.location.protocol&#125;;google.ml=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">null</span>&#125;;google.wl=<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">try</span>&#123;google.ml(<span class="built_in">Error</span>(a),!<span class="number">1</span>,b)&#125;<span class="keyword">catch</span>(c)&#123;&#125;&#125;;google.time=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span>(<span class="keyword">new</span> <span class="built_in">Date</span>).getTime()&#125;;google.log=<span class="function"><span class="keyword">function</span>(<span class="params">a,b,c,e,g</span>)</span>&#123;a=google.logUrl(a,b,c,e,g);<span class="keyword">if</span>(<span class="string">""</span>!=a)&#123;b=<span class="keyword">new</span> Image;<span class="keyword">var</span> d=google.lc,f=google.li;d[f]=b;b.onerror=b.onload=b.onabort=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">delete</span> d[f]&#125;;<span class="built_in">window</span>.google&amp;&amp;<span class="built_in">window</span>.google.vel&amp;&amp;<span class="built_in">window</span>.google.vel.lu&amp;&amp;<span class="built_in">window</span>.google.vel.lu(a);b.src=a;google.li=f+<span class="number">1</span>&#125;&#125;;google.logUrl=<span class="function"><span class="keyword">function</span>(<span class="params">a,b,c,e,g</span>)</span>&#123;<span class="keyword">var</span> d=<span class="string">""</span>,f=google.ls||<span class="string">""</span>;<span class="keyword">if</span>(!c&amp;&amp;-<span class="number">1</span>==b.search(<span class="string">"&amp;ei="</span>))&#123;<span class="keyword">var</span> h=google.getEI(e),d=<span class="string">"&amp;ei="</span>+h;-<span class="number">1</span>==b.search(<span class="string">"&amp;lei="</span>)&amp;&amp;((e=google.getLEI(e))?d+=<span class="string">"&amp;lei="</span>+e:h!=google.kEI&amp;&amp;(d+=<span class="string">"&amp;lei="</span>+google.kEI))&#125;a=c||<span class="string">"/"</span>+(g||<span class="string">"gen_204"</span>)+<span class="string">"?atyp=i&amp;ct="</span>+a+<span class="string">"&amp;cad="</span>+b+d+f+<span class="string">"&amp;zx="</span>+google.time();<span class="regexp">/^http:/i</span>.test(a)&amp;&amp;google.https()&amp;&amp;(google.ml(<span class="built_in">Error</span>(<span class="string">"a"</span>),!<span class="number">1</span>,&#123;src:a,glmm:<span class="number">1</span>&#125;),a=<span class="string">""</span>);<span class="keyword">return</span> a&#125;;google.y=&#123;&#125;;google.x=<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;google.y[a.id]=[a,b];<span class="keyword">return</span>!<span class="number">1</span>&#125;;google.load=<span class="function"><span class="keyword">function</span>(<span class="params">a,b,c</span>)</span>&#123;google.x(&#123;id:a+k++&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;google.load(a,b,c)&#125;)&#125;;<span class="keyword">var</span> k=<span class="number">0</span>;&#125;)();<span class="keyword">var</span> _gjwl=location;<span class="function"><span class="keyword">function</span> <span class="title">_gjuc</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> a=_gjwl.href.indexOf(<span class="string">"#"</span>);<span class="keyword">if</span>(<span class="number">0</span>&lt;=a&amp;&amp;(a=_gjwl.href.substring(a),<span class="number">0</span>&lt;a.indexOf(<span class="string">"&amp;q="</span>)||<span class="number">0</span>&lt;=a.indexOf(<span class="string">"#q="</span>))&amp;&amp;(a=a.substring(<span class="number">1</span>),-<span class="number">1</span>==a.indexOf(<span class="string">"#"</span>)))&#123;<span class="keyword">for</span>(<span class="keyword">var</span> d=<span class="number">0</span>;d&lt;a.length;)&#123;<span class="keyword">var</span> b=d;<span class="string">"&amp;"</span>==a.charAt(b)&amp;&amp;++b;<span class="keyword">var</span> c=a.indexOf(<span class="string">"&amp;"</span>,b);-<span class="number">1</span>==c&amp;&amp;(c=a.length);b=a.substring(b,c);<span class="keyword">if</span>(<span class="number">0</span>==b.indexOf(<span class="string">"fp="</span>))a=a.substring(<span class="number">0</span>,d)+a.substring(c,a.length),c=d;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"cad=h"</span>==b)<span class="keyword">return</span> <span class="number">0</span>;d=c&#125;_gjwl.href=<span class="string">"/search?"</span>+a+<span class="string">"&amp;cad=h"</span>;<span class="keyword">return</span> <span class="number">1</span>&#125;<span class="keyword">return</span> <span class="number">0</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_gjh</span>(<span class="params"></span>)</span>&#123;!_gjuc()&amp;&amp;<span class="built_in">window</span>.google&amp;&amp;google.x&amp;&amp;google.x(&#123;id:<span class="string">"GJH"</span>&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;google.nav&amp;&amp;google.nav.gjh&amp;&amp;google.nav.gjh()&#125;)&#125;;<span class="built_in">window</span>._gjh&amp;&amp;_gjh();</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"><span class="id">#gbar</span>,<span class="id">#guser</span><span class="rules">&#123;<span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">13px</span></span></span>;<span class="rule"><span class="attribute">padding-top</span>:<span class="value"><span class="number">1px</span> <span class="important">!important</span></span></span>;&#125;</span><span class="id">#gbar</span><span class="rules">&#123;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">22px</span>&#125;#guser&#123;padding-bottom:<span class="number">7px</span> <span class="important">!important</span></span></span>;<span class="rule"><span class="attribute">text-align</span>:<span class="value">right&#125;.gbh,.gbd&#123;border-top:<span class="number">1px</span> solid <span class="hexcolor">#c9d7f1</span></span></span>;<span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">1px</span>&#125;.gbh&#123;height:<span class="number">0</span></span></span>;<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">24px</span></span></span>;<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span>&#125;@media all&#123;.gb1&#123;height:<span class="number">22px</span></span></span>;<span class="rule"><span class="attribute">margin-right</span>:<span class="value">.<span class="number">5em</span></span></span>;<span class="rule"><span class="attribute">vertical-align</span>:<span class="value">top&#125;#gbar&#123;float:left&#125;&#125;a.gb1,a.gb4&#123;text-decoration:underline <span class="important">!important</span>&#125;a.gb1,a.gb4&#123;color:<span class="hexcolor">#00c</span> <span class="important">!important</span>&#125;.gbi .gb4&#123;color:<span class="hexcolor">#dd8e27</span> <span class="important">!important</span>&#125;.gbf .gb4&#123;color:<span class="hexcolor">#900</span> <span class="important">!important</span>&#125;</span><br><span class="line"></span></span></span></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"><span class="rules"><span class="rule"><span class="value">body,td,a,p,.h&#123;font-family:arial,sans-serif&#125;body&#123;margin:<span class="number">0</span></span></span>;<span class="rule"><span class="attribute">overflow-y</span>:<span class="value">scroll&#125;#gog&#123;padding:<span class="number">3px</span> <span class="number">8px</span> <span class="number">0</span>&#125;td&#123;line-height:.<span class="number">8em</span>&#125;.gac_m td&#123;line-height:<span class="number">17px</span>&#125;form&#123;margin-bottom:<span class="number">20px</span>&#125;.h&#123;color:<span class="hexcolor">#36c</span>&#125;.q&#123;color:<span class="hexcolor">#00c</span>&#125;.ts td&#123;padding:<span class="number">0</span>&#125;.ts&#123;border-collapse:collapse&#125;em&#123;font-weight:bold</span></span>;<span class="rule"><span class="attribute">font-style</span>:<span class="value">normal&#125;.lst&#123;height:<span class="number">25px</span></span></span>;<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">496px</span>&#125;.gsfi,.lst&#123;font:<span class="number">18px</span> arial,sans-serif&#125;.gsfs&#123;font:<span class="number">17px</span> arial,sans-serif&#125;.ds&#123;display:inline-box</span></span>;<span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>;<span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">3px</span> <span class="number">0</span> <span class="number">4px</span></span></span>;<span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">4px</span>&#125;input&#123;font-family:inherit&#125;a.gb1,a.gb2,a.gb3,a.gb4&#123;color:<span class="hexcolor">#11c</span> <span class="important">!important</span>&#125;body&#123;background:<span class="hexcolor">#fff</span></span></span>;<span class="rule"><span class="attribute">color</span>:<span class="value">black&#125;a&#123;color:<span class="hexcolor">#11c</span></span></span>;<span class="rule"><span class="attribute">text-decoration</span>:<span class="value">none&#125;a:hover,a:active&#123;text-decoration:underline&#125;.fl a&#123;color:<span class="hexcolor">#36c</span>&#125;a:visited&#123;color:<span class="hexcolor">#551a8b</span>&#125;a.gb1,a.gb4&#123;text-decoration:underline&#125;a.gb3:hover&#123;text-decoration:none&#125;#ghead a.gb2:hover&#123;color:<span class="hexcolor">#fff</span> <span class="important">!important</span>&#125;.sblc&#123;padding-top:<span class="number">5px</span>&#125;.sblc a&#123;display:block</span></span>;<span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">2px</span> <span class="number">0</span></span></span>;<span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">13px</span></span></span>;<span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">11px</span>&#125;.lsbb&#123;background:<span class="hexcolor">#eee</span></span></span>;<span class="rule"><span class="attribute">border</span>:<span class="value">solid <span class="number">1px</span></span></span>;<span class="rule"><span class="attribute">border-color</span>:<span class="value"><span class="hexcolor">#ccc</span> <span class="hexcolor">#999</span> <span class="hexcolor">#999</span> <span class="hexcolor">#ccc</span></span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span>&#125;.lsbb&#123;display:block&#125;.ftl,<span class="hexcolor">#f</span>ll a&#123;display:inline-block</span></span>;<span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> <span class="number">12px</span>&#125;.lsb&#123;background:<span class="function">url</span>(/images/nav_logo229.png) <span class="number">0</span> -<span class="number">261px</span> repeat-x</span></span>;<span class="rule"><span class="attribute">border</span>:<span class="value">none</span></span>;<span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#000</span></span></span>;<span class="rule"><span class="attribute">cursor</span>:<span class="value">pointer</span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;<span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">outline</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">font</span>:<span class="value"><span class="number">15px</span> arial,sans-serif</span></span>;<span class="rule"><span class="attribute">vertical-align</span>:<span class="value">top&#125;.lsb:active&#123;background:<span class="hexcolor">#ccc</span>&#125;.lst:focus&#123;outline:none&#125;</span></span></span></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span><span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"/images/branding/product/ico/googleg_lodp.ico"</span> <span class="attribute">rel</span>=<span class="value">"shortcut icon"</span>&gt;</span><span class="tag">&lt;/<span class="title">head</span>&gt;</span><span class="tag">&lt;<span class="title">body</span> <span class="attribute">bgcolor</span>=<span class="value">"#fff"</span>&gt;</span><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> src=<span class="string">'/images/nav_logo229.png'</span>;<span class="keyword">var</span> iesg=<span class="literal">false</span>;<span class="built_in">document</span>.body.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.n &amp;&amp; <span class="built_in">window</span>.n();<span class="keyword">if</span> (<span class="built_in">document</span>.images)&#123;<span class="keyword">new</span> Image().src=src;&#125;</span><br><span class="line"><span class="keyword">if</span> (!iesg)&#123;<span class="built_in">document</span>.f&amp;&amp;<span class="built_in">document</span>.f.q.focus();<span class="built_in">document</span>.gbqf&amp;&amp;<span class="built_in">document</span>.gbqf.q.focus();&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"mngb"</span>&gt;</span>    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">gbar</span>&gt;</span><span class="tag">&lt;<span class="title">nobr</span>&gt;</span><span class="tag">&lt;<span class="title">b</span> <span class="attribute">class</span>=<span class="value">gb1</span>&gt;</span>Search<span class="tag">&lt;/<span class="title">b</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"http://www.google.com/imghp?hl=en&amp;tab=wi"</span>&gt;</span>Images<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"http://maps.google.com/maps?hl=en&amp;tab=wl"</span>&gt;</span>Maps<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"https://play.google.com/?hl=en&amp;tab=w8"</span>&gt;</span>Play<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"http://www.youtube.com/?tab=w1"</span>&gt;</span>YouTube<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"http://news.google.com/nwshp?hl=en&amp;tab=wn"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"https://mail.google.com/mail/?tab=wm"</span>&gt;</span>Gmail<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">href</span>=<span class="value">"https://drive.google.com/?tab=wo"</span>&gt;</span>Drive<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">gb1</span> <span class="attribute">style</span>=<span class="value">"text-decoration:none"</span> <span class="attribute">href</span>=<span class="value">"https://www.google.com/intl/en/options/"</span>&gt;</span><span class="tag">&lt;<span class="title">u</span>&gt;</span>More<span class="tag">&lt;/<span class="title">u</span>&gt;</span> &amp;raquo;<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">nobr</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">guser</span> <span class="attribute">width</span>=<span class="value">100%</span>&gt;</span><span class="tag">&lt;<span class="title">nobr</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">gbn</span> <span class="attribute">class</span>=<span class="value">gbi</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">gbf</span> <span class="attribute">class</span>=<span class="value">gbf</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">gbe</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.google.com/history/optout?hl=en"</span> <span class="attribute">class</span>=<span class="value">gb4</span>&gt;</span>Web History<span class="tag">&lt;/<span class="title">a</span>&gt;</span> | <span class="tag">&lt;<span class="title">a</span>  <span class="attribute">href</span>=<span class="value">"/preferences?hl=en"</span> <span class="attribute">class</span>=<span class="value">gb4</span>&gt;</span>Settings<span class="tag">&lt;/<span class="title">a</span>&gt;</span> | <span class="tag">&lt;<span class="title">a</span> <span class="attribute">target</span>=<span class="value">_top</span> <span class="attribute">id</span>=<span class="value">gb_70</span> <span class="attribute">href</span>=<span class="value">"https://accounts.google.com/ServiceLogin?hl=en&amp;passive=true&amp;continue=http://www.google.com/"</span> <span class="attribute">class</span>=<span class="value">gb4</span>&gt;</span>Sign in<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">nobr</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">gbh</span> <span class="attribute">style</span>=<span class="value">left:0</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">gbh</span> <span class="attribute">style</span>=<span class="value">right:0</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>    <span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">center</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> <span class="attribute">clear</span>=<span class="value">"all"</span> <span class="attribute">id</span>=<span class="value">"lgpd"</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"lga"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">alt</span>=<span class="value">"Google"</span> <span class="attribute">height</span>=<span class="value">"92"</span> <span class="attribute">src</span>=<span class="value">"/images/branding/googlelogo/1x/googlelogo_white_background_color_272x92dp.png"</span> <span class="attribute">style</span>=<span class="value">"padding:28px 0 14px"</span> <span class="attribute">width</span>=<span class="value">"272"</span> <span class="attribute">id</span>=<span class="value">"hplogo"</span> <span class="attribute">onload</span>=<span class="value">"window.lol&amp;&amp;lol()"</span>&gt;</span><span class="tag">&lt;<span class="title">br</span>&gt;</span><span class="tag">&lt;<span class="title">br</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">form</span> <span class="attribute">action</span>=<span class="value">"/search"</span> <span class="attribute">name</span>=<span class="value">"f"</span>&gt;</span><span class="tag">&lt;<span class="title">table</span> <span class="attribute">cellpadding</span>=<span class="value">"0"</span> <span class="attribute">cellspacing</span>=<span class="value">"0"</span>&gt;</span><span class="tag">&lt;<span class="title">tr</span> <span class="attribute">valign</span>=<span class="value">"top"</span>&gt;</span><span class="tag">&lt;<span class="title">td</span> <span class="attribute">width</span>=<span class="value">"25%"</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;/<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">td</span> <span class="attribute">align</span>=<span class="value">"center"</span> <span class="attribute">nowrap</span>=<span class="value">""</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"ie"</span> <span class="attribute">value</span>=<span class="value">"ISO-8859-1"</span> <span class="attribute">type</span>=<span class="value">"hidden"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">value</span>=<span class="value">"en"</span> <span class="attribute">name</span>=<span class="value">"hl"</span> <span class="attribute">type</span>=<span class="value">"hidden"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"source"</span> <span class="attribute">type</span>=<span class="value">"hidden"</span> <span class="attribute">value</span>=<span class="value">"hp"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"biw"</span> <span class="attribute">type</span>=<span class="value">"hidden"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"bih"</span> <span class="attribute">type</span>=<span class="value">"hidden"</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds"</span> <span class="attribute">style</span>=<span class="value">"height:32px;margin:4px 0"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">style</span>=<span class="value">"color:#000;margin:0;padding:5px 8px 0 6px;vertical-align:top"</span> <span class="attribute">autocomplete</span>=<span class="value">"off"</span> <span class="attribute">class</span>=<span class="value">"lst"</span> <span class="attribute">value</span>=<span class="value">""</span> <span class="attribute">title</span>=<span class="value">"Google Search"</span> <span class="attribute">maxlength</span>=<span class="value">"2048"</span> <span class="attribute">name</span>=<span class="value">"q"</span> <span class="attribute">size</span>=<span class="value">"57"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> <span class="attribute">style</span>=<span class="value">"line-height:0"</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"ds"</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"lsbb"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"lsb"</span> <span class="attribute">value</span>=<span class="value">"Google Search"</span> <span class="attribute">name</span>=<span class="value">"btnG"</span> <span class="attribute">type</span>=<span class="value">"submit"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"ds"</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"lsbb"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"lsb"</span> <span class="attribute">value</span>=<span class="value">"I'm Feeling Lucky"</span> <span class="attribute">name</span>=<span class="value">"btnI"</span> <span class="attribute">onclick</span>=<span class="value">"if(this.form.q.value)this.checked=1; else top.location='/doodles/'"</span> <span class="attribute">type</span>=<span class="value">"submit"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">td</span> <span class="attribute">class</span>=<span class="value">"fl sblc"</span> <span class="attribute">align</span>=<span class="value">"left"</span> <span class="attribute">nowrap</span>=<span class="value">""</span> <span class="attribute">width</span>=<span class="value">"25%"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/advanced_search?hl=en&amp;amp;authuser=0"</span>&gt;</span>Advanced search<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/language_tools?hl=en&amp;amp;authuser=0"</span>&gt;</span>Language tools<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span><span class="tag">&lt;/<span class="title">tr</span>&gt;</span><span class="tag">&lt;/<span class="title">table</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"gbv"</span> <span class="attribute">name</span>=<span class="value">"gbv"</span> <span class="attribute">type</span>=<span class="value">"hidden"</span> <span class="attribute">value</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">form</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"gac_scont"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"font-size:83%;min-height:3.5em"</span>&gt;</span><span class="tag">&lt;<span class="title">br</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"footer"</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"font-size:10pt"</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"margin:19px auto;text-align:center"</span> <span class="attribute">id</span>=<span class="value">"fll"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/intl/en/ads/"</span>&gt;</span>Advertising�Programs<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/services/"</span>&gt;</span>Business Solutions<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://plus.google.com/116899029375914044550"</span> <span class="attribute">rel</span>=<span class="value">"publisher"</span>&gt;</span>+Google<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/intl/en/about.html"</span>&gt;</span>About Google<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">p</span> <span class="attribute">style</span>=<span class="value">"color:#767676;font-size:8pt"</span>&gt;</span>&amp;copy; 2016 - <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/intl/en/policies/privacy/"</span>&gt;</span>Privacy<span class="tag">&lt;/<span class="title">a</span>&gt;</span> - <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/intl/en/policies/terms/"</span>&gt;</span>Terms<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">center</span>&gt;</span><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.google.cdo=&#123;height:<span class="number">0</span>,width:<span class="number">0</span>&#125;;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> a=<span class="built_in">window</span>.innerWidth,b=<span class="built_in">window</span>.innerHeight;<span class="keyword">if</span>(!a||!b)<span class="keyword">var</span> c=<span class="built_in">window</span>.document,d=<span class="string">"CSS1Compat"</span>==c.compatMode?c.documentElement:c.body,a=d.clientWidth,b=d.clientHeight;a&amp;&amp;b&amp;&amp;(a!=google.cdo.width||b!=google.cdo.height)&amp;&amp;google.log(<span class="string">""</span>,<span class="string">""</span>,<span class="string">"/client_204?&amp;atyp=i&amp;biw="</span>+a+<span class="string">"&amp;bih="</span>+b+<span class="string">"&amp;ei="</span>+google.kEI);&#125;)();&#125;)();</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"xjsd"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"xjsi"</span>&gt;</span><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">b</span>)</span>&#123;<span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> a=<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);a.src=b;<span class="built_in">document</span>.getElementById(<span class="string">"xjsd"</span>).appendChild(a)&#125;,<span class="number">0</span>)&#125;google.dljp=<span class="function"><span class="keyword">function</span>(<span class="params">b,a</span>)</span>&#123;google.xjsu=b;c(a)&#125;;google.dlj=c;&#125;)();(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.google.xjsrm=[];&#125;)();<span class="keyword">if</span>(google.y)google.y.first=[];<span class="keyword">if</span>(!google.xjs)&#123;<span class="built_in">window</span>._=<span class="built_in">window</span>._||&#123;&#125;;<span class="built_in">window</span>._._DumpException=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">throw</span> e&#125;;<span class="keyword">if</span>(google.timers&amp;&amp;google.timers.load.t)&#123;google.timers.load.t.xjsls=<span class="keyword">new</span> <span class="built_in">Date</span>().getTime();&#125;google.dljp(<span class="string">'/xjs/_/js/k\x3dxjs.hp.en_US.a8ZL0z9oHsI.O/m\x3dsb_he,d/rt\x3dj/d\x3d1/t\x3dzcms/rs\x3dACT90oEtwAuVGBIK26eCcGKo-FpdnRg-pg'</span>,<span class="string">'/xjs/_/js/k\x3dxjs.hp.en_US.a8ZL0z9oHsI.O/m\x3dsb_he,d/rt\x3dj/d\x3d1/t\x3dzcms/rs\x3dACT90oEtwAuVGBIK26eCcGKo-FpdnRg-pg'</span>);google.xjs=<span class="number">1</span>;&#125;google.pmc=&#123;<span class="string">"sb_he"</span>:&#123;<span class="string">"agen"</span>:<span class="literal">true</span>,<span class="string">"cgen"</span>:<span class="literal">true</span>,<span class="string">"client"</span>:<span class="string">"heirloom-hp"</span>,<span class="string">"dh"</span>:<span class="literal">true</span>,<span class="string">"dhqt"</span>:<span class="literal">true</span>,<span class="string">"ds"</span>:<span class="string">""</span>,<span class="string">"fl"</span>:<span class="literal">true</span>,<span class="string">"host"</span>:<span class="string">"google.com"</span>,<span class="string">"isbh"</span>:<span class="number">28</span>,<span class="string">"jam"</span>:<span class="number">0</span>,<span class="string">"jsonp"</span>:<span class="literal">true</span>,<span class="string">"msgs"</span>:&#123;<span class="string">"cibl"</span>:<span class="string">"Clear Search"</span>,<span class="string">"dym"</span>:<span class="string">"Did you mean:"</span>,<span class="string">"lcky"</span>:<span class="string">"I\u0026#39;m Feeling Lucky"</span>,<span class="string">"lml"</span>:<span class="string">"Learn more"</span>,<span class="string">"oskt"</span>:<span class="string">"Input tools"</span>,<span class="string">"psrc"</span>:<span class="string">"This search was removed from your \u003Ca href=\"/history\"\u003EWeb History\u003C/a\u003E"</span>,<span class="string">"psrl"</span>:<span class="string">"Remove"</span>,<span class="string">"sbit"</span>:<span class="string">"Search by image"</span>,<span class="string">"srch"</span>:<span class="string">"Google Search"</span>&#125;,<span class="string">"nds"</span>:<span class="literal">true</span>,<span class="string">"ovr"</span>:&#123;&#125;,<span class="string">"pq"</span>:<span class="string">""</span>,<span class="string">"refpd"</span>:<span class="literal">true</span>,<span class="string">"rfs"</span>:[],<span class="string">"scd"</span>:<span class="number">10</span>,<span class="string">"sce"</span>:<span class="number">5</span>,<span class="string">"stok"</span>:<span class="string">"8380YMzM1JBLNmlhqzMY33UBtRQ"</span>&#125;,<span class="string">"d"</span>:&#123;&#125;&#125;;google.y.first.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">if</span>(google.med)&#123;google.med(<span class="string">'init'</span>);google.initHistory();google.med(<span class="string">'history'</span>);&#125;&#125;);<span class="keyword">if</span>(google.j&amp;&amp;google.j.en&amp;&amp;google.j.xi)&#123;<span class="built_in">window</span>.setTimeout(google.j.xi,<span class="number">0</span>);&#125;</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-_DELETE请求">3. DELETE请求</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X <span class="keyword">DELETE</span> http:<span class="comment">//localhost:3000/</span></span><br></pre></td></tr></table></figure>
+
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://lionel0806.github.io/2016/09/01/curl/" target="_blank" rel="external">http://lionel0806.github.io/2016/09/01/curl/</a>
+                </p>
+                <footer><cite><a href="http://lionel0806.github.io">@Lionel's Blog</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/08/14/basic-operators/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ReactiveCocoa中的基本算子</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="curl" data-title="如何使用curl进行http请求" data-url="http://lionel0806.github.io/2016/09/01/curl/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lionel0806"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "如何使用curl进行http请求",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://lionel0806.github.io/2016/09/01/curl/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
