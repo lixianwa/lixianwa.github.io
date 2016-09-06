@@ -3,27 +3,41 @@
 <head>
   <meta charset="utf-8">
   
-  <title>开始使用hexo生成blog | Lionel&#39;s Blog | 记录&amp;分享</title>
+  <title>【翻译】Swift 条件展开初始化 | Lionel&#39;s Blog | 记录&amp;分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="hexo">
-  <meta name="description" content="hello, hexo ！">
+  <meta name="keywords" content="Swift,iOS,翻译">
+  <meta name="description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+Swift-Users上，Dan T 问：
+
+目前我这样写：1234567let dobString: Stringif let dob = dob &amp;#123;  dobString = serverDateFormatter.stringFromDate(dob)&amp;#125;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开始使用hexo生成blog">
-<meta property="og:url" content="http://lionel0806.github.io/2015/10/13/blog-from-jekyll-to-hexo/index.html">
+<meta property="og:title" content="【翻译】Swift 条件展开初始化">
+<meta property="og:url" content="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/index.html">
 <meta property="og:site_name" content="Lionel's Blog">
-<meta property="og:description" content="hello, hexo ！">
-<meta property="og:updated_time" content="2015-10-13T15:42:00.000Z">
+<meta property="og:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+Swift-Users上，Dan T 问：
+
+目前我这样写：1234567let dobString: Stringif let dob = dob &amp;#123;  dobString = serverDateFormatter.stringFromDate(dob)&amp;#125;">
+<meta property="og:updated_time" content="2016-09-06T13:35:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开始使用hexo生成blog">
-<meta name="twitter:description" content="hello, hexo ！">
+<meta name="twitter:title" content="【翻译】Swift 条件展开初始化">
+<meta name="twitter:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+Swift-Users上，Dan T 问：
+
+目前我这样写：1234567let dobString: Stringif let dob = dob &amp;#123;  dobString = serverDateFormatter.stringFromDate(dob)&amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="Lionel&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+  <meta name="summary" content="&lt;p&gt;原文链接：&lt;a href=&quot;http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/&quot;&gt;Idiomatic Swift: conditional unwrapping initialization&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Swift-Users上，Dan T 问：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前我这样写：&lt;br&gt;&lt;figure class=&quot;highlight xquery&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dobString: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dob = dob &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dobString = serverDateFormatter.stringFromDate(dob)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dobString = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;有没有更好，更通用的方法实现同样的功能？&lt;/p&gt;">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
@@ -101,7 +115,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">开始使用hexo生成blog</div>
+        <div class="flex-col header-title ellipsis">【翻译】Swift 条件展开初始化</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -122,11 +136,11 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">开始使用hexo生成blog</h1>
+    <h1 class="author">【翻译】Swift 条件展开初始化</h1>
     <h5 class="subtitle">
         
-            <time datetime="2015-10-13T15:37:00.000Z" itemprop="datePublished" class="page-time">
-  2015-10-13
+            <time datetime="2015-10-06T10:22:13.000Z" itemprop="datePublished" class="page-time">
+  2015-10-06
 </time>
 
 
@@ -136,11 +150,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-blog-from-jekyll-to-hexo" 
+      <article id="post-conditional-unwrapping-initialization" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -195,12 +209,22 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>hello, hexo ！</p>
+            <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/" target="_blank" rel="external">Idiomatic Swift: conditional unwrapping initialization</a></p>
+<p>Swift-Users上，Dan T 问：</p>
+<blockquote>
+<p>目前我这样写：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> dob = dob &#123;</span><br><span class="line">  dobString = serverDateFormatter.stringFromDate(dob)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  dobString = <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>有没有更好，更通用的方法实现同样的功能？</p>
+<a id="more"></a>
+<p>我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：<br>&gt;<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String = &#123;</span><br><span class="line">  guard <span class="keyword">let</span> dob = dob <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="string">""</span> &#125;</span><br><span class="line">  <span class="keyword">return</span> serverDateFormatter.<span class="keyword">string</span>(<span class="keyword">from</span>: dob)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我认为这样写更清晰，dobString只出现了一次。（如果他没有用NSDateFormatter，并且需要第二层展开，guard let语句需要第二个分句来执行条件绑定在stringFromDate返回的结果上）。</p>
+<p>Update：Tim Vermeulen 有更漂亮的一行解决方案：<br>&gt;<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">let</span> dobString = dob.flatMap(serverDateFormatter.<span class="keyword">stringFromDate) </span>?? <span class="string">""</span></span><br></pre></td></tr></table></figure></p>
+<p>我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。<br>你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表</p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://lionel0806.github.io/2015/10/13/blog-from-jekyll-to-hexo/" target="_blank" rel="external">http://lionel0806.github.io/2015/10/13/blog-from-jekyll-to-hexo/</a>
+                <a href="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/" target="_blank" rel="external">http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/</a>
                 </p>
                 <footer><cite><a href="http://lionel0806.github.io">@Lionel's Blog</a></cite></footer>
             </blockquote>
@@ -209,18 +233,18 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2015/10/14/hello-world/" id="post-prev" class="post-nav-link">
+      <a href="/2015/10/13/blog-from-jekyll-to-hexo/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Hello Hexo</h4>
+        <h4 class="title">开始使用hexo生成blog</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2015/10/06/conditional-unwrapping-initialization/" id="post-next" class="post-nav-link">
+      <a href="/2015/07/20/storyboard-separation/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">【翻译】Swift 条件展开初始化</h4>
+        <h4 class="title">Storyboard 分离</h4>
       </a>
     </div>
   
@@ -231,7 +255,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="blog-from-jekyll-to-hexo" data-title="开始使用hexo生成blog" data-url="http://lionel0806.github.io/2015/10/13/blog-from-jekyll-to-hexo/index.html"></div>
+	<div class="ds-thread" data-thread-key="conditional-unwrapping-initialization" data-title="【翻译】Swift 条件展开初始化" data-url="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -262,10 +286,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "开始使用hexo生成blog",
+    title: "【翻译】Swift 条件展开初始化",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://lionel0806.github.io/2015/10/13/blog-from-jekyll-to-hexo/index.html"
+    url: "http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

@@ -402,6 +402,46 @@
   </entry>
   
   <entry>
+    <title>【翻译】Swift 条件展开初始化</title>
+    <link href="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/"/>
+    <id>http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/</id>
+    <published>2015-10-06T10:22:13.000Z</published>
+    <updated>2016-09-06T13:35:08.000Z</updated>
+    
+    <content type="html">&lt;p&gt;原文链接：&lt;a href=&quot;http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Idiomatic Swift: conditional unwrapping initialization&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Swift-Users上，Dan T 问：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前我这样写：&lt;br&gt;&lt;figure class=&quot;highlight xquery&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dobString: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dob = dob &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dobString = serverDateFormatter.stringFromDate(dob)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dobString = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;有没有更好，更通用的方法实现同样的功能？&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：&lt;br&gt;&amp;gt;&lt;br&gt;&lt;figure class=&quot;highlight cs&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dobString: String = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  guard &lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dob = dob &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; serverDateFormatter.&lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt;: dob)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我认为这样写更清晰，dobString只出现了一次。（如果他没有用NSDateFormatter，并且需要第二层展开，guard let语句需要第二个分句来执行条件绑定在stringFromDate返回的结果上）。&lt;/p&gt;
+&lt;p&gt;Update：Tim Vermeulen 有更漂亮的一行解决方案：&lt;br&gt;&amp;gt;&lt;br&gt;&lt;figure class=&quot;highlight armasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;label&quot;&gt;let&lt;/span&gt; dobString = dob.flatMap(serverDateFormatter.&lt;span class=&quot;keyword&quot;&gt;stringFromDate) &lt;/span&gt;?? &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。&lt;br&gt;你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文链接：&lt;a href=&quot;http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/&quot;&gt;Idiomatic Swift: conditional unwrapping initialization&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Swift-Users上，Dan T 问：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前我这样写：&lt;br&gt;&lt;figure class=&quot;highlight xquery&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dobString: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; dob = dob &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dobString = serverDateFormatter.stringFromDate(dob)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dobString = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;有没有更好，更通用的方法实现同样的功能？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Swift" scheme="http://lionel0806.github.io/tags/Swift/"/>
+    
+      <category term="iOS" scheme="http://lionel0806.github.io/tags/iOS/"/>
+    
+      <category term="翻译" scheme="http://lionel0806.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Storyboard 分离</title>
     <link href="http://lionel0806.github.io/2015/07/20/storyboard-separation/"/>
     <id>http://lionel0806.github.io/2015/07/20/storyboard-separation/</id>
@@ -1304,30 +1344,6 @@ statically &lt;span class=&quot;built_in&quot;&gt;from&lt;/span&gt; &lt;span cla
     
     
       <category term="提问" scheme="http://lionel0806.github.io/tags/%E6%8F%90%E9%97%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开始我的博客之旅</title>
-    <link href="http://lionel0806.github.io/2014/02/26/2014-02-26-startup-my-blog/"/>
-    <id>http://lionel0806.github.io/2014/02/26/2014-02-26-startup-my-blog/</id>
-    <published>2014-02-25T16:00:00.000Z</published>
-    <updated>2015-11-04T08:52:51.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;目的&quot;&gt;目的&lt;/h3&gt;&lt;p&gt; 有人曾说，其实每个人都有好的想法，只是我们当中的大多数人不善于跟踪它而已，此博客主要记录平时的一些想法，&lt;br&gt;一些技术问题以及分享一切美好的人和事…&lt;/p&gt;
-&lt;h3 id=&quot;为什么使用_github_pages_&amp;amp;_jekyll_来创建博客&quot;&gt;为什么使用 github pages &amp;amp; jekyll 来创建博客&lt;/h3&gt;&lt;p&gt; 昨天突然兴起，想创建一个属于自己的博客，于是就在google上搜索如何创建自己博客之类的话题， 搜到一篇写的非常详细的博文&lt;br&gt; &lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;搭建一个免费的，无限流量的Blog—-github Pages和Jekyll入门&lt;/a&gt;，免费而且无限流量，太符合我的需求了（是不是有点贱），于是就有了此博。&lt;/p&gt;
-&lt;h3 id=&quot;主题&quot;&gt;主题&lt;/h3&gt;&lt;p&gt;此博客的主题是在&lt;a href=&quot;http://mademistakes.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Michael Rose&lt;/a&gt;的 &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Minimal Mistakes&lt;/a&gt;主题的基础上修改的，在此感谢Michael Rose！&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;目的&quot;&gt;目的&lt;/h3&gt;&lt;p&gt; 有人曾说，其实每个人都有好的想法，只是我们当中的大多数人不善于跟踪它而已，此博客主要记录平时的一些想法，&lt;br&gt;一些技术问题以及分享一切美好的人和事…&lt;/p&gt;
-&lt;h3 id=&quot;为什么使用_github_pages_&amp;amp;_jeky
-    
-    </summary>
-    
-    
-      <category term="jekyll, 博客" scheme="http://lionel0806.github.io/tags/jekyll-%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
