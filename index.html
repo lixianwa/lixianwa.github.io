@@ -134,6 +134,46 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-conditional-unwrapping-initialization" 
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/09/06/conditional-unwrapping-initialization/">【翻译】Swift 条件展开初始化</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-09-06T10:22:13.000Z" itemprop="datePublished" class="post-time">
+  2016-09-06
+</time>
+
+        
+
+ 
+    </div>
+    
+    <div class="post-content" id="post-content" itemprop="postContent" >
+    
+        <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/">Idiomatic Swift: conditional unwrapping initialization</a></p>
+<p>Swift-Users上，Dan T 问：</p>
+<blockquote>
+<p>目前我这样写：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> dob = dob &#123;</span><br><span class="line">  dobString = serverDateFormatter.stringFromDate(dob)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  dobString = <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>有没有更好，更通用的方法实现同样的功能？</p>
+    
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+
+</article>
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-curl" 
   class="article article-type-post" itemprop="blogPost">
      
@@ -430,46 +470,6 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-conditional-unwrapping-initialization" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/06/conditional-unwrapping-initialization/">【翻译】Swift 条件展开初始化</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-06T10:22:13.000Z" itemprop="datePublished" class="post-time">
-  2015-10-06
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/">Idiomatic Swift: conditional unwrapping initialization</a></p>
-<p>Swift-Users上，Dan T 问：</p>
-<blockquote>
-<p>目前我这样写：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> dob = dob &#123;</span><br><span class="line">  dobString = serverDateFormatter.stringFromDate(dob)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  dobString = <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>有没有更好，更通用的方法实现同样的功能？</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
 
 </article>
     </li>

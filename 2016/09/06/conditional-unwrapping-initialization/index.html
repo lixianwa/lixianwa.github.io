@@ -16,13 +16,13 @@ Swift-Users上，Dan T 问：
 目前我这样写：1234567let dobString: Stringif let dob = dob &amp;#123;  dobString = serverDateFormatter.stringFromDate(dob)&amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【翻译】Swift 条件展开初始化">
-<meta property="og:url" content="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/index.html">
+<meta property="og:url" content="http://lionel0806.github.io/2016/09/06/conditional-unwrapping-initialization/index.html">
 <meta property="og:site_name" content="Lionel's Blog">
 <meta property="og:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
 Swift-Users上，Dan T 问：
 
 目前我这样写：1234567let dobString: Stringif let dob = dob &amp;#123;  dobString = serverDateFormatter.stringFromDate(dob)&amp;#125;">
-<meta property="og:updated_time" content="2016-09-06T13:35:08.000Z">
+<meta property="og:updated_time" content="2016-09-06T13:42:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【翻译】Swift 条件展开初始化">
 <meta name="twitter:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
@@ -139,8 +139,8 @@ Swift-Users上，Dan T 问：
     <h1 class="author">【翻译】Swift 条件展开初始化</h1>
     <h5 class="subtitle">
         
-            <time datetime="2015-10-06T10:22:13.000Z" itemprop="datePublished" class="page-time">
-  2015-10-06
+            <time datetime="2016-09-06T10:22:13.000Z" itemprop="datePublished" class="page-time">
+  2016-09-06
 </time>
 
 
@@ -216,15 +216,21 @@ Swift-Users上，Dan T 问：
 </blockquote>
 <p>有没有更好，更通用的方法实现同样的功能？</p>
 <a id="more"></a>
-<p>我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：<br>&gt;<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String = &#123;</span><br><span class="line">  guard <span class="keyword">let</span> dob = dob <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="string">""</span> &#125;</span><br><span class="line">  <span class="keyword">return</span> serverDateFormatter.<span class="keyword">string</span>(<span class="keyword">from</span>: dob)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：</p>
+<blockquote>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String = &#123;</span><br><span class="line">  guard <span class="keyword">let</span> dob = dob <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="string">""</span> &#125;</span><br><span class="line">  <span class="keyword">return</span> serverDateFormatter.<span class="keyword">string</span>(<span class="keyword">from</span>: dob)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
 <p>我认为这样写更清晰，dobString只出现了一次。（如果他没有用NSDateFormatter，并且需要第二层展开，guard let语句需要第二个分句来执行条件绑定在stringFromDate返回的结果上）。</p>
-<p>Update：Tim Vermeulen 有更漂亮的一行解决方案：<br>&gt;<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">let</span> dobString = dob.flatMap(serverDateFormatter.<span class="keyword">stringFromDate) </span>?? <span class="string">""</span></span><br></pre></td></tr></table></figure></p>
-<p>我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。<br>你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表</p>
+<p>Update：Tim Vermeulen 有更漂亮的一行代码解决方案：</p>
+<blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">let</span> dobString = dob.flatMap(serverDateFormatter.<span class="keyword">stringFromDate) </span>?? <span class="string">""</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。<br>你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表。</p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/" target="_blank" rel="external">http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/</a>
+                <a href="http://lionel0806.github.io/2016/09/06/conditional-unwrapping-initialization/" target="_blank" rel="external">http://lionel0806.github.io/2016/09/06/conditional-unwrapping-initialization/</a>
                 </p>
                 <footer><cite><a href="http://lionel0806.github.io">@Lionel's Blog</a></cite></footer>
             </blockquote>
@@ -232,19 +238,12 @@ Swift-Users上，Dan T 问：
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2015/10/13/blog-from-jekyll-to-hexo/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">开始使用hexo生成blog</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2015/07/20/storyboard-separation/" id="post-next" class="post-nav-link">
+      <a href="/2016/09/01/curl/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Storyboard 分离</h4>
+        <h4 class="title">如何使用curl进行http请求</h4>
       </a>
     </div>
   
@@ -255,7 +254,7 @@ Swift-Users上，Dan T 问：
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="conditional-unwrapping-initialization" data-title="【翻译】Swift 条件展开初始化" data-url="http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/index.html"></div>
+	<div class="ds-thread" data-thread-key="conditional-unwrapping-initialization" data-title="【翻译】Swift 条件展开初始化" data-url="http://lionel0806.github.io/2016/09/06/conditional-unwrapping-initialization/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -289,7 +288,7 @@ var BLOG_SHARE = {
     title: "【翻译】Swift 条件展开初始化",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://lionel0806.github.io/2015/10/06/conditional-unwrapping-initialization/index.html"
+    url: "http://lionel0806.github.io/2016/09/06/conditional-unwrapping-initialization/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
