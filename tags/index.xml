@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/</link>
+    <description>Recent content in Tags on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 26 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Archlinux</title>
+      <link>http://lionel0806.github.io/tags/archlinux/</link>
+      <pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/archlinux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bug</title>
+      <link>http://lionel0806.github.io/tags/bug/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/bug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C语言</title>
+      <link>http://lionel0806.github.io/tags/c%E8%AF%AD%E8%A8%80/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/c%E8%AF%AD%E8%A8%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo</title>
+      <link>http://lionel0806.github.io/tags/hexo/</link>
+      <pubDate>Tue, 13 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/hexo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ios</title>
+      <link>http://lionel0806.github.io/tags/ios/</link>
+      <pubDate>Wed, 28 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jekyll</title>
+      <link>http://lionel0806.github.io/tags/jekyll/</link>
+      <pubDate>Wed, 26 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/jekyll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>http://lionel0806.github.io/tags/markdown/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>http://lionel0806.github.io/tags/nginx/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reactivecocoa</title>
+      <link>http://lionel0806.github.io/tags/reactivecocoa/</link>
+      <pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/reactivecocoa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>http://lionel0806.github.io/tags/redis/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Restful Api</title>
+      <link>http://lionel0806.github.io/tags/restful-api/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/restful-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift</title>
+      <link>http://lionel0806.github.io/tags/swift/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xcode</title>
+      <link>http://lionel0806.github.io/tags/xcode/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/xcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>内存</title>
+      <link>http://lionel0806.github.io/tags/%E5%86%85%E5%AD%98/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E5%86%85%E5%AD%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>博客</title>
+      <link>http://lionel0806.github.io/tags/%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Wed, 26 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工具</title>
+      <link>http://lionel0806.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>开源</title>
+      <link>http://lionel0806.github.io/tags/%E5%BC%80%E6%BA%90/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E5%BC%80%E6%BA%90/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>提问</title>
+      <link>http://lionel0806.github.io/tags/%E6%8F%90%E9%97%AE/</link>
+      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E6%8F%90%E9%97%AE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>死机</title>
+      <link>http://lionel0806.github.io/tags/%E6%AD%BB%E6%9C%BA/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E6%AD%BB%E6%9C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>游记</title>
+      <link>http://lionel0806.github.io/tags/%E6%B8%B8%E8%AE%B0/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/tags/%E6%B8%B8%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

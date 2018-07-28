@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xcode on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/xcode/</link>
+    <description>Recent content in Xcode on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Mar 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/xcode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Xcode-keyboard-shortcuts</title>
+      <link>http://lionel0806.github.io/post/xcode-keyboard-shortcuts/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/xcode-keyboard-shortcuts/</guid>
+      <description>Xcode提供很多快捷键，我们不可能都记住，但平时的开发中如果能尽可能多的使用快捷键，效率会提高不少，下面总结了Xcode的一些常用快捷键：</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swift on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/swift/</link>
+    <description>Recent content in Swift on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 06 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Swift条件展开初始化</title>
+      <link>http://lionel0806.github.io/post/conditional-unwrapping-initialization/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/conditional-unwrapping-initialization/</guid>
+      <description>原文链接：Idiomatic Swift: conditional unwrapping initialization Swift-Users上，Dan T 问： 目前我这样写： 1 2 3 4 5 6 7 let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &amp;#34;&amp;#34; }</description>
+    </item>
+    
+  </channel>
+</rss>

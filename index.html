@@ -1,601 +1,941 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
 <head>
   <meta charset="utf-8">
-  
-  <title>Lionel&#39;s Blog | 记录&amp;分享</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="undefined">
-  <meta name="description" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lionel's Blog">
-<meta property="og:url" content="http://lionel0806.github.io/index.html">
-<meta property="og:site_name" content="Lionel's Blog">
-<meta property="og:description" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lionel's Blog">
-<meta name="twitter:description" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
-  
-    <link rel="alternative" href="/atom.xml" title="Lionel&#39;s Blog" type="application/atom+xml">
-  
-  <meta name="summary" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Lionel&#39;Blog</title>
+  <link rel="alternate" hreflang="zh-cn" href="http://lionel0806.github.io/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Lionel Lee" />
+  <meta name="description" content="总结、沉淀、分享" />
+  <meta name="keywords" content="分享, 技术, 生活" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.45" />
+
+
+<link rel="canonical" href="http://lionel0806.github.io/" />
+<link href="http://lionel0806.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Lionel&#39;Blog" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Lionel&#39;Blog" />
+<meta property="og:description" content="总结、沉淀、分享" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://lionel0806.github.io/" />
+
+
+
+<meta property="og:updated_time" content="2016-03-10T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Lionel&#39;Blog">
+<meta itemprop="description" content="总结、沉淀、分享">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lionel&#39;Blog"/>
+<meta name="twitter:description" content="总结、沉淀、分享"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
 </head>
-
 <body>
-  <div id="loading" class="active"></div>
-
-  <nav id="menu"  >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Lionel</h5>
-        <a href="mailto:undefined" title="lixiansir@gmail.com" class="mail">lixiansir@gmail.com</a>
-      </hgroup>
-    </div>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Lionel</a>
   </div>
-  <ul class="nav flex-col">
-    
-        <li class="waves-block waves-effect active">
-          <a href="/"  >
-            <i class="icon icon-lg icon-home"></i>
-            Home
-          </a>
-        </li>
-    
-        <li class="waves-block waves-effect">
-          <a href="/archives"  >
-            <i class="icon icon-lg icon-archives"></i>
-            Archives
-          </a>
-        </li>
-    
-        <li class="waves-block waves-effect">
-          <a href="/tags"  >
-            <i class="icon icon-lg icon-tags"></i>
-            Tags
-          </a>
-        </li>
-    
-        <li class="waves-block waves-effect">
-          <a href="/history"  >
-            <i class="icon icon-lg icon-history"></i>
-            History
-          </a>
-        </li>
-    
-        <li class="waves-block waves-effect">
-          <a href="/about"  >
-            <i class="icon icon-lg icon-about"></i>
-            About
-          </a>
-        </li>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/about/">About</a>
+          
+        
+      </li>
     
   </ul>
-
-  <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Lionel&#39;s Blog &copy; 2016</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">Lionel&#39;s Blog</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">Lionel&#39;s Blog</h1>
-    <h5 class="subtitle">
-        
-        记录&amp;分享
-        
-    </h5>
-  </div>
-</header>
-
-    <div class="container body-wrap">
-      <ul class="post-list">
-  
-    <li class="post-list-item">
-        <article id="post-conditional-unwrapping-initialization" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/09/06/conditional-unwrapping-initialization/">【翻译】Swift 条件展开初始化</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-09-06T10:22:13.000Z" itemprop="datePublished" class="post-time">
-  2016-09-06
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/">Idiomatic Swift: conditional unwrapping initialization</a></p>
-<p>Swift-Users上，Dan T 问：</p>
-<blockquote>
-<p>目前我这样写：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dobString: String</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> dob = dob &#123;</span><br><span class="line">  dobString = serverDateFormatter.stringFromDate(dob)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  dobString = <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>有没有更好，更通用的方法实现同样的功能？</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-curl" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/09/01/curl/">如何使用curl进行http请求</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-09-01T00:13:52.000Z" itemprop="datePublished" class="post-time">
-  2016-09-01
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具<code>curl</code>。</p>
-<h4 id="curl是什么？">curl是什么？</h4><blockquote>
-<p>curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。<br>curl支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。(来自<a href="https://zh.wikipedia.org/wiki/CURL">wikipedia</a>)</p>
-</blockquote>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curl/">curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-basic-operators" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/14/basic-operators/">ReactiveCocoa中的基本算子</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-14T09:50:43.000Z" itemprop="datePublished" class="post-time">
-  2016-08-14
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators</a></p>
-<p>这个文档解释ReactiveCocoa中最常用的<code>Operator</code>，以及一些用例。注意<code>Operators</code>，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述<code>Signal</code>和<code>SignalProducer</code>的概念。</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FRP/">FRP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactiveCocoa/">ReactiveCocoa</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-自控力读书笔记" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/05/20/自控力读书笔记/">《自控力》读书笔记</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-05-20T09:50:43.000Z" itemprop="datePublished" class="post-time">
-  2016-05-20
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <h4 id="一-_意志力是什么？">一. 意志力是什么？</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">意志力其实是“我要做”，“我不要”和“我想要”这三种力量。</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h5 id="深入剖析:">深入剖析:</h5><ul>
-<li>更难的事是什么？想象你正面临一个意志力挑战，更难的事是什么？它为什么这么困难？</li>
-<li>认清两个自我。你的意志力挑战是，如何描述想抗衡的两个自我？冲动的你想要什么？明智的你想要什么？</li>
-</ul>
-<h5 id="意志力实验">意志力实验</h5><ul>
-<li>记录你的意志力选择。至少一天，注意观察你做的关于意志力的决定。</li>
-<li>5分钟大脑训练冥想。在脑海中默念“呼”和“吸”，把注意力集中在呼吸上。<br>当你走神的时候，重新集中注意力。</li>
-</ul>
-</blockquote>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自控力/">自控力</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-Xcode-keyboard-shortcuts" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/03/10/Xcode-keyboard-shortcuts/">Xcode快捷键</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-03-09T17:28:41.000Z" itemprop="datePublished" class="post-time">
-  2016-03-10
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>Xcode提供很多快捷键，我们不可能都记住，但平时的开发中如果能尽可能多的使用快捷键，效率会提高不少，下面总结了Xcode的一些常用快捷键：<br>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode-快捷键/">Xcode, 快捷键</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-the-solution-of-retain-cycle" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/28/the-solution-of-retain-cycle/">如何解决retain cycle</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-28T12:35:40.000Z" itemprop="datePublished" class="post-time">
-  2015-10-28
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>retain cycle</p>
-<p>当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题。 我们可以把存在retain cycle的两个对象看成是 父－子 关系。 在这个关系当中，父可以拥有子，但是子不可以拥有父，因此，在这个问题中，我们可以把作为 父 的对象定义为strong， 而作为 子 的对象定义为weak，这样就解决了retain cycle。</p>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-an-ios-view-crash-error" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/15/an-ios-view-crash-error/">一个iOS View crash问题</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-15T07:00:29.000Z" itemprop="datePublished" class="post-time">
-  2015-10-15
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>[2015-10-15]<br>用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    </p>
-<blockquote>
-<p>Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one view controller at a time! View <uiview: 414="" 0x7f914af22610;="" frame="(0" 0;="" 736);="" autoresize="W+H;" layer="<CALayer:" 0x7f914af22980="">&gt; is associated with <uiviewcontroller: 0x7f914ae49a90="">. Clear this association before associating this view with <testviewcontroller: 0x7f914ac7f680="">.’</testviewcontroller:></uiviewcontroller:></uiview:></p>
-</blockquote>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-hello-world" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/14/hello-world/">Hello Hexo</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-14T01:25:10.000Z" itemprop="datePublished" class="post-time">
-  2015-10-14
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-blog-from-jekyll-to-hexo" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/10/13/blog-from-jekyll-to-hexo/">开始使用hexo生成blog</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-10-13T15:37:00.000Z" itemprop="datePublished" class="post-time">
-  2015-10-13
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>hello, hexo ！</p>
-
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-storyboard-separation" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2015/07/20/storyboard-separation/">Storyboard 分离</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2015-07-20T15:02:08.000Z" itemprop="datePublished" class="post-time">
-  2015-07-20
-</time>
-
-        
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>毋庸置疑，Storyboard是Apple公司一直推荐的界面开发方式，可以从Xcode这几年的更新中对Storyboard功能和特性的添加和升级中看出。使用Storyboard最大的好处是将界面与代码分离，大大的提高了开发效率，同时通过Storyboard可以很清晰的看到应用的交互逻辑。当然也有不足，当多个人维护一个Storyboard时，容易形成冲突，这给合并分支合并带来很大麻烦，那么如何使用Storyboard规避它的不足，让优势得到更大的发挥呢？<br>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Storyboard/">Storyboard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-</article>
-    </li>
-  
-</ul>
-
-<nav id="page-nav">
-    <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-    </div>
 </nav>
 
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-<script>
-var BLOG_SHARE = {
-    title: "Lionel's Blog",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://lionel0806.github.io/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-
-<script src="/js/main.js" type="text/javascript"></script>
-
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<script type="text/template" id="search-tpl">
-<li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
         </div>
-    </a>
-</li>
-</script>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
 
-<script src="/js/search.js" type="text/javascript"></script>
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Lionel
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://lionel0806.github.io/about/">About</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          
+  <section id="posts" class="posts">
+    
+    
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/conditional-unwrapping-initialization/">Swift条件展开初始化</a></h1>
+    
+    <div class="post-meta">
+      <span class="post-time"> 2016-09-06 </span>
+      
+      <span class="more-meta"> 约 385 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/">Idiomatic Swift: conditional unwrapping initialization</a></p>
+
+<p>Swift-Users上，Dan T 问：<br />
+目前我这样写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &#34;&#34;
+}</pre></td></tr></table>
+</div>
+</div>
+<p>有没有更好，更通用的方法实现同样的功能？</p>
+
+<p>我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let dobString: String = {
+  guard let dob = dob else { return &#34;&#34; }
+  return serverDateFormatter.string(from: dob)
+}</pre></td></tr></table>
+</div>
+</div>
+<p>我认为这样写更清晰，dobString只出现了一次。（如果他没有用NSDateFormatter，并且需要第二层展开，guard let语句需要第二个分句来执行条件绑定在stringFromDate返回的结果上）。</p>
+
+<p>Update：Tim Vermeulen 有更漂亮的一行代码解决方案：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let dobString = dob.flatMap(serverDateFormatter.stringFromDate) ?? &#34;&#34;</pre></td></tr></table>
+</div>
+</div>
+<p>我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。
+你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表。</p>
+
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/how-to-use-curl/">如何使用curl进行http请求</a></h1>
+    
+    <div class="post-meta">
+      <span class="post-time"> 2016-09-01 </span>
+      
+      <span class="more-meta"> 约 525 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      
+
+<p>如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。</p>
+
+<h3 id="curl是什么">curl是什么？</h3>
+
+<p>curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。
+curl支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。(来自wikipedia)</p>
+
+<h3 id="http-请求">HTTP 请求</h3>
+
+<h4 id="1-post请求">1.POST请求</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl -H &#34;Content-Type: application/json&#34; -X POST -d \
+  &#39;{
+    &#34;key1&#34;: &#34;value1&#34;,
+    &#34;key2&#34;: &#34;value2&#34;,
+    ......
+  }&#39; http://localhost:3000/</pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>参数说明：<br />
+-H: 表示后面紧跟请求头部参数
+-X: 后面紧跟请求指令，如:GET/POST/DELETE/PUT/UPDATE等，没有此参数时默认是GET请求。
+-d: 后紧跟HTTP POST 数据。</p>
+</blockquote>
+
+<h4 id="2-get请求">2. GET请求</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl -X GET http://localhost:3000/</pre></td></tr></table>
+</div>
+</div>
+<p>或者</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl http://localhost:3000/</pre></td></tr></table>
+</div>
+</div>
+<p>NOTE:可用此命令查看网页源码，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl www.google.com</pre></td></tr></table>
+</div>
+</div>
+<h4 id="3-delete请求">3. DELETE请求</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl -X DELETE http://localhost:3000/</pre></td></tr></table>
+</div>
+</div>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/basic-operators/">ReactiveCocoa中的基本算子</a></h1>
+    
+    <div class="post-meta">
+      <span class="post-time"> 2016-08-14 </span>
+      
+      <span class="more-meta"> 约 1421 字 </span>
+      <span class="more-meta"> 预计阅读 3 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      
+
+<p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators</a></p>
+
+<p>这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。</p>
+
+<h3 id="事件流副作用">事件流副作用</h3>
+
+<h4 id="观察-observation">观察（Observation）</h4>
+
+<p>Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&#34;Next: \(next)&#34;)
+    case let .Failed(error):
+      print(&#34;Failed: \(error)&#34;)
+    case .Completed:
+      print(&#34;Completed&#34;)
+    case .Interrupted:
+      print(&#34;Interrupted&#34;)
+  }
+})</pre></td></tr></table>
+</div>
+</div>
+<p>或者可以用Next, Failed, Completed 和Interrupted事件的回调函数，当相应的事件发生时它（回调函数）会被调用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">signal.observeNext { next in
+  print(&#34;Next: \(next)&#34;)
+}
+signal.observeFailed { error in
+  print(&#34;Failed: \(error)&#34;)
+}
+signal.observeCompleted {
+  print(&#34;Completed&#34;)
+}
+signal.observeInterrupted {
+  print(&#34;Interrupted&#34;)
+}</pre></td></tr></table>
+</div>
+</div>
+<p>注意可以不用观察所有四种类型的事件，因为参数是可选类型, 你只需要给你关心的事件提供回调函数。</p>
+
+<h4 id="injecting-effects">Injecting effects</h4>
+
+<p>SignalProducer会引入副作用，当使用on操作符但没有实际订阅它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let producer = signalProducer
+  .on(started: {
+    print(&#34;Started&#34;)
+  }, event: { event in
+    print(&#34;Event: \(event)&#34;)
+  }, failed: { error in
+    print(&#34;Failed: \(error)&#34;)
+  }, completed: {
+    print(&#34;completed&#34;)
+  }, interrupted: {
+    print(&#34;interrupted&#34;)
+  }, terminated: {
+    print(&#34;Terminated&#34;)
+  }, disposed: {
+    print(&#34;Disposed&#34;)
+  }, next: { value in
+    print(&#34;Next: \(value)&#34;)
+  })</pre></td></tr></table>
+</div>
+</div>
+<p>与observe类似，你只需要给你关心的事件提供回调函数。
+注意不会有任何打印直到producer调用started（也许再其他任何地方调用started）。</p>
+
+<h3 id="组合算子-operator-composition">组合算子（Operator composition）</h3>
+
+<h4 id="lifting">Lifting</h4>
+
+<p>转换事件流
+以下操作符可以将一个事件流转换成一个新的事件流。</p>
+
+<h4 id="mapping">Mapping</h4>
+
+<p>map用于事件流中所有的值，然后将结果创建成一个新的流。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let (signal, observer) = Signal&lt;String, NoError&gt;.pipe()
+
+signal
+  .map{ string in string.uppercaseString }
+  .observeNext { next in print(next) }
+
+  observer.sendNext(&#34;a&#34;) //Prints A
+  observer.sendNext(&#34;c&#34;) //Prints B
+  observer.sendNext(&#34;c&#34;) //Prints C</pre></td></tr></table>
+</div>
+</div>
+<h4 id="filtering">Filtering</h4>
+
+<p><strong>filter</strong> 用于包含满足一定条件的事件流的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let (signal, observer) = Signal&lt;Int, NoError&gt;.pipe()
+
+signal
+  .filter { number in number % 2 == 0 }
+  .observeNext { next in print(next) }
+
+observer.sendNext(1)   //Not printed
+observer.sendNext(2)   //Prints 2
+observer.sendNext(3)   //Not printed
+observer.sendNext(4)   //Print 4</pre></td></tr></table>
+</div>
+</div>
+<h5 id="聚集-aggregating">聚集(Aggregating)</h5>
+
+<p><strong>reduce</strong> 用于将一个事件流中的所有值聚集成一个单一的合并后得值，注意只有当输入的流完成时才会得到最后的结果。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let (signal, observer) = Signal&lt;Int, NoError&gt;.pipe()
+signal
+  .reduce{ $0 * $1 }
+  .observeNext{ next in print(next) }
+
+observer.sendNext(1) //Not printed
+observer.sendNext(2) //Not printed
+observer.sendNext(3) //Not printed
+observer.sendNext(4) //Not printed
+observer.sendCompleted() //print 10</pre></td></tr></table>
+</div>
+</div>
+<p><strong>collect</strong> 将一个事件流的所有值聚合到一个数组中，注意只有当输入的流完成时才会得到最后的结果。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let (signal, observer) = Signal&lt;Int, NoError&gt;.pipe()
+
+signal
+    .collect()
+    .observeNext { next in print(next) }
+
+observer.sendNext(1)     // nothing printed
+observer.sendNext(2)     // nothing printed
+observer.sendNext(3)     // nothing printed
+observer.sendCompleted()   // prints [1, 2, 3]</pre></td></tr></table>
+</div>
+</div>
+<h3 id="合并事件流-combining-event-streams">合并事件流（Combining event streams）</h3>
+
+<p>这些操作会合并多个事件流中的值成一个新的、统一的流。</p>
+
+<h4 id="合并最新的值-combining-latest-values">合并最新的值（Combining latest values）</h4>
+
+<p><strong>combineLatest</strong> 方法合并两个事件流最后的值。
+产生的流将会发送它的第一个值当每一个输入流至少有一个值发送之后，之后，每一个输入流的新值产生一个新值输出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let (numbersSignal, numbersObserver) = Signal&lt;Int, NoError&gt;.pipe()
+let (lettersSignal, lettersObserver) = Signal&lt;Int, NoError&gt;.pipe()
+
+let signal = combineLatest(numbersSignal, lettersSignal)
+signal.observeNext { next in print(next) }
+signal.observeCompleted { print(&#34;Completed&#34;) }
+
+numbersObserver.sendNext(0)      // nothing printed
+numbersObserver.sendNext(1)      // nothing printed
+lettersObserver.sendNext(&#34;A&#34;)    // prints (1, A)
+numbersObserver.sendNext(2)      // prints (2, A)
+numbersObserver.sendCompleted()  // nothing printed
+lettersObserver.sendNext(&#34;B&#34;)    // prints (2, B)
+lettersObserver.sendNext(&#34;C&#34;)    // prints (2, C)
+lettersObserver.sendCompleted()  // prints &#34;Completed&#34;
+combineLatestWith算子功能相同，不同的是它是一个算子。</pre></td></tr></table>
+</div>
+</div>
+<h3 id="压缩-zipping">压缩（Zipping）</h3>
+
+<p><strong>zip</strong>函数结合两个事件流成一对。任何第N个元组的元素相当于第N个输入流的元素。
+意思是说输出流的第N个值只有当每个输入流发送了至少N个值之后才会发送。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let (numbersSignal, numbersObserver) = Signal&lt;Int, NoError&gt;.pipe()
+let (lettersSignal, lettersObserver) = Signal&lt;String, NoError&gt;.pipe()
+
+let signal = zip(numbersSignal, lettersSignal)
+signal.observeNext { next in print(&#34;Next: \(next)&#34;) }
+signal.observeCompleted { print(&#34;Completed&#34;) }
+
+numbersObserver.sendNext(0)      // nothing printed
+numbersObserver.sendNext(1)      // nothing printed
+lettersObserver.sendNext(&#34;A&#34;)    // prints (0, A)
+numbersObserver.sendNext(2)      // nothing printed
+numbersObserver.sendCompleted()  // nothing printed
+lettersObserver.sendNext(&#34;B&#34;)    // prints (1, B)
+lettersObserver.sendNext(&#34;C&#34;)    // prints (2, C) &amp; &#34;Completed&#34;</pre></td></tr></table>
+</div>
+</div>
+<p><strong>zipWith</strong>算子功能相同，不同之处是它是一个算子。</p>
+
+    </div>
+    
+  </div>
+</article>
+
+    
+  </section>
+
+  
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  <nav class="pagination">
+    <ul>
+      
+      <li  class="active" >
+        <a href="/">1</a>
+      </li>
+      
+      <li >
+        <a href="/page/2/">2</a>
+      </li>
+      
+      <li >
+        <a href="/page/3/">3</a>
+      </li>
+      
+      <li >
+        <a href="/page/4/">4</a>
+      </li>
+      
+      <li >
+        <a href="/page/5/">5</a>
+      </li>
+      
+      <li >
+        <a href="/page/6/">6</a>
+      </li>
+      
+      <li >
+        <a href="/page/7/">7</a>
+      </li>
+      
+    </ul>
+  </nav>
+
+  
+  
 
 
 
 
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:lixiansir@email.com" rel="me noopener" class="iconfont icon-email"
+        title="email" target="_blank">
+      </a>
+      <a href="https://twitter.com/lixiansir" rel="me noopener" class="iconfont icon-twitter"
+        title="twitter" target="_blank">
+      </a>
+      <a href="https://plus.google.com/u/0/103504326647852949518" rel="me noopener" class="iconfont icon-google"
+        title="google" target="_blank">
+      </a>
+      <a href="https://www.weibo.com/lionel0806" rel="me noopener" class="iconfont icon-weibo"
+        title="weibo" target="_blank">
+      </a>
+  <a href="http://lionel0806.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+  </div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">Lionel Lee</span></span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
 
 
 

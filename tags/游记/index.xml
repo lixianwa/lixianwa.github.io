@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>游记 on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/%E6%B8%B8%E8%AE%B0/</link>
+    <description>Recent content in 游记 on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 24 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/%E6%B8%B8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>横琴岛游记</title>
+      <link>http://lionel0806.github.io/post/2014-03-24-cycling-to-hengqin/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-24-cycling-to-hengqin/</guid>
+      <description>每次游玩回来，或多或少总会有那么一些感想,而这次感触颇深，也许与我最近的心 情有关吧。从小到大，语文一直不好，因此而没少挨老师的批，以至于现在</description>
+    </item>
+    
+  </channel>
+</rss>

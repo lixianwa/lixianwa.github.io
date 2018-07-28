@@ -1,0 +1,2924 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/</link>
+    <description>Recent content on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Mar 2016 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://lionel0806.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>http://lionel0806.github.io/about/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/about/</guid>
+      
+        <description>&lt;p&gt;要么忙着生活，要么赶着去死！&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Swift条件展开初始化</title>
+      <link>http://lionel0806.github.io/post/conditional-unwrapping-initialization/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/conditional-unwrapping-initialization/</guid>
+      
+        <description>&lt;p&gt;原文链接：&lt;a href=&#34;http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/&#34;&gt;Idiomatic Swift: conditional unwrapping initialization&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Swift-Users上，Dan T 问：&lt;br /&gt;
+目前我这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &amp;#34;&amp;#34;
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;有没有更好，更通用的方法实现同样的功能？&lt;/p&gt;
+
+&lt;p&gt;我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let dobString: String = {
+  guard let dob = dob else { return &amp;#34;&amp;#34; }
+  return serverDateFormatter.string(from: dob)
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;我认为这样写更清晰，dobString只出现了一次。（如果他没有用NSDateFormatter，并且需要第二层展开，guard let语句需要第二个分句来执行条件绑定在stringFromDate返回的结果上）。&lt;/p&gt;
+
+&lt;p&gt;Update：Tim Vermeulen 有更漂亮的一行代码解决方案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let dobString = dob.flatMap(serverDateFormatter.stringFromDate) ?? &amp;#34;&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。
+你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>如何使用curl进行http请求</title>
+      <link>http://lionel0806.github.io/post/how-to-use-curl/</link>
+      <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/how-to-use-curl/</guid>
+      
+        <description>
+
+&lt;p&gt;如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。&lt;/p&gt;
+
+&lt;h3 id=&#34;curl是什么&#34;&gt;curl是什么？&lt;/h3&gt;
+
+&lt;p&gt;curl是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。
+curl支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。(来自wikipedia)&lt;/p&gt;
+
+&lt;h3 id=&#34;http-请求&#34;&gt;HTTP 请求&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-post请求&#34;&gt;1.POST请求&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;curl -H &amp;#34;Content-Type: application/json&amp;#34; -X POST -d \
+  &amp;#39;{
+    &amp;#34;key1&amp;#34;: &amp;#34;value1&amp;#34;,
+    &amp;#34;key2&amp;#34;: &amp;#34;value2&amp;#34;,
+    ......
+  }&amp;#39; http://localhost:3000/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参数说明：&lt;br /&gt;
+-H: 表示后面紧跟请求头部参数
+-X: 后面紧跟请求指令，如:GET/POST/DELETE/PUT/UPDATE等，没有此参数时默认是GET请求。
+-d: 后紧跟HTTP POST 数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;2-get请求&#34;&gt;2. GET请求&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;curl -X GET http://localhost:3000/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;或者&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;curl http://localhost:3000/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;NOTE:可用此命令查看网页源码，如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;curl www.google.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;3-delete请求&#34;&gt;3. DELETE请求&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;curl -X DELETE http://localhost:3000/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ReactiveCocoa中的基本算子</title>
+      <link>http://lionel0806.github.io/post/basic-operators/</link>
+      <pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/basic-operators/</guid>
+      
+        <description>
+
+&lt;p&gt;原文链接: &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md&#34;&gt;Basic Operators&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。&lt;/p&gt;
+
+&lt;h3 id=&#34;事件流副作用&#34;&gt;事件流副作用&lt;/h3&gt;
+
+&lt;h4 id=&#34;观察-observation&#34;&gt;观察（Observation）&lt;/h4&gt;
+
+&lt;p&gt;Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&amp;#34;Next: \(next)&amp;#34;)
+    case let .Failed(error):
+      print(&amp;#34;Failed: \(error)&amp;#34;)
+    case .Completed:
+      print(&amp;#34;Completed&amp;#34;)
+    case .Interrupted:
+      print(&amp;#34;Interrupted&amp;#34;)
+  }
+})&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;或者可以用Next, Failed, Completed 和Interrupted事件的回调函数，当相应的事件发生时它（回调函数）会被调用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;signal.observeNext { next in
+  print(&amp;#34;Next: \(next)&amp;#34;)
+}
+signal.observeFailed { error in
+  print(&amp;#34;Failed: \(error)&amp;#34;)
+}
+signal.observeCompleted {
+  print(&amp;#34;Completed&amp;#34;)
+}
+signal.observeInterrupted {
+  print(&amp;#34;Interrupted&amp;#34;)
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意可以不用观察所有四种类型的事件，因为参数是可选类型, 你只需要给你关心的事件提供回调函数。&lt;/p&gt;
+
+&lt;h4 id=&#34;injecting-effects&#34;&gt;Injecting effects&lt;/h4&gt;
+
+&lt;p&gt;SignalProducer会引入副作用，当使用on操作符但没有实际订阅它。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let producer = signalProducer
+  .on(started: {
+    print(&amp;#34;Started&amp;#34;)
+  }, event: { event in
+    print(&amp;#34;Event: \(event)&amp;#34;)
+  }, failed: { error in
+    print(&amp;#34;Failed: \(error)&amp;#34;)
+  }, completed: {
+    print(&amp;#34;completed&amp;#34;)
+  }, interrupted: {
+    print(&amp;#34;interrupted&amp;#34;)
+  }, terminated: {
+    print(&amp;#34;Terminated&amp;#34;)
+  }, disposed: {
+    print(&amp;#34;Disposed&amp;#34;)
+  }, next: { value in
+    print(&amp;#34;Next: \(value)&amp;#34;)
+  })&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;与observe类似，你只需要给你关心的事件提供回调函数。
+注意不会有任何打印直到producer调用started（也许再其他任何地方调用started）。&lt;/p&gt;
+
+&lt;h3 id=&#34;组合算子-operator-composition&#34;&gt;组合算子（Operator composition）&lt;/h3&gt;
+
+&lt;h4 id=&#34;lifting&#34;&gt;Lifting&lt;/h4&gt;
+
+&lt;p&gt;转换事件流
+以下操作符可以将一个事件流转换成一个新的事件流。&lt;/p&gt;
+
+&lt;h4 id=&#34;mapping&#34;&gt;Mapping&lt;/h4&gt;
+
+&lt;p&gt;map用于事件流中所有的值，然后将结果创建成一个新的流。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let (signal, observer) = Signal&amp;lt;String, NoError&amp;gt;.pipe()
+
+signal
+  .map{ string in string.uppercaseString }
+  .observeNext { next in print(next) }
+
+  observer.sendNext(&amp;#34;a&amp;#34;) //Prints A
+  observer.sendNext(&amp;#34;c&amp;#34;) //Prints B
+  observer.sendNext(&amp;#34;c&amp;#34;) //Prints C&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;filtering&#34;&gt;Filtering&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;filter&lt;/strong&gt; 用于包含满足一定条件的事件流的值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let (signal, observer) = Signal&amp;lt;Int, NoError&amp;gt;.pipe()
+
+signal
+  .filter { number in number % 2 == 0 }
+  .observeNext { next in print(next) }
+
+observer.sendNext(1)   //Not printed
+observer.sendNext(2)   //Prints 2
+observer.sendNext(3)   //Not printed
+observer.sendNext(4)   //Print 4&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;聚集-aggregating&#34;&gt;聚集(Aggregating)&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;reduce&lt;/strong&gt; 用于将一个事件流中的所有值聚集成一个单一的合并后得值，注意只有当输入的流完成时才会得到最后的结果。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let (signal, observer) = Signal&amp;lt;Int, NoError&amp;gt;.pipe()
+signal
+  .reduce{ $0 * $1 }
+  .observeNext{ next in print(next) }
+
+observer.sendNext(1) //Not printed
+observer.sendNext(2) //Not printed
+observer.sendNext(3) //Not printed
+observer.sendNext(4) //Not printed
+observer.sendCompleted() //print 10&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;collect&lt;/strong&gt; 将一个事件流的所有值聚合到一个数组中，注意只有当输入的流完成时才会得到最后的结果。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let (signal, observer) = Signal&amp;lt;Int, NoError&amp;gt;.pipe()
+
+signal
+    .collect()
+    .observeNext { next in print(next) }
+
+observer.sendNext(1)     // nothing printed
+observer.sendNext(2)     // nothing printed
+observer.sendNext(3)     // nothing printed
+observer.sendCompleted()   // prints [1, 2, 3]&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;合并事件流-combining-event-streams&#34;&gt;合并事件流（Combining event streams）&lt;/h3&gt;
+
+&lt;p&gt;这些操作会合并多个事件流中的值成一个新的、统一的流。&lt;/p&gt;
+
+&lt;h4 id=&#34;合并最新的值-combining-latest-values&#34;&gt;合并最新的值（Combining latest values）&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;combineLatest&lt;/strong&gt; 方法合并两个事件流最后的值。
+产生的流将会发送它的第一个值当每一个输入流至少有一个值发送之后，之后，每一个输入流的新值产生一个新值输出。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let (numbersSignal, numbersObserver) = Signal&amp;lt;Int, NoError&amp;gt;.pipe()
+let (lettersSignal, lettersObserver) = Signal&amp;lt;Int, NoError&amp;gt;.pipe()
+
+let signal = combineLatest(numbersSignal, lettersSignal)
+signal.observeNext { next in print(next) }
+signal.observeCompleted { print(&amp;#34;Completed&amp;#34;) }
+
+numbersObserver.sendNext(0)      // nothing printed
+numbersObserver.sendNext(1)      // nothing printed
+lettersObserver.sendNext(&amp;#34;A&amp;#34;)    // prints (1, A)
+numbersObserver.sendNext(2)      // prints (2, A)
+numbersObserver.sendCompleted()  // nothing printed
+lettersObserver.sendNext(&amp;#34;B&amp;#34;)    // prints (2, B)
+lettersObserver.sendNext(&amp;#34;C&amp;#34;)    // prints (2, C)
+lettersObserver.sendCompleted()  // prints &amp;#34;Completed&amp;#34;
+combineLatestWith算子功能相同，不同的是它是一个算子。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;压缩-zipping&#34;&gt;压缩（Zipping）&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;zip&lt;/strong&gt;函数结合两个事件流成一对。任何第N个元组的元素相当于第N个输入流的元素。
+意思是说输出流的第N个值只有当每个输入流发送了至少N个值之后才会发送。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let (numbersSignal, numbersObserver) = Signal&amp;lt;Int, NoError&amp;gt;.pipe()
+let (lettersSignal, lettersObserver) = Signal&amp;lt;String, NoError&amp;gt;.pipe()
+
+let signal = zip(numbersSignal, lettersSignal)
+signal.observeNext { next in print(&amp;#34;Next: \(next)&amp;#34;) }
+signal.observeCompleted { print(&amp;#34;Completed&amp;#34;) }
+
+numbersObserver.sendNext(0)      // nothing printed
+numbersObserver.sendNext(1)      // nothing printed
+lettersObserver.sendNext(&amp;#34;A&amp;#34;)    // prints (0, A)
+numbersObserver.sendNext(2)      // nothing printed
+numbersObserver.sendCompleted()  // nothing printed
+lettersObserver.sendNext(&amp;#34;B&amp;#34;)    // prints (1, B)
+lettersObserver.sendNext(&amp;#34;C&amp;#34;)    // prints (2, C) &amp;amp; &amp;#34;Completed&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;zipWith&lt;/strong&gt;算子功能相同，不同之处是它是一个算子。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>&lt;&lt;自控力&gt;&gt;读书笔记</title>
+      <link>http://lionel0806.github.io/post/%E8%87%AA%E6%8E%A7%E5%8A%9B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 20 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/%E8%87%AA%E6%8E%A7%E5%8A%9B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;一-意志力是什么&#34;&gt;一. 意志力是什么？&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;意志力其实是“我要做”，“我不要”和“我想要”这三种力量。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;深入剖析:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;更难的事是什么？想象你正面临一个意志力挑战，更难的事是什么？它为什么这么困难？&lt;/li&gt;
+&lt;li&gt;认清两个自我。你的意志力挑战是，如何描述想抗衡的两个自我？冲动的你想要什么？明智的你想要什么？&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;意志力实验:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;记录你的意志力选择。至少一天，注意观察你做的关于意志力的决定。&lt;/li&gt;
+&lt;li&gt;5分钟大脑训练冥想。在脑海中默念“呼”和“吸”，把注意力集中在呼吸上。
+当你走神的时候，重新集中注意力。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;二-意志力的本能-人生来就能抵制奶酪蛋糕的诱惑&#34;&gt;二. 意志力的本能：人生来就能抵制奶酪蛋糕的诱惑&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;意志力是种生理本能，它和压力一样，通过不断进化来保护我们不受自身伤害。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;深入剖析:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;什么是威胁？对你的意志力挑战来说，什么是需要克制的内在冲动？&lt;/li&gt;
+&lt;li&gt;压力和自控，试着找出持续一整天或以整周德压力，看看它对你的自控力产生怎样的影响。你有过强烈的欲望吗？你发过脾气吗？你把要做的事拖到明天吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;意志力实验:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;呼吸出你的自控力。把你的呼吸降到每分钟4～6次，将身体调整到适合自控的生理状态。&lt;/li&gt;
+&lt;li&gt;5分钟给意志力加油。出门活动，哪怕是只在周围转转，也能减少压力，改善心情，提供动力。&lt;/li&gt;
+&lt;li&gt;睡眠。打盹和补觉可以消除睡眠不足的影响。&lt;/li&gt;
+&lt;li&gt;放松能让你恢复意志力储备。躺下，深呼吸，让“放松的生理反应”帮你从自控和压力造成的疲惫中恢复过来。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;三-累到无力抵抗-为什么自控力和肌肉一样有极限&#34;&gt;三. 累到无力抵抗，为什么自控力和肌肉一样有极限？&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;自控力像肌肉一样有极限，自控力用得太多会疲惫，但坚持锻炼能增强自控力。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;深入剖析:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;意志力的上下波动。 本周，记录你的自控力，特别注意什么时候你的意志力强，什么时候你容易放弃。&lt;/li&gt;
+&lt;li&gt;你的疲惫感是真的吗？下次你觉得自己太“疲惫”而无法自控的时候，看看自己能不能挺过第一波疲惫，向前迈出一步。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;意志力实验:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;意志力饮食。确保你的身体摄入了足够的食物，能为你提供足够的能量。&lt;/li&gt;
+&lt;li&gt;意志力锻炼。本周，选择一件事做（“我想要”的力量）或不做（“我不想”的力量），或者纪录一件你不曾关注的事情，以此锻炼你的“自控力肌肉”。&lt;/li&gt;
+&lt;li&gt;发现你的“我想要”的力量。发现自己最重要的“我想要”的力量，也就是你脆弱的时候给你力量的东西，每当你面对诱惑，想要放弃的时候，想一想这个东西。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;四-容忍罪恶-为何善行之后会有恶行&#34;&gt;四. 容忍罪恶：为何善行之后会有恶行？&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;当我们将意志力挑战看成衡量道德水平的标准时，善行就会允许我们做坏事，为了能更好的自控，我们要忘掉美德，关注目标和价值观。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;深入剖析:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;善与恶：当你的意志力挑战成功时，你会不会告诉自己你很“好”，然后允许自己做一些“坏”事。&lt;/li&gt;
+&lt;li&gt;你是否向明天赊账？你是否会告诉自己明天会弥补今天的过错？如果是这样的话，你是否真的弥补上了？&lt;/li&gt;
+&lt;li&gt;光环效应：你是不是看到了坏东西好的一面，如折扣省钱，零脂肪，保护环境？&lt;/li&gt;
+&lt;li&gt;你觉得自己是谁？当你想到你的意志力挑战时，你觉得哪部分的你才是“真实”的你？是想追求目标的你，还
+是需要被控制的你？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;意志力实验:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;明天和今天毫无区别，当你想改变行为的时候，试着减小行为的变化性，而不是减少某种行为。&lt;/li&gt;
+&lt;li&gt;取消许可，牢记理由。下一回，当你发现自己在用曾经的善行为放纵辩护的时候，停下来想一想做“好”事的
+原因，而不是你应不应该得到奖励。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Xcode-keyboard-shortcuts</title>
+      <link>http://lionel0806.github.io/post/xcode-keyboard-shortcuts/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/xcode-keyboard-shortcuts/</guid>
+      
+        <description>&lt;p&gt;&lt;strong&gt;Xcode提供很多快捷键，我们不可能都记住，但平时的开发中如果能尽可能多的使用快捷键，效率会提高不少，下面总结了Xcode的一些常用快捷键：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;|快捷键    |功能|    星级|
+-|-|-
+command + shift + O|    打开搜索窗口| ＊＊＊＊＊
+command + 0 |显示／隐藏导航区|  ＊＊＊＊＊
+command + 1~n   |选择不同的导航器   |＊＊＊＊
+command + option + J|   过滤导航结果| ＊＊＊
+command + shift + Y|    显示／隐藏调试区|   ＊＊＊＊
+command + option + 0|   显示／隐藏实用工具区选项卡|  ＊＊＊
+command + option + 1~n| 切换使用工具区选项卡| ＊＊＊
+control + 6|    方法跳转菜单| ＊＊＊＊
+control + command + Up／Down|    对应文件导航  |＊＊＊＊
+control + command + Left／Right  |查看历史文件|＊＊＊＊＊
+control + command + E   |重构符    |＊＊＊＊＊
+control + command + J   |查看符号来源|    ＊＊＊
+command + shift + ]／[|  移动到上一个／下一个标签|   ＊＊＊＊＊
+command + option + ]／［  |整行代码上／下移动  |＊＊＊
+command + R |运行应用   |＊＊＊＊＊
+command + B |构建应用   |＊＊＊＊＊
+control + . |停止运行的应用|   ＊＊＊＊＊
+control + i |格式化应用  |＊＊＊&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>如何解决retain cycle</title>
+      <link>http://lionel0806.github.io/post/the-solution-of-retain-cycle/</link>
+      <pubDate>Wed, 28 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/the-solution-of-retain-cycle/</guid>
+      
+        <description>&lt;p&gt;当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题。 我们可以把存在retain cycle的两个对象看成是 父－子 关系。 在这个关系当中，父可以拥有子，但是子不可以拥有父，因此，在这个问题中，我们可以把作为 父 的对象定义为strong， 而作为 子 的对象定义为weak，这样就解决了retain cycle。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>一个iOS View crash问题</title>
+      <link>http://lionel0806.github.io/post/an-ios-view-crash-error/</link>
+      <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/an-ios-view-crash-error/</guid>
+      
+        <description>&lt;p&gt;[2015-10-15]&lt;br /&gt;
+用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：
+&amp;gt;Terminating app due to uncaught exception &amp;lsquo;UIViewControllerHierarchyInconsistency&amp;rsquo;, reason: &amp;lsquo;A view can only be associated with at most one view controller at a time! View &lt;UIView: 0x7f914af22610; frame = (0 0; 414 736); autoresize = W+H; layer = &lt;CALayer: 0x7f914af22980&gt;&amp;gt; is associated with &lt;UIViewController: 0x7f914ae49a90&gt;. Clear this association before associating this view with &lt;TestViewController: 0x7f914ac7f680&gt;.&amp;rsquo;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>开始使用hexo生成blog</title>
+      <link>http://lionel0806.github.io/post/blog-from-jekyll-to-hexo/</link>
+      <pubDate>Tue, 13 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/blog-from-jekyll-to-hexo/</guid>
+      
+        <description>&lt;p&gt;hello, hexo ！&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>markdown语法</title>
+      <link>http://lionel0806.github.io/post/markdown%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/markdown%E8%AF%AD%E6%B3%95/</guid>
+      
+        <description>&lt;p&gt;本文转自&lt;a href=&#34;http://blog.izhangbo.cn/掌握这几种markdown语法你就够了/&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;使用 Markdown 真的可以写出非常整洁的文档来，看到很多人都在使用，自己也忍不住学习了下。网上有很多讲解 markdown 语法的，资料庞大复杂不够简练，学个基础语法置于这么麻烦么。我做了一些整理，保证你学了这些，就可以使用 markdown 去秀文档了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;1、标题：
+
+#h1级标题
+##h2级标题
+###h3级标题
+####h4级标题
+#####h5级标题
+######h6级标题
+
+2、分割线：三个以上的短线 即可作出分割线(需要空行隔开生效)
+
+3、超链接：[连接名称](网址 , 标题)
+[我是链接名](http://www.izhangbo.cn, “我是标题”)
+[&amp;lt;i class=”icon-refresh”&amp;gt;&amp;lt;/i&amp;gt; 点我刷新](/sonfilename/)
+
+另一种超链接写法：[链接名][链接代号]
+[here][3]
+然后在别的地方定义 3 这个详细链接信息，[3]: http://www.izhangbo.cn “haode”
+
+4、键盘键
+&amp;lt;kbd&amp;gt;Ctrl+[&amp;lt;/kbd&amp;gt; and &amp;lt;kbd&amp;gt;Ctrl+]&amp;lt;/kbd&amp;gt;
+
+5、code格式：反引号
+Use the `printf()` function.
+“There is a literal backtick (`) here.针对在代码区段内插入反引号的情况“
+
+6、强调：
+*斜体强调*
+**粗体强调**
+
+7、图片
+![Alt text](/path/to/img.jpg “Optional title”)
+
+8、上角标
+这里加个上角标[^stackedit]
+
+[^stackedit]:角标内容详情
+
+9、使用 icon 图标文字
+&amp;lt;i class=”icon-cog”&amp;gt;&amp;lt;/i&amp;gt;
+
+10、段落：以一个空行开始，以一个空行结束，中间的就是一个段落。
+
+11、表格：这个稍微有些复杂
+Item | Value
+——– | —
+Computer | $1600
+Phone | $12
+Pipe | $1
+
+12、无序列表：使用 – 加一个空格(需要空行隔开生效)
+
+– 无需列表1
+– 无序列表2
+– 无序列表3
+
+13、有序列表：使用 数字 加一个英文句点(需要空行隔开生效)
+1. 有序列表
+2. 有序列表
+3. 有序列表
+4. 有序列表
+5. 有序列表
+
+14、行缩进：使用 “:加空格”
+: 这里有个空格，可进行行缩进。
+
+15、换行缩进形成代码区块
+
+这里先换行，然后缩进4个空格，之后的内容便可以原样显示了，适合用于显示代码内容。直到文本结束或最后一个存在缩进的行为止。
+16、块引用
+&amp;gt;给引用的文本开始位置都加一个 ‘&amp;gt;’，
+&amp;gt;便可组成一个块引用。在块引用中，可以结合
+&amp;gt;其他markdown元素一块使用，比如列表。
+&amp;gt;**强调**
+也可以只在第一行加大于号，其他位置不加。
+
+&amp;gt;- 块引用里使用列表，需要和上面的内容隔开一个空行
+&amp;gt;- 记得加空格哦。
+
+如果你要在 markdown 中使用特殊字符，需要对它们进行转义。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果你对 markdown 的来龙去脉很感兴趣，并参与研究，请移步&lt;a href=&#34;https://github.com/riku/Markdown-Syntax-CN/blob/master/syntax.md&#34;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>工具</title>
+      <link>http://lionel0806.github.io/post/2015-03-14-tools/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2015-03-14-tools/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;工具&#34;&gt;工具&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;jira&lt;/strong&gt;:项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;confluence&lt;/strong&gt;:企业知识管理与协同软件，也可以用于构建企业wiki。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://about.gitlab.com/&#34;&gt;GitLab&lt;/a&gt;&lt;/strong&gt;:基于Git的开源项目，客用于搭建私有的Github。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://riemann.io/&#34;&gt;Riemann&lt;/a&gt;&lt;/strong&gt;:报警系统，函数式编程语言clojure编写，可配置性强，可以和OpenTSDB等时间序列存贮系统结合，构建企业报警系统。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>统一账户管理系统RESTful api设计</title>
+      <link>http://lionel0806.github.io/post/2015-04-10-ldapadmin-design/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2015-04-10-ldapadmin-design/</guid>
+      
+        <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;LDAPAdmin&lt;/em&gt;&lt;/strong&gt;, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。&lt;/p&gt;
+
+&lt;p&gt;下面主要对LDAPAdmin 的REST Api做个简单介绍：&lt;/p&gt;
+
+&lt;p&gt;##Functionality
+###Terminology
+###User stories
+* 利用该组件的HTTP API，通过提交一组描述 用户／部门／系统／管理员的JSON数据，添加、删除、更新、查询数据；
+* 利用该组件的HTTP API，可以方便的添加一条 用户／部门／系统／管理员记录；
+* 利用该组件的HTTP API，可以方便的更新一条指定的 用户／部门／系统／管理员记录；
+* 利用该组件的HTTP API，可以方便的将指定的 用户／部门／系统／管理员删除；&lt;/p&gt;
+
+&lt;p&gt;###Scope and Non-Scope
+####Scope
+* 用户／部门／系统／管理员 信息相关数据的添加、更新、删除；
+* 查询 用户／部门／系统／管理员的信息；
+* 用户／部门／系统／管理员 的有效性；&lt;/p&gt;
+
+&lt;p&gt;###Non-Scope
+* 用户数据的可靠性，数据由管理员负责维护&lt;/p&gt;
+
+&lt;p&gt;##Low-level Design
+###Response Code&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;Code&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Remind&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;200&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;OK – [GET]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;成功返回用户请求的数据&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;201&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CREATED – [POST/PUT]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;新建/修改数据成功&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;204&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NO CONTENT – [DELETE]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;删除数据成功&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;400&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;INVALID REQUEST – [POST/PUT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;用户发出请求有误，服务器没有新建/修改数据&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;401&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Unauthorized – [*]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;token认证失败，token过期等情况&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;403&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Forbidden – [*]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;用户认证成功，但没有权限进行相应操作（权限细分）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;404&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NOT FOUND – [*]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;请求的资源（在这里是表、字段不存在等情况）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;406&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NOT Acceptable – [GET]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;用户请求的格式不可得&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;500&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;INTERNAL SERVER ERROR – [*]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;服务器内部错误，用户无法判断请求是否成功&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;###Response| Result
+#####除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;Method&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;GET&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;返回被查询对象的列表，或为空（查询结果为空）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;POST&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;返回是否插入成功（1为成功，0为失败）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;PUT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;返回被修改的行数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;DELETE&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;返回被删除的行数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;###Http methods table
+####1.用户
+HTTP Method|URI|Description
+:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-
+GET |/v1/user   |获取所有用户记录
+GET |/v1/user/:id   |根据id获取记录
+POST|   /v1/user    |添加用户记录
+PUT |/v1/user/:id   |修改某个用户记录
+DELETE| /v1/user/:id    |删除某个用户记录&lt;/p&gt;
+
+&lt;p&gt;####2. 部门
+HTTP Method|URI|Description
+:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-
+GET | /v1/department    |获取所有部门记录
+GET | /v1/department/:id    |根据id获取部门记录
+GET | /v1/department/:id?type=subtree   |根据id获取该部门下所有的用户和子部门记录
+POST|   /v1/department  |添加部门记录
+PUT | /v1/department/:id    |修改某个部门记录
+DELETE| /v1/department/:id  |删除某个部门记录&lt;/p&gt;
+
+&lt;p&gt;####3. 系统
+HTTP Method|URI|Description
+:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-
+GET |/v1/system |获取所有组记录
+GET |/v1/system/:id |根据id获取记录
+POST|   /v1/system  |添加组记录
+PUT |/v1/system/:id |修改某个组记录
+DELETE| /v1/system/:id  |删除某个组记录&lt;/p&gt;
+
+&lt;p&gt;####4. 管理员
+HTTP Method|URI|Description
+:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-
+GET | /v1/admin |获取所有管理员记录
+GET | /v1/admin/:id |根据id获取记录
+POST|   /v1/admin   |添加管理员记录
+PUT | /v1/admin/:id |修改某个管理员记录
+DELETE| /v1/admin/:id|  删除某个管理员记录&lt;/p&gt;
+
+&lt;p&gt;###Record infomations
+####1.用户
+Response&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{
+    &amp;#34;Id&amp;#34;: ${id},                  //用户ID
+    &amp;#34;UserName&amp;#34;: ${user name},     //用户名
+    &amp;#34;Password&amp;#34;: ${password},      //密码
+    &amp;#34;Department&amp;#34;: ${department},  //所属部门
+    &amp;#34;Mail&amp;#34;: ${mail},              //邮件
+    &amp;#34;Telephone&amp;#34;: ${telephone},    //电话
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;####2.部门
+Response&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{
+    &amp;#34;Id&amp;#34;: ${id},                  //部门ID
+    &amp;#34;Name&amp;#34;: ${name},              //部门名
+    &amp;#34;Parent&amp;#34;, ${parent}           //上级部门   
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;####3.系统
+Response&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{
+    &amp;#34;Id&amp;#34;: ${id},                  //组ID
+    &amp;#34;Name&amp;#34;: ${name},              //组名
+    &amp;#34;Member&amp;#34;, ${member}           //成员
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;####4. 管理员
+Response&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{
+    &amp;#34;Id&amp;#34;: ${id},                  //管理员ID
+    &amp;#34;Name&amp;#34;: ${name},              //名字
+    &amp;#34;Password&amp;#34;, ${password}       //密码   
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;###RESTful API
+####1. 用户
+* GET /v1/user&lt;/p&gt;
+
+&lt;p&gt;此API用于查询所有 用户记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request:
+GET / HTTP/1.1
+Response:
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+   
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将查询用户信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/user HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+[
+  {
+  },
+  {
+  },
+  ......
+]&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;GET /v1/user/:id
+此API用于查询指定的用户记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/user/:id HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+    
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将查询id为1的用户录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/user/1 HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;rows&amp;#34;: 1,
+    &amp;#34;result&amp;#34;: [{&amp;#34;id&amp;#34;: &amp;#34;1&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;xxxx&amp;#34;, &amp;#34;password&amp;#34;: &amp;#34;xxxx&amp;#34;, &amp;#34;department&amp;#34;:[1, 2], 
+    &amp;#34;mail&amp;#34;:&amp;#34;xxx@xywy.com&amp;#34;, &amp;#34;telephone&amp;#34;:&amp;#34;15212233445&amp;#34;}]
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;POST /v1/user
+此API用于新增 用户记录记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+POST /v1/user HTTP/1.1
+Content-Type: application/json
+ 
+{
+    ${Record informations}
+}
+
+Response
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;:${code},   //type is int
+    &amp;#34;id&amp;#34;: ${id}       //type is string, specifing the id inserted, which can be used in querying through the id    
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将插入 用户记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+POST /v1/user HTTP/1.1
+Content-Type: application/json
+ 
+{
+    ${Record informations}
+}
+Response
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;id&amp;#34;: 1
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;PUT /v1/user/:id
+此API用于修改用户记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+POST /v1/user/:id HTTP/1.1
+Content-Type: application/json
+ 
+{
+ 
+}
+Response
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;:0,
+    &amp;#34;rows&amp;#34;: ${line}       //type is int
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将修改用户信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+PUT /v1/user/1 HTTP/1.1
+Content-Type: application/json
+ 
+{
+ 
+}
+Response
+HTTP/1.1 201 UPDATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;rows&amp;#34;：3
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;DELETE /v1/user/:id
+此API用于删除用户记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+DELETE /v1/user/:id
+{
+     
+}
+Response
+HTTP/1.1 204 NO CONTENT
+Content-Type: application/json&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将删除用户记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+DELETE  /v1/user/1 HTTP/1.1
+{
+}
+Response
+HTTP/1.1 204 NO CONTENT&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;部门&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GET /v1/department
+此API用于查询所有部门记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/department HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+   ${Record informentions}
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将查询部门信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/department HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+[
+  {
+ 
+  },
+  {
+  },
+  ......
+]&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;GET /v1/department/:id
+此API用于查询指定的部门记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/department/:id HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+    
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将查询id为1的部门记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/department/1 HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;rows&amp;#34;: 1,
+    &amp;#34;result&amp;#34;: [{&amp;#34;id&amp;#34;: &amp;#34;1&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;zonghezhikongzhongxin&amp;#34;, &amp;#34;parent&amp;#34;: &amp;#34;&amp;#34;]
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;GET /v1/department/:id?type=subtree
+此API用于查询指定的部门的所有子用户和子部门记录（树形结构）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/department/:id?type=subtree HTTP/1.1
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+ 
+{
+    
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将查询id为1的部门的详细信息（包括子部门和用户）记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+GET /v1/department/1?type=subtree HTTP/1.1
+
+Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;rows&amp;#34;: 1,
+    &amp;#34;result&amp;#34;: {
+                &amp;#34;user&amp;#34;:[
+                        {&amp;#34;id&amp;#34;: 1, &amp;#34;name&amp;#34;: &amp;#34;xxxx&amp;#34;, &amp;#34;department&amp;#34;:[1], &amp;#34;mail&amp;#34;:&amp;#34;xxxx@xywy.com&amp;#34;, &amp;#34;telephone&amp;#34;:&amp;#34;xxxxx&amp;#34;}, 
+                        {&amp;#34;id&amp;#34;: 2, &amp;#34;name&amp;#34;: &amp;#34;xxxxx&amp;#34;,&amp;#34;department&amp;#34;:[1, 2], &amp;#34;mail&amp;#34;:&amp;#34;xxxxx@xywy.com&amp;#34;, &amp;#34;telephone&amp;#34;:&amp;#34;xxxxx&amp;#34;},
+                        ......
+                       ]
+               &amp;#34;department&amp;#34;:[
+                              {&amp;#34;id&amp;#34;: 1 &amp;#34;name&amp;#34;:&amp;#34;sa&amp;#34;,   &amp;#34;parent&amp;#34;:1},
+                              { &amp;#34; id&amp;#34;: 1, &amp;#34;name&amp;#34; : &amp;#34;anquan&amp;#34;, &amp;#34;parent&amp;#34; : 1 }
+                                ......
+                            ]
+             }
+ &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;POST /v1/department
+此API用于新增 部门记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+POST /v1/department HTTP/1.1
+Content-Type: application/json
+ 
+{
+    ${Record informations}
+}
+
+Response
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;:${code},   //type is int
+    &amp;#34;id&amp;#34;: ${id}       //type is string, specifing the id inserted, which can be used in querying through the id    
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将插入部门记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+POST /v1/department HTTP/1.1
+Content-Type: application/json
+ 
+{
+    ${Record informations}
+}
+
+Response
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;id&amp;#34;: 1
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;PUT /v1/department/:id
+此API用于修改部门记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+POST /v1/department/:id HTTP/1.1
+Content-Type: application/json
+ 
+{
+ 
+}
+Response
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;:0,
+    &amp;#34;rows&amp;#34;: ${line}       //type is int
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将修改ID为1的部门信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+PUT /v1/department/1 HTTP/1.1
+Content-Type: application/json
+ 
+{
+ 
+}
+
+Response
+HTTP/1.1 201 UPDATED
+Content-Type: application/json
+ 
+{
+    &amp;#34;code&amp;#34;: 0,
+    &amp;#34;rows&amp;#34;：3
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;DELETE /v1/department/:id
+此API用于删除部门记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+DELETE /v1/department/:id
+{
+     
+}
+
+Response
+HTTP/1.1 204 NO CONTENT
+Content-Type: application/json&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Example
+下面的示例将删除部门记录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Request
+DELETE  /v1/department/1 HTTP/1.1
+{
+}
+
+Response
+HTTP/1.1 204 NO CONTENT&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;###3. 系统／管理员 与 用户Api很类似，只是URI稍有不同
+####系统： /v1/system
+####管理员： /v1/admin
+返回记录信息在 Record informations中有说明。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>关于sizeof</title>
+      <link>http://lionel0806.github.io/post/2014-07-09-about-sizeof/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-07-09-about-sizeof/</guid>
+      
+        <description>&lt;p&gt;前两天犯了一个愚蠢的错误，由于对sizeof理解的错误，导致代码出现了一个bug,具体代码逻辑如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;char buf[512];
+char *ptr;
+int size;
+
+ptr = buf;
+size = sizeof(ptr);&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;本来是计算buf的大小，但这样写其实只是得到 char指针类型的大小，错误的以为ptr指向buf时，用sizeof获取的也是buf的大小。通过了解，如果sizeof的操作数为指针时，不管指针指向什么类型，值都是指针类型的大小，32位系统为4.具体sizeof的结果如下：　&lt;/p&gt;
+
+&lt;p&gt;1、当操作数为数据类型时，所得结果为给数据类型的大小。如：32bit系统上，sizeof（char）＝ 1　，sizeof（int） ＝ 4。&lt;/p&gt;
+
+&lt;p&gt;2、当操作数是指针时，sizeof依赖于编译器。例如Microsoft　C/C++7.0中，near
+类指针字节数为2，far、huge类指针字节数为4。一般Unix的指针字节数为4。　&lt;/p&gt;
+
+&lt;p&gt;3、当操作数具有数组类型时，其结果是数组的总字节数。　&lt;/p&gt;
+
+&lt;p&gt;4、联合类型操作数的sizeof是其最大字节成员的字节数。结构类型操作数的
+sizeof是这种类型对象的总字节数，包括任何垫补在内。　
+    让我们看如下结构：　
+　　struct　
+　　{
+　　    char　b;
+　　    double　x;
+　　}　a;　
+　　在某些机器上sizeof（a）=12，而一般sizeof（char）+　sizeof（double）= 9。
+　　这是因为编译器在考虑对齐问题时，在结构中插入空位以控制各成员对象的地址对
+齐。如double类型的结构成员x要放在被4整除的地址。　&lt;/p&gt;
+
+&lt;p&gt;5、如果操作数是函数中的数组形参或函数类型的形参，sizeof给出其指针的大小。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>安装archlinux</title>
+      <link>http://lionel0806.github.io/post/2014-04-26-install-archlinux/</link>
+      <pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-04-26-install-archlinux/</guid>
+      
+        <description>&lt;p&gt;活着就是为了折腾，Ubuntu已经用了4年多了吧，从最近几年看来，ubuntu的发展目的是要面向大众化，由于要适合大众，所以他的操作更简单，图形界面更美观，这就导致它越来越笨重。对于一个追求速度，喜欢命令模式的程序猿，ubuntu已然不能满足我的要求，所以安装archlinux的想法产生了，活着不就是为了折腾嘛，于是一步一步定制专属自己的linux系统。&lt;/p&gt;
+
+&lt;p&gt;1.下载archlinux镜像文件
+2.制作usb安装盘&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # dd bs=4M if=&amp;lt;/archlinux-2014.04.01-dual.iso/的/路径&amp;gt; of=/dev/&amp;lt;U盘文件&amp;gt; &amp;amp;&amp;amp; sync&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;3.从U盘启动选择Boot Arch Linux
+4.配置安装
+ 1)连接网络
+   有线连接：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # dhcpcd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;无线连接：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # wifi-menu&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;ADSL 宽带连接：
+   配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # pppoe-setup&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;连接：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # systemctl start adsl&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;2)选择软件源&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # vi /etc/pacman.d/mirrorlist
+
+ 更新本地数据库：
+
+     # pacman -Syy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;5.分区
+   1)分区方案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt; $ lsblk /dev/sda -o NAME,FSTYPE,SIZE,MOUNTPOINT
+   NAME   FSTYPE   SIZE MOUNTPOINT
+   sda           120G 
+   ├─sda1 ext4    36G /
+   ├─sda2 ext4    80G /home
+   └─sda3 swap     4G [SWAP]&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意：swap分区大小建议等于或两倍于内存。
+   2)分区：
+      MBR 分区：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # cfdisk /dev/sda
+
+  GPT 分区：
+
+     # cgdisk /dev/sda&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;6.创建文件系统：
+   创建 ext4 分区：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # mkfs.ext4 /dev/sda1
+     # mkfs.ext4 /dev/sda2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;创建并激活 swap 分区：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # mkswap /dev/sda3
+     # swapon /dev/sda3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;7.系统安装
+   1)挂载分区：
+       挂在 / 分区：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # mount /dev/sda? /mnt
+
+   挂在home分区：
+
+     # mkdir /mnt/home
+     # mount /dev/sda?  /mnt/home&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;2)安装基础系统：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # pacstrap -i /mnt base&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;3)生成fstab&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    # genfstab -U -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;8.进入新系统&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    # arch-chroot /mnt /bin/bash&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;9.配置local&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;1）编辑/etc/locale.gen，移除需要的行前的 #：
+
+    # vi /etc/locale.gen
+
+  简体中文用户，可移除下列行前的 # ：
+
+    #zh_CN.UTF-8 UTF-8 
+
+2)更新设置：
+
+    # locale-gen
+
+3)设置默认语言
+
+    # echo LANG=&amp;lt;语言&amp;gt;  &amp;gt; /etc/locale.conf
+
+4)简体中文用户可执行：
+
+    # echo LANG=zh_CN.UTF-8  &amp;gt; /etc/locale.conf
+
+5)时区
+
+查看时区：
+时区：
+
+      # ls /usr/share/zoneinfo/
+
+子时区：
+
+      # ls /usr/share/zoneinfo/&amp;lt;时区&amp;gt;/
+
+设置时区：
+
+      # ln -s /usr/share/zoneinfo/&amp;lt;时区&amp;gt;/&amp;lt;子时区&amp;gt; /etc/localtime
+
+中国大陆用户可执行：
+
+      # ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+6)硬件时间：
+
+推荐）使用UTC时间：
+
+      # hwclock --systohc --utc
+
+ 使用本地时间：
+
+  !__ 使用本地时间可能会引起某些不可修复的bug。
+
+     # hwclock --systohc --localtime&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;10.创建 ramdisk 环境&lt;/p&gt;
+
+&lt;p&gt;（可选）配置&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       # vi /etc/mkinitcpio.conf&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;创建：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       # mkinitcpio -p linux&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;11.为 root 用户设置密码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       # passwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;安装Grub引导器&lt;/p&gt;
+
+&lt;p&gt;1)安装 BIOS + MBR：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;   # pacman -S grub
+   # grub-install --target=i386-pc --recheck /dev/sda&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;2）生成配置文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    # grub-mkconfig -o /boot/grub/grub.cfg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;3）欲引导其他系统，如 Windows ，可执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # pacman -S os-prober
+     # grub-mkconfig -o /boot/grub/grub.cfg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;退出安装环境&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;退回安装环境&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;          # exit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;卸载新分区&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;          # umount -R /mnt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;重启
+              # reboot&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;用户管理&lt;/p&gt;
+
+&lt;p&gt;1）添加一个典型的桌面用户：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;   #  useradd -m -g users -G wheel -s /bin/bash &amp;lt;用户名&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;2）设置密码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    # passwd &amp;lt;用户名&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;4)配置 sudo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt; 安装 sudo：
+
+  # pacman -S sudo
+
+配置：
+  # EDITOR=nano visudo
+
+反注释该行（删去 # ）：
+
+  # %wheel ALL=(ALL) ALL&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;5)将允许获取 root 权限的用户加入 wheel 用户组（若用户已在该组则跳过）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;   # gpasswd -a &amp;lt;用户名&amp;gt; wheel&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;6)使用 sudo 时，在输入 &amp;lt;命令&amp;gt; 部分 Tab 补全会失效。如需启用 sudo 的 Tab 补全，执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt; $ sudo pacman -S  bash-completion
+ $ echo complete -cf sudo &amp;gt;&amp;gt; ~/.bashrc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;15.声音管理&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    1)安装 alsa-utils 
+
+             # pacman -S alsa-utils
+
+     2)配置：
+
+             # alsamixer&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;配置 GUI（图形用户界面）&lt;/p&gt;
+
+&lt;p&gt;1) 安装显卡驱动:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    确定显卡型号：
+
+              $ lspci | grep VGA
+
+   对应可选驱动包：
+
+Intel 显卡：xf86-video-intel
+nVidia 显卡：
+GeForce 7 以上：xf86-video-nouveau；nvidia
+GeForce 6/7：xf86-video-nouveau；nvidia-304xx
+AMD/ATI 显卡：xf86-video-ati；AMD Catalyst（Arch Wiki）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;安装驱动：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;        # pacman -S &amp;lt;驱动包&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;2)  安装 X 窗口系统:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt; X 窗口系统（X11/X）是诸多桌面环境的基础。
+
+ 安装 Xorg Server
+
+             # pacman -S xorg-server xorg-server-utils xorg-xinit
+
+ 添加3D支持
+
+           # pacman -S mesa
+
+  添加触摸板支持
+
+            # pacman -S xf86-input-synaptics
+  安装字体
+
+（推荐）Dejavu和文泉驿-微米黑：
+
+            # pacman -S ttf-dejavu wqy-microhei&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;安装桌面环境&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Arch Linux 官方提供支持的桌面环境：
+Cinnamon（官网）：cinnamon
+Enlightenment（官网）：enlightenment17
+GNOME（官网)：gnome、gnome-extra（附加功能包）
+KDE（官网)：kde（完全版）、kdebase（基础版）、kde-l10n-zh_cn（简体中文包）
+LXDE（官网)：lxde。
+Xfce（官网)：xfce4、xfce4-goodies（附加功能包）
+其他桌面环境：Arch Wiki
+更加轻量级的窗口管理器：：Arch Wiki&lt;/p&gt;
+
+&lt;p&gt;安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;             # pacman -S &amp;lt;桌面环境组&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;启动桌面环境&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;启动方式有两种：从命令行以 startx 启动；使用显示管理器（Display Manager）。&lt;/p&gt;
+
+&lt;p&gt;startx：（以GNOME为例）&lt;/p&gt;
+
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       $ cp /etc/skel/.xinitrc ~
+       $ vi ~/.xinitrc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;反注释对应行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       # exec gnome-session&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;启动：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       $ startx&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;显示管理器：（以GDM为例）
+从命令行启动：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       # systemctl start gdm.service&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;随系统启动：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;       # systemctl enable gdm.service&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;安装输入法&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;fcitx：&lt;/p&gt;
+
+&lt;p&gt;安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     # pacman -S fcitx-im&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     export GTK_IM_MODULE=fcitx
+     export QT_IM_MODULE=fcitx
+     export XMODIFIERS=&amp;#34;@im=fcitx&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;KDM、GDM、LightDM 等显示管理器的用户，向 ~/.xprofile添加以上内容。
+使用 startx 或 slim 的用户，向 ~/.xinitrc 添加以上内容。
+为在GNOME上使用fcitx，需禁用iBus：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;     $ gsettings set org.gnome.settings-daemon.plugins.keyboard active false&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;AUR（Arch 用户软件仓库）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Arch Linux预设几个软件仓库中可能没有用户需要的软件包。遇到这种情况时，
+可上AUR检索。AUR是是为用户而建、由用户主导的Arch软件仓库。AUR中的
+软件包以软件包生成脚本（PKGBUILD）的形式提供，用户自己通过makepkg
+生成包，再由pacman安装。创建AUR的初衷是方便用户维护和分享新软件包，
+并由官方定期从中挑选软件包进入[community]仓库。
+Yaourt是由社区编写的脚本，方便用户从AUR上获取需要的软件。以下介绍
+Yaourt的安装和使用。&lt;/p&gt;
+
+&lt;p&gt;1) 安装&lt;/p&gt;
+
+&lt;p&gt;Yaourt并不在官方软件源中，除从AUR中安装，还可通过第三方软件源进行安装：&lt;/p&gt;
+
+&lt;p&gt;添加软件源：&lt;/p&gt;
+
+&lt;p&gt;将下列内容添加至 /etc/pacman.conf ：&lt;/p&gt;
+
+&lt;p&gt;源1：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;           [archlinuxfr]
+           SigLevel = Never
+           Server = http://repo.archlinux.fr/$arch&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;源2（Arch Linux CN 友情提供 :) ）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;         [archlinuxcn]
+         SigLevel = Never
+         Server = http://repo.archlinuxcn.org/$arch&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;         # pacman -Sy base-devel yaourt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;2) 使用&lt;/p&gt;
+
+&lt;p&gt;Yaourt 可以安装来自官方源的软件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;         $ yaourt &amp;lt;软件名&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;更新所有包（包括来自官方源的包）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;         $ yaourt -Syua&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;搜索：&lt;/p&gt;
+
+&lt;p&gt;$ yaourt &amp;lt;关键字&amp;gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>关于开源软件redis</title>
+      <link>http://lionel0806.github.io/post/2014-04-04-about-redis/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-04-04-about-redis/</guid>
+      
+        <description>&lt;p&gt;最近读redis代码，redis是一个key-value存储系统,详情请看官网介绍&lt;a href=&#34;http://redis.io/&#34;&gt;redis&lt;/a&gt;，仅2万多行代码，实现如此强大的
+功能，真是让人不由的惊叹！而且代码是非常之漂亮, &lt;a href=&#34;http://redisbook.com/en/latest/&#34;&gt;《redis设计与实现》&lt;/a&gt;可以帮助你了解redis
+的具体实现，&lt;a href=&#34;https://github.com/antirez/redis&#34;&gt;redis的github地址&lt;/a&gt;。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>nginx编译报错</title>
+      <link>http://lionel0806.github.io/post/2014-04-10-install-nginx-on-ubuntu/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-04-10-install-nginx-on-ubuntu/</guid>
+      
+        <description>&lt;p&gt;在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;./configure: error: the HTTP rewrite module requires the PCRE library.
+You can either disable the module by using --without-http_rewrite_module
+option, or install the PCRE library into the system, or build the PCRE library
+statically from the source with nginx by using --with-pcre=&amp;lt;path&amp;gt; option.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。
+可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# sudo apt-get install libpcre3 libpcre3-dev&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>横琴岛游记</title>
+      <link>http://lionel0806.github.io/post/2014-03-24-cycling-to-hengqin/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-24-cycling-to-hengqin/</guid>
+      
+        <description>&lt;p&gt;每次游玩回来，或多或少总会有那么一些感想,而这次感触颇深，也许与我最近的心
+情有关吧。从小到大，语文一直不好，因此而没少挨老师的批，以至于现在坐在电脑前
+想写点东西的时候，总感觉缺少一些词藻，把心里的想法和感受用语言这种奇怪的东西表
+达出来。犹豫了许久，决定还是把它记下来吧，也许二十年、三十年或者更老，记不起事
+的时候翻出来看看，也许能勾起对年轻时的回忆,也不失为一件美好的事！再说对于我这种
+记性不是很好的动物来说,记下来总归是安全的。&lt;/p&gt;
+
+&lt;p&gt;最近心情一直不怎么好，可能是这段时间工作上的事少，我这人有点贱，一闲下来就
+有点不淡定，容易想一些乱七八糟的事情，一想就郁闷。什么结婚啊、买房啊，最近听这些
+话题太多太多了,听多了不由的让人不想啊,唉！平时由于工作忙，没有太多时间去想这些,
+其实我压根不愿意想去这些事情，总抱着一种该来的总会来的态度。&lt;/p&gt;
+
+&lt;p&gt;昨天一同事说打算骑自行车去横琴岛玩，问我去不去，想了想去就去呗，反正也没啥坏处，
+还可以锻炼下身体，减减肥肉，说不定还会有一些意外的收获，何乐而不为。就是可
+怜了我那坐骑,跟随了我大半年时间，最近老是咯吱咯吱响，不知道还能不能坚持下来，要
+是在半路上罢工，那就麻烦啦。&lt;/p&gt;
+
+&lt;p&gt;早上十点从家里出发，路边随便买了点早餐，按照提前约好的时间来到华发广场集合，
+一行总共六人。天气特给力，不冷不热，偶尔还有点微风，真是出去玩的好时间。蹬着单车，
+微风从脸颊吹过，那感觉就一个字“爽”！有点可惜的是自行车后刹车不灵，一路上不敢骑
+太快，单怕和那些奔驰宝马亲吻一下。&lt;/p&gt;
+
+&lt;p&gt;大约两个小时，到了横琴，又累又饿，也到了午饭的时候，路边找了家快餐店，随便点了份
+快餐和一杯奶茶，我勒个去，奶茶杯怎么那么旧，感觉很脏似的，不过那快餐还是蛮好吃的，
+或许是饿了的缘故吧，大家狼吞虎咽地几下吃完了，然后稍微坐了一会，又开始出发了，直
+奔海边。&lt;/p&gt;
+
+&lt;p&gt;沿着海边有一条很长的水泥路，两边有护栏，路很平坦，毫无遮挡,一路飞奔,真是爽歪了!
+到了海边，大家一起合了个影，帮我们照相的是一中年大叔，那大叔蛮有意思，照完之后他拿着我
+手机摆出个姿势，示意要扔给我，我还以为这大叔发疯了,急忙一边跑一边喊“别别别，
+我接不住”，后来大叔笑着给我手机，说“我跟你开个玩笑而已，我怎么会扔呢”，呵呵,是
+我想多了.在海边碰到一小伙，跟我年龄差不多，聊了几句，说是专门过来看海，
+却没看到蓝色的大海，有点遗憾。卷起裤腿,跑到水里时,突然一个浪过来,悲剧啊,裤子全湿了.
+在海边,微风吹过,听着海浪的声音,心情一下子舒畅了好多，所有负担、所有不愉快的
+事统统抛到九霄云外,全身感觉格外的轻松!要是再有一个心爱的姑娘一起,那就完美了.&lt;/p&gt;
+
+&lt;p&gt;转眼四点多了,该回去了,我们没有原路返回,本来打算找一条近路,结果长隆隧道不让自行车走,我去,摩托车
+让通过,就是不让自行车走,要我说直接冲过去得类,反正那守卫也没有车,肯定追不上.可另外一哥们太
+谨慎了,不同意.我们只好再寻找路线了.接着就悲剧更悲剧了,一路上都在修路,坑坑洼洼还是小事,
+关键土太厚了,一辆大车过去,整个人感觉被土埋了,人没老,头发先变白了.有种回到老家的感觉.
+这一路就不太爽了,坑坑洼洼的人家新车可以很轻松的骑过去,我那破车咋整也骑不快,一路他们一直都
+在等我,搞得我都有些不好意思,更不幸的是不小心摔到,腿上刮掉一层皮,还好,谁叫咱是土生土长的农村人,
+这点小伤算个屁,站起来拍拍屁股继续走着.&lt;/p&gt;
+
+&lt;p&gt;晚上八点多才到市区,大家都饿坏了,突然路边冒出一家酱饼小摊,刚出锅的实在是太好吃了,没想到珠海
+还有这货,真是太让人意外了,想想还是在大学时吃过,差不多两年没见过这玩意了.最后找了家饭馆,吃完饭
+各回各家,该干嘛干嘛!&lt;/p&gt;
+
+&lt;p&gt;回到家坐下来想想,这次出去还是蛮有意思的.我想当时如果不去的话,这一天就在家睡觉啊什么的,同样会过去,
+然后感叹,唉!周末就这样过去了.人生也一样,不能老是处在当时没做,过了后悔这种无限循环中.跟着心走,想
+做就做,这样即使到死的时候,也不会因当初错过而后悔.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;横琴.&lt;/figcaption&gt;
+    &lt;a href=&#34;http://lionel0806.github.io/images/hengqin0.jpg&#34;&gt;&lt;img src=&#34;http://lionel0806.github.io/images/hengqin0.jpg&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;海边集体照.&lt;/figcaption&gt;
+    &lt;a href=&#34;http://lionel0806.github.io/images/hengqin1.jpg&#34;&gt;&lt;img src=&#34;http://lionel0806.github.io/images/hengqin1.jpg&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;海浪.&lt;/figcaption&gt;
+    &lt;a href=&#34;http://lionel0806.github.io/images/hengqin2.jpg&#34;&gt;&lt;img src=&#34;http://lionel0806.github.io/images/hengqin2.jpg&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;&lt;/figcaption&gt;
+    &lt;a href=&#34;http://lionel0806.github.io/images/hengqin4.jpg&#34;&gt;&lt;img src=&#34;http://lionel0806.github.io/images/hengqin4.jpg&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;回去的路上.&lt;/figcaption&gt;
+    &lt;a href=&#34;http://lionel0806.github.io/images/hengqin3.jpg&#34;&gt;&lt;img src=&#34;http://lionel0806.github.io/images/hengqin3.jpg&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>内存死机问题</title>
+      <link>http://lionel0806.github.io/post/2014-03-10-crash-about-memory/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-10-crash-about-memory/</guid>
+      
+        <description>&lt;p&gt;最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。&lt;/p&gt;
+
+&lt;p&gt;Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时间，
+最后查出来尽然是珠海有线的码流里边有一个bouquet id是 -256，而代码里边没有处理到这种情况，获取到空指针，
+而在使用的时候又没有检测。幸亏有gdb可以用，可以定位到是那个模块出了问题。完了想想本来这个问题要不
+了那么长时间，一开始感觉这个变量有点问题，可就被脑子里那种 &amp;ldquo;不可能这儿出问题啊&amp;rdquo;的想法打消了，也许
+很多程序员会犯这种错误，总是很确信的说&amp;rdquo;这个不可能&amp;rdquo;，难道这个真的不可能吗？其实自己也不知道，不知道
+从哪儿来的这种莫名其妙的自信。
+由这个问题想到：&lt;/p&gt;
+
+&lt;p&gt;1)不要轻易做任何假设，负责可能会影响你做出准确的判断。&lt;/p&gt;
+
+&lt;p&gt;2)时时刻刻在使用指针时要检测是否为空，这个构建健壮软件的必要条件。&lt;/p&gt;
+
+&lt;p&gt;3)要让程序能经得起一些意味发生的情况，比如获取到错误变量等。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>http://lionel0806.github.io/post/hello-world/</link>
+      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/hello-world/</guid>
+      
+        <description>
+
+&lt;p&gt;Welcome to &lt;a href=&#34;http://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;http://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;http://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;quick-start&#34;&gt;Quick Start&lt;/h2&gt;
+
+&lt;h3 id=&#34;create-a-new-post&#34;&gt;Create a new post&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo new &lt;span class=&#34;s2&#34;&gt;&amp;#34;My New Post&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;run-server&#34;&gt;Run server&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo server&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;generate-static-files&#34;&gt;Generate static files&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo generate&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;Deploy to remote sites&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo deploy&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>提问的智慧</title>
+      <link>http://lionel0806.github.io/post/2014-03-02-smart-questions/</link>
+      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-02-smart-questions/</guid>
+      
+        <description>&lt;p&gt;作为一个技术人员，在学习和工作中，经常会遇到各种各样的问题，有时候我们没法解答的时候？也许最好的办法就是去
+求助与他人，不管是通过网络，还是面对面的方式。 于是如何问问题就变的尤为重要，下面这篇
+&lt;a href=&#34;http://www.wapm.cn/smart-questions/smart-questions-zh.html&#34;&gt;How to Ask Questions The Smart Way&lt;/a&gt;会给你答案，相信看完之后你会有很大收获。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+  </channel>
+</rss>

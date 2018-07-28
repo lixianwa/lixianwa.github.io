@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/redis/</link>
+    <description>Recent content in Redis on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于开源软件redis</title>
+      <link>http://lionel0806.github.io/post/2014-04-04-about-redis/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-04-04-about-redis/</guid>
+      <description>最近读redis代码，redis是一个key-value存储系统,详情请看官网介绍redis，仅2万多行代码，实现如此强大的 功能，真是让人不</description>
+    </item>
+    
+  </channel>
+</rss>

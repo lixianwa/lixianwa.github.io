@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>提问 on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/%E6%8F%90%E9%97%AE/</link>
+    <description>Recent content in 提问 on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 02 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/%E6%8F%90%E9%97%AE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>提问的智慧</title>
+      <link>http://lionel0806.github.io/post/2014-03-02-smart-questions/</link>
+      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-02-smart-questions/</guid>
+      <description>作为一个技术人员，在学习和工作中，经常会遇到各种各样的问题，有时候我们没法解答的时候？也许最好的办法就是去 求助与他人，不管是通过网络，还是面</description>
+    </item>
+    
+  </channel>
+</rss>

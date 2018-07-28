@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 24 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>nginx编译报错</title>
+      <link>http://lionel0806.github.io/post/2014-04-10-install-nginx-on-ubuntu/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-04-10-install-nginx-on-ubuntu/</guid>
+      <description>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下： 1 2 3 4 ./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library</description>
+    </item>
+    
+  </channel>
+</rss>

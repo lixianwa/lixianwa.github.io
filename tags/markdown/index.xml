@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/markdown/</link>
+    <description>Recent content in Markdown on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 12 Oct 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>markdown语法</title>
+      <link>http://lionel0806.github.io/post/markdown%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/markdown%E8%AF%AD%E6%B3%95/</guid>
+      <description>本文转自这里 使用 Markdown 真的可以写出非常整洁的文档来，看到很多人都在使用，自己也忍不住学习了下。网上有很多讲解 markdown 语法的，资料庞大复杂不够简练，学个</description>
+    </item>
+    
+  </channel>
+</rss>

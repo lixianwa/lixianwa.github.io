@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>死机 on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/%E6%AD%BB%E6%9C%BA/</link>
+    <description>Recent content in 死机 on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 10 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/%E6%AD%BB%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>内存死机问题</title>
+      <link>http://lionel0806.github.io/post/2014-03-10-crash-about-memory/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-10-crash-about-memory/</guid>
+      <description>最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。 Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时</description>
+    </item>
+    
+  </channel>
+</rss>

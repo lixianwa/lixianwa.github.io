@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ios on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/ios/</link>
+    <description>Recent content in Ios on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 28 Oct 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何解决retain cycle</title>
+      <link>http://lionel0806.github.io/post/the-solution-of-retain-cycle/</link>
+      <pubDate>Wed, 28 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/the-solution-of-retain-cycle/</guid>
+      <description>当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题</description>
+    </item>
+    
+    <item>
+      <title>一个iOS View crash问题</title>
+      <link>http://lionel0806.github.io/post/an-ios-view-crash-error/</link>
+      <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/an-ios-view-crash-error/</guid>
+      <description>[2015-10-15] 用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息： &amp;gt;Terminating app due to uncaught exception &amp;lsquo;UIViewControllerHierarchyInconsistency&amp;rsquo;, reason: &amp;lsquo;A view can only be associated with at most one view controller at a time! View &amp;gt; is associated</description>
+    </item>
+    
+  </channel>
+</rss>

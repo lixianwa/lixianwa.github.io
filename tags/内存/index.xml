@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>内存 on Lionel&#39;Blog</title>
+    <link>http://lionel0806.github.io/tags/%E5%86%85%E5%AD%98/</link>
+    <description>Recent content in 内存 on Lionel&#39;Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 09 Jul 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lionel0806.github.io/tags/%E5%86%85%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于sizeof</title>
+      <link>http://lionel0806.github.io/post/2014-07-09-about-sizeof/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-07-09-about-sizeof/</guid>
+      <description>前两天犯了一个愚蠢的错误，由于对sizeof理解的错误，导致代码出现了一个bug,具体代码逻辑如下： 1 2 3 4 5 6 char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr); 本来</description>
+    </item>
+    
+    <item>
+      <title>内存死机问题</title>
+      <link>http://lionel0806.github.io/post/2014-03-10-crash-about-memory/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/2014-03-10-crash-about-memory/</guid>
+      <description>最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。 Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时</description>
+    </item>
+    
+  </channel>
+</rss>
