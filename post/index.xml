@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Lionel&#39;Blog</title>
+    <title>Posts on Lionel的博客</title>
     <link>http://lionel0806.github.io/post/</link>
-    <description>Recent content in Posts on Lionel&#39;Blog</description>
+    <description>Recent content in Posts on Lionel的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 06 Sep 2016 00:00:00 +0000</lastBuildDate>
@@ -17,7 +17,33 @@
       <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>http://lionel0806.github.io/post/conditional-unwrapping-initialization/</guid>
-      <description>原文链接：Idiomatic Swift: conditional unwrapping initialization Swift-Users上，Dan T 问： 目前我这样写： 1 2 3 4 5 6 7 let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &amp;#34;&amp;#34; }</description>
+      <description>&lt;p&gt;原文链接：&lt;a href=&#34;http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/&#34;&gt;Idiomatic Swift: conditional unwrapping initialization&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Swift-Users上，Dan T 问：&lt;br /&gt;
+目前我这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &amp;#34;&amp;#34;
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;有没有更好，更通用的方法实现同样的功能？&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -26,7 +52,9 @@
       <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>http://lionel0806.github.io/post/how-to-use-curl/</guid>
-      <description>如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但</description>
+      <description>&lt;p&gt;如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -35,7 +63,46 @@
       <pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate>
       
       <guid>http://lionel0806.github.io/post/basic-operators/</guid>
-      <description>原文链接: Basic Operators 这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signa</description>
+      <description>&lt;p&gt;原文链接: &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md&#34;&gt;Basic Operators&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。&lt;/p&gt;
+
+&lt;h3 id=&#34;事件流副作用&#34;&gt;事件流副作用&lt;/h3&gt;
+
+&lt;h4 id=&#34;观察-observation&#34;&gt;观察（Observation）&lt;/h4&gt;
+
+&lt;p&gt;Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&amp;#34;Next: \(next)&amp;#34;)
+    case let .Failed(error):
+      print(&amp;#34;Failed: \(error)&amp;#34;)
+    case .Completed:
+      print(&amp;#34;Completed&amp;#34;)
+    case .Interrupted:
+      print(&amp;#34;Interrupted&amp;#34;)
+  }
+})&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -44,7 +111,26 @@
       <pubDate>Fri, 20 May 2016 00:00:00 +0000</pubDate>
       
       <guid>http://lionel0806.github.io/post/%E8%87%AA%E6%8E%A7%E5%8A%9B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>一. 意志力是什么？ 意志力其实是“我要做”，“我不要”和“我想要”这三种力量。 深入剖析: 更难的事是什么？想象你正面临一个意志力挑战，更难的事是</description>
+      <description>&lt;h3 id=&#34;一-意志力是什么&#34;&gt;一. 意志力是什么？&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;意志力其实是“我要做”，“我不要”和“我想要”这三种力量。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;深入剖析:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;更难的事是什么？想象你正面临一个意志力挑战，更难的事是什么？它为什么这么困难？&lt;/li&gt;
+&lt;li&gt;认清两个自我。你的意志力挑战是，如何描述想抗衡的两个自我？冲动的你想要什么？明智的你想要什么？&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;意志力实验:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;记录你的意志力选择。至少一天，注意观察你做的关于意志力的决定。&lt;/li&gt;
+&lt;li&gt;5分钟大脑训练冥想。在脑海中默念“呼”和“吸”，把注意力集中在呼吸上。
+当你走神的时候，重新集中注意力。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

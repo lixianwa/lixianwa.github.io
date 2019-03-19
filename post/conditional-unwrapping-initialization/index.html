@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Swift条件展开初始化 - Lionel&#39;Blog</title>
+  <title>Swift条件展开初始化 - Lionel的博客</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Lionel Lee" />
-  <meta name="description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization Swift-Users上，Dan T 问： 目前我这样写： 1 2 3 4 5 6 7 let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &amp;#34;&amp;#34; }" />
+  <meta name="description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+Swift-Users上，Dan T 问：
+目前我这样写：
+1 2 3 4 5 6 7  let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &amp;#34;&amp;#34; }   有没有更好，更通用的方法实现同样的功能？
+
+" />
 
   <meta name="keywords" content="分享, 技术, 生活" />
 
@@ -58,7 +63,33 @@
 
 
 <meta property="og:title" content="Swift条件展开初始化" />
-<meta property="og:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization Swift-Users上，Dan T 问： 目前我这样写： 1 2 3 4 5 6 7 let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &#34;&#34; }" />
+<meta property="og:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+
+Swift-Users上，Dan T 问：
+目前我这样写：
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &#34;&#34;
+}
+
+
+有没有更好，更通用的方法实现同样的功能？
+
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://lionel0806.github.io/post/conditional-unwrapping-initialization/" />
 
@@ -68,6 +99,7 @@
 
 <meta property="article:modified_time" content="2016-09-06T00:00:00&#43;00:00"/>
 
+<meta property="og:site_name" content="Lionel的博客" />
 
 
 
@@ -79,7 +111,33 @@
 
 
 <meta itemprop="name" content="Swift条件展开初始化">
-<meta itemprop="description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization Swift-Users上，Dan T 问： 目前我这样写： 1 2 3 4 5 6 7 let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &#34;&#34; }">
+<meta itemprop="description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+
+Swift-Users上，Dan T 问：
+目前我这样写：
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &#34;&#34;
+}
+
+
+有没有更好，更通用的方法实现同样的功能？
+
+">
 
 
 <meta itemprop="datePublished" content="2016-09-06T00:00:00&#43;00:00" />
@@ -91,7 +149,33 @@
 <meta itemprop="keywords" content="Swift,翻译," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Swift条件展开初始化"/>
-<meta name="twitter:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization Swift-Users上，Dan T 问： 目前我这样写： 1 2 3 4 5 6 7 let dobString: String if let dob = dob { dobString = serverDateFormatter.stringFromDate(dob) } else { dobString = &#34;&#34; }"/>
+<meta name="twitter:description" content="原文链接：Idiomatic Swift: conditional unwrapping initialization
+
+Swift-Users上，Dan T 问：
+目前我这样写：
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &#34;&#34;
+}
+
+
+有没有更好，更通用的方法实现同样的功能？
+
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -369,6 +453,8 @@ else {
 </div>
 <p>有没有更好，更通用的方法实现同样的功能？</p>
 
+<p></p>
+
 <p>我假设serverDateFormatter是NSDateFormatter的实例，这样的话，Dan这样写会更好：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -397,7 +483,6 @@ else {
 </div>
 <p>我很确定以上代码中flatMap可以用map代替，这样可以节约四个字符。
 你有更好的方案？可以在评论里留言，发推文，或者发到Swift-Users 邮件列表。</p>
-
     </div>
 
     

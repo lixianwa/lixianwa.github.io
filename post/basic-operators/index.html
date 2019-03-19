@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ReactiveCocoa中的基本算子 - Lionel&#39;Blog</title>
+  <title>ReactiveCocoa中的基本算子 - Lionel的博客</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Lionel Lee" />
-  <meta name="description" content="原文链接: Basic Operators 这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signa" />
+  <meta name="description" content="原文链接: Basic Operators
+这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。
+事件流副作用 观察（Observation） Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。
+1 2 3 4 5 6 7 8 9 10 11 12  signal.observe(Signal.Observer { event in switch event { case let .Next(next): print(&amp;#34;Next: \(next)&amp;#34;) case let .Failed(error): print(&amp;#34;Failed: \(error)&amp;#34;) case .Completed: print(&amp;#34;Completed&amp;#34;) case .Interrupted: print(&amp;#34;Interrupted&amp;#34;) } })   
+" />
 
   <meta name="keywords" content="分享, 技术, 生活" />
 
@@ -58,7 +62,46 @@
 
 
 <meta property="og:title" content="ReactiveCocoa中的基本算子" />
-<meta property="og:description" content="原文链接: Basic Operators 这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signa" />
+<meta property="og:description" content="原文链接: Basic Operators
+
+这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。
+
+事件流副作用
+
+观察（Observation）
+
+Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+
+
+signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&#34;Next: \(next)&#34;)
+    case let .Failed(error):
+      print(&#34;Failed: \(error)&#34;)
+    case .Completed:
+      print(&#34;Completed&#34;)
+    case .Interrupted:
+      print(&#34;Interrupted&#34;)
+  }
+})
+
+
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://lionel0806.github.io/post/basic-operators/" />
 
@@ -68,6 +111,7 @@
 
 <meta property="article:modified_time" content="2016-08-14T00:00:00&#43;00:00"/>
 
+<meta property="og:site_name" content="Lionel的博客" />
 
 
 
@@ -79,7 +123,46 @@
 
 
 <meta itemprop="name" content="ReactiveCocoa中的基本算子">
-<meta itemprop="description" content="原文链接: Basic Operators 这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signa">
+<meta itemprop="description" content="原文链接: Basic Operators
+
+这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。
+
+事件流副作用
+
+观察（Observation）
+
+Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+
+
+signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&#34;Next: \(next)&#34;)
+    case let .Failed(error):
+      print(&#34;Failed: \(error)&#34;)
+    case .Completed:
+      print(&#34;Completed&#34;)
+    case .Interrupted:
+      print(&#34;Interrupted&#34;)
+  }
+})
+
+
+">
 
 
 <meta itemprop="datePublished" content="2016-08-14T00:00:00&#43;00:00" />
@@ -91,7 +174,46 @@
 <meta itemprop="keywords" content="算子,ReactiveCocoa," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ReactiveCocoa中的基本算子"/>
-<meta name="twitter:description" content="原文链接: Basic Operators 这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signa"/>
+<meta name="twitter:description" content="原文链接: Basic Operators
+
+这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。
+
+事件流副作用
+
+观察（Observation）
+
+Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+
+
+signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&#34;Next: \(next)&#34;)
+    case let .Failed(error):
+      print(&#34;Failed: \(error)&#34;)
+    case .Completed:
+      print(&#34;Completed&#34;)
+    case .Interrupted:
+      print(&#34;Interrupted&#34;)
+  }
+})
+
+
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -371,9 +493,7 @@ if (!doNotTrack) {
 
     
     <div class="post-content">
-      
-
-<p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators</a></p>
+      <p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators</a></p>
 
 <p>这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。</p>
 
@@ -412,6 +532,8 @@ if (!doNotTrack) {
 })</pre></td></tr></table>
 </div>
 </div>
+<p></p>
+
 <p>或者可以用Next, Failed, Completed 和Interrupted事件的回调函数，当相应的事件发生时它（回调函数）会被调用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -697,7 +819,6 @@ lettersObserver.sendNext(&#34;C&#34;)    // prints (2, C) &amp; &#34;Completed&#
 </div>
 </div>
 <p><strong>zipWith</strong>算子功能相同，不同之处是它是一个算子。</p>
-
     </div>
 
     
