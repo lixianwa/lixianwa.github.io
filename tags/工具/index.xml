@@ -17,9 +17,7 @@
       <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>http://lionel0806.github.io/post/how-to-use-curl/</guid>
-      <description>&lt;p&gt;如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。&lt;/p&gt;</description>
     </item>
     
     <item>
