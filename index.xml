@@ -24,6 +24,115 @@
     </item>
     
     <item>
+      <title>“机器学习通用工作流程”</title>
+      <link>http://lionel0806.github.io/post/ml-general-workflow/</link>
+      <pubDate>Mon, 10 Jun 2019 19:30:22 +0800</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/ml-general-workflow/</guid>
+      
+        <description>&lt;p&gt;机器学习的通用工作流程总结为如下几个步骤：&lt;/p&gt;
+
+&lt;h3 id=&#34;1-定义问题-收集数据集&#34;&gt;1.   定义问题，收集数据集&lt;/h3&gt;
+
+&lt;p&gt;首先我们必须先定义多面对的问题。&lt;br /&gt;
+1)  输入的数据是什么？你要预测什么？&lt;br /&gt;
+2) 你面对的是什么类型的问题？二分类问题、多分类问题、标量回归问题&lt;br /&gt;
+向量回归问题还是其他问题，确定问题类型，有助于选择模型架构，损失函数。&lt;br /&gt;
+同时做出如下&lt;code&gt;假设&lt;/code&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;假设输出可以根据输入进行预测&lt;/li&gt;
+&lt;li&gt;假设可用数据包含足够多的信息，足以学习输入和输出之间的关系&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-选择衡量成功的指标&#34;&gt;2. 选择衡量成功的指标&lt;/h3&gt;
+
+&lt;p&gt;要控制一件事物，就需要能够观察它。要取得成功，就必须给出成功的定义：精度？准确率和召回率，客户保留率？衡量成功的指标将指引你选择损失函数，即模型要优化什么。
+对于平衡分类问题，精度和接受者操作特征曲线下面积是常用指标。对于类别不平衡问题，可以使用准确率和召回率。对于排序和多标签分类问题，可以使用平均准确率和召回率。也可以自定义衡量成功的标准。&lt;/p&gt;
+
+&lt;h3 id=&#34;3-确定评估方法&#34;&gt;3. 确定评估方法&lt;/h3&gt;
+
+&lt;p&gt;一旦明确了目标，必须确定如何衡量当前的进展，以下三种常见的评估方法：&lt;br /&gt;
+1) 留出验证集，数据量很大时可以使用这种方法。&lt;br /&gt;
+2) K折交叉验证， 如果留出验证的样本太少，无法保证可靠性，可以选择这种方法。&lt;br /&gt;
+3) 重复的K折验证，如果可用的数据很少，同时模型评估有需要非常准确，那么应该使用这种方法。&lt;br /&gt;
+只需选择以上三种之一即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;4-准备数据&#34;&gt;4. 准备数据&lt;/h3&gt;
+
+&lt;p&gt;一旦知道了要训练什么，要优化什么以及评估方法，那么就已经准备好训练模型了。但首先应该将数据格式化，使其可以输入到机器学习模型中。&lt;br /&gt;
+1) 将数据格式化为张量&lt;br /&gt;
+2) 这些张量的取值通常应该缩放为较小的值，比如在【-1， 1】区间或者【0， 1】&lt;br /&gt;
+3) 如果不同的特征具有不同的取值范围，那么应该做数据标准化。&lt;br /&gt;
+4) 可能需要做特征工程， 尤其对于小数据集&lt;br /&gt;
+准备好数据数据和目标数据的张量后，就可以开始训练模型了。&lt;/p&gt;
+
+&lt;h3 id=&#34;5-开发比基准更好的模型&#34;&gt;5. 开发比基准更好的模型&lt;/h3&gt;
+
+&lt;p&gt;这一阶段的目标是获得统计功效，即开发一个小型模型，可以打败纯随机的基准。注意，不一定总能获得统计功效，如果尝试多种合理的架构之后仍然无法打败随机基准，那么可能问题的答案并不在输入数据中， 也就是前面的两个假设成立。 这些假设可能是错误的，这样的话需要重新开始，&lt;br /&gt;
+如果一切都顺利，需要选择三个关键参数来构建第一个工作模型。&lt;br /&gt;
+1) 最后一层的激活函数&lt;br /&gt;
+2) 损失函数，损失函数应该匹配要解决的问题类型。&lt;br /&gt;
+3) 优化配置，你要使用那种优化器？学习率是多少？  大多数情况下，rmsprop及其默认的学习率是稳妥  的。&lt;/p&gt;
+
+&lt;h3 id=&#34;6-扩大模型规模-开发过拟合的模型&#34;&gt;6. 扩大模型规模，开发过拟合的模型&lt;/h3&gt;
+
+&lt;p&gt;一旦得到了具有统计功效的模型，问题就变成了模型是否足够强大？他是否具有足够多的层和参数来对问题进行建模？&lt;br /&gt;
+通过：&lt;br /&gt;
+1) 添加更多的层&lt;br /&gt;
+2) 让每一层变得更大&lt;br /&gt;
+3) 训练更多的轮次&lt;br /&gt;
+来得到过拟合的模型。&lt;br /&gt;
+要始终监控训练损失和验证损失，以及你所关心的指标的训练值和验证值。如果你发现模型在验证数据上的性能开始下降，那么就出现了过拟合。&lt;/p&gt;
+
+&lt;h3 id=&#34;7-模型正则化与调节超参数&#34;&gt;7. 模型正则化与调节超参数&lt;/h3&gt;
+
+&lt;p&gt;这一步是最费时间的，你将不断的调节模型，在验证数据上评估，再次调节模型，然后重复这一过程。直到模型达到最佳性能。应该尝试以下：&lt;br /&gt;
+1) 添加dropout&lt;br /&gt;
+2) 尝试不同架构，增加或减少层数&lt;br /&gt;
+3) 添加L1或L2正则化&lt;br /&gt;
+4) 尝试不同的超参数（比如美称的单元数或优化器的学习率），以找到最佳配置&lt;br /&gt;
+5) （可选）反复做特征工程，添加新特性或删除美后信息的特征&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Pandas</title>
+      <link>http://lionel0806.github.io/post/pandas/</link>
+      <pubDate>Wed, 10 Apr 2019 22:58:49 +0800</pubDate>
+      
+      <guid>http://lionel0806.github.io/post/pandas/</guid>
+      
+        <description>&lt;h3 id=&#34;pandas-速查手册&#34;&gt;Pandas 速查手册&lt;/h3&gt;
+
+&lt;p&gt;对于数据科学家，无论是数据分析还是数据挖掘，如果用 Python作为工具，Pandas是一个非常重要的Python包，它不仅提供了很多方法，是的数据处理变得非常简单，同时由于底层使用Numpy，使得数据处理的速度也很快，比Python内置的方法有很大优势。&lt;/p&gt;
+
+&lt;h4 id=&#34;pandas包导入&#34;&gt;Pandas包导入&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandas&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pd&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;numpy&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;np&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;数据导入&#34;&gt;数据导入&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;pd.read_csv(filename)  读取csv文件&lt;/li&gt;
+&lt;li&gt;pd.read_table(filename) 从限定分隔符的文本文件中导入数据&lt;/li&gt;
+&lt;li&gt;pd.read_excel(filename) 从excel文件中导入数据&lt;/li&gt;
+&lt;li&gt;pd.read_sql(query, connection_object) 从sql表/库中导入数据&lt;/li&gt;
+&lt;li&gt;pd.read_json(json_string) 从json格式的字符串中导入数据&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;未完待续……&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Swift条件展开初始化</title>
       <link>http://lionel0806.github.io/post/conditional-unwrapping-initialization/</link>
       <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
@@ -2833,80 +2942,6 @@ statically from the source with nginx by using --with-pcre=&amp;lt;path&amp;gt; 
 &lt;p&gt;2)时时刻刻在使用指针时要检测是否为空，这个构建健壮软件的必要条件。&lt;/p&gt;
 
 &lt;p&gt;3)要让程序能经得起一些意味发生的情况，比如获取到错误变量等。&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>http://lionel0806.github.io/post/hello-world/</link>
-      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://lionel0806.github.io/post/hello-world/</guid>
-      
-        <description>
-
-&lt;p&gt;Welcome to &lt;a href=&#34;http://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;http://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;http://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;quick-start&#34;&gt;Quick Start&lt;/h2&gt;
-
-&lt;h3 id=&#34;create-a-new-post&#34;&gt;Create a new post&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo new &lt;span class=&#34;s2&#34;&gt;&amp;#34;My New Post&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;run-server&#34;&gt;Run server&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo server&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;generate-static-files&#34;&gt;Generate static files&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo generate&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;Deploy to remote sites&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hexo deploy&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;More info: &lt;a href=&#34;http://hexo.io/docs/deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>提问的智慧</title>
-      <link>http://lionel0806.github.io/post/2014-03-02-smart-questions/</link>
-      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://lionel0806.github.io/post/2014-03-02-smart-questions/</guid>
-      
-        <description>&lt;p&gt;作为一个技术人员，在学习和工作中，经常会遇到各种各样的问题，有时候我们没法解答的时候？也许最好的办法就是去
-求助与他人，不管是通过网络，还是面对面的方式。 于是如何问问题就变的尤为重要，下面这篇
-&lt;a href=&#34;http://www.wapm.cn/smart-questions/smart-questions-zh.html&#34;&gt;How to Ask Questions The Smart Way&lt;/a&gt;会给你答案，相信看完之后你会有很大收获。&lt;/p&gt;
 </description>
       
     </item>
