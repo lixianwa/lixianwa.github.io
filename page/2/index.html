@@ -168,6 +168,107 @@
       
         
   <h2 class="title">
+    <a href="/blog/an-ios-view-crash-error/">
+      一个iOS View crash问题
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://lionel0806.github.io" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>归零</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2015-10-15</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/blog/categories/技术/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>技术</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>[2015-10-15]<br>用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：    </p>
+<blockquote>
+<p>Terminating app due to uncaught exception ‘UIViewControllerHierarchyInconsistency’, reason: ‘A view can only be associated with at most one view controller at a time! View &lt;UIView: 0x7f914af22610; frame = (0 0; 414 736); autoresize = W+H; layer = &lt;CALayer: 0x7f914af22980&gt;&gt; is associated with &lt;UIViewController: 0x7f914ae49a90&gt;. Clear this association before associating this view with &lt;TestViewController: 0x7f914ac7f680&gt;.’</p>
+</blockquote>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/blog/tags/iOS/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/blog/blog-from-jekyll-to-hexo/">
       开始使用hexo生成blog
     </a>
@@ -1577,112 +1678,6 @@ statically from the source with nginx by using --with-pcre=&lt;path&gt; option.<
           </div>
         
       
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/2014-03-10-crash-about-memory/">
-      内存死机问题
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2014-03-10</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/技术/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>技术</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。</p>
-<p>Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时间，<br>最后查出来尽然是珠海有线的码流里边有一个bouquet id是 -256，而代码里边没有处理到这种情况，获取到空指针，<br>而在使用的时候又没有检测。幸亏有gdb可以用，可以定位到是那个模块出了问题。完了想想本来这个问题要不<br>了那么长时间，一开始感觉这个变量有点问题，可就被脑子里那种 “不可能这儿出问题啊”的想法打消了，也许<br>很多程序员会犯这种错误，总是很确信的说”这个不可能”，难道这个真的不可能吗？其实自己也不知道，不知道<br>从哪儿来的这种莫名其妙的自信。<br>由这个问题想到：</p>
-<p>  1)不要轻易做任何假设，负责可能会影响你做出准确的判断。</p>
-<p>  2)时时刻刻在使用指针时要检测是否为空，这个构建健壮软件的必要条件。</p>
-<p>  3)要让程序能经得起一些意味发生的情况，比如获取到错误变量等。</p>
-
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/bug/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>bug</a>
-        
-          <a href="/blog/tags/内存/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>内存</a>
-        
-          <a href="/blog/tags/死机/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>死机</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1836,7 +1831,7 @@ statically from the source with nginx by using --with-pcre=&lt;path&gt; option.<
         
           <li><a class="flat-box child" title="/blog/categories/工具/教程/" href="/blog/categories/工具/教程/"><div class="name">教程</div><div class="badge">(1)</div></a></li>
         
-          <li><a class="flat-box" title="/blog/categories/技术/" href="/blog/categories/技术/"><div class="name">技术</div><div class="badge">(14)</div></a></li>
+          <li><a class="flat-box" title="/blog/categories/技术/" href="/blog/categories/技术/"><div class="name">技术</div><div class="badge">(15)</div></a></li>
         
           <li><a class="flat-box" title="/blog/categories/教程/" href="/blog/categories/教程/"><div class="name">教程</div><div class="badge">(3)</div></a></li>
         
@@ -1867,7 +1862,7 @@ statically from the source with nginx by using --with-pcre=&lt;path&gt; option.<
 </header>
 
     <div class="content material">
-      <a href="/blog/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/blog/tags/Pandas/" style="font-size: 14px; color: #999">Pandas</a> <a href="/blog/tags/RESTFul-API/" style="font-size: 14px; color: #999">RESTFul API</a> <a href="/blog/tags/ReactiveCocoa/" style="font-size: 14px; color: #999">ReactiveCocoa</a> <a href="/blog/tags/Swift/" style="font-size: 14px; color: #999">Swift</a> <a href="/blog/tags/Xcode/" style="font-size: 14px; color: #999">Xcode</a> <a href="/blog/tags/archlinux/" style="font-size: 14px; color: #999">archlinux</a> <a href="/blog/tags/bug/" style="font-size: 14px; color: #999">bug</a> <a href="/blog/tags/c语言/" style="font-size: 14px; color: #999">c语言</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/jekyll/" style="font-size: 14px; color: #999">jekyll</a> <a href="/blog/tags/markdown/" style="font-size: 14px; color: #999">markdown</a> <a href="/blog/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/blog/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/blog/tags/vpn/" style="font-size: 14px; color: #999">vpn</a> <a href="/blog/tags/“机器学习”/" style="font-size: 14px; color: #999">“机器学习”</a> <a href="/blog/tags/“深度学习”/" style="font-size: 14px; color: #999">“深度学习”</a> <a href="/blog/tags/内存/" style="font-size: 24px; color: #555">内存</a> <a href="/blog/tags/博客/" style="font-size: 14px; color: #999">博客</a> <a href="/blog/tags/工具/" style="font-size: 24px; color: #555">工具</a> <a href="/blog/tags/开源/" style="font-size: 14px; color: #999">开源</a> <a href="/blog/tags/提问/" style="font-size: 14px; color: #999">提问</a> <a href="/blog/tags/数据分析/" style="font-size: 14px; color: #999">数据分析</a> <a href="/blog/tags/死机/" style="font-size: 14px; color: #999">死机</a> <a href="/blog/tags/游记/" style="font-size: 14px; color: #999">游记</a> <a href="/blog/tags/算子/" style="font-size: 14px; color: #999">算子</a> <a href="/blog/tags/翻墙/" style="font-size: 14px; color: #999">翻墙</a> <a href="/blog/tags/翻译/" style="font-size: 14px; color: #999">翻译</a> <a href="/blog/tags/自行车/" style="font-size: 14px; color: #999">自行车</a> <a href="/blog/tags/读书笔记/" style="font-size: 14px; color: #999">读书笔记</a>
+      <a href="/blog/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/blog/tags/Pandas/" style="font-size: 14px; color: #999">Pandas</a> <a href="/blog/tags/RESTFul-API/" style="font-size: 14px; color: #999">RESTFul API</a> <a href="/blog/tags/ReactiveCocoa/" style="font-size: 14px; color: #999">ReactiveCocoa</a> <a href="/blog/tags/Swift/" style="font-size: 14px; color: #999">Swift</a> <a href="/blog/tags/Xcode/" style="font-size: 14px; color: #999">Xcode</a> <a href="/blog/tags/archlinux/" style="font-size: 14px; color: #999">archlinux</a> <a href="/blog/tags/bug/" style="font-size: 14px; color: #999">bug</a> <a href="/blog/tags/c语言/" style="font-size: 14px; color: #999">c语言</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/jekyll/" style="font-size: 14px; color: #999">jekyll</a> <a href="/blog/tags/markdown/" style="font-size: 14px; color: #999">markdown</a> <a href="/blog/tags/mongo/" style="font-size: 14px; color: #999">mongo</a> <a href="/blog/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/blog/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/blog/tags/vpn/" style="font-size: 14px; color: #999">vpn</a> <a href="/blog/tags/“机器学习”/" style="font-size: 14px; color: #999">“机器学习”</a> <a href="/blog/tags/“深度学习”/" style="font-size: 14px; color: #999">“深度学习”</a> <a href="/blog/tags/内存/" style="font-size: 24px; color: #555">内存</a> <a href="/blog/tags/博客/" style="font-size: 14px; color: #999">博客</a> <a href="/blog/tags/工具/" style="font-size: 24px; color: #555">工具</a> <a href="/blog/tags/开源/" style="font-size: 14px; color: #999">开源</a> <a href="/blog/tags/提问/" style="font-size: 14px; color: #999">提问</a> <a href="/blog/tags/数据分析/" style="font-size: 14px; color: #999">数据分析</a> <a href="/blog/tags/死机/" style="font-size: 14px; color: #999">死机</a> <a href="/blog/tags/游记/" style="font-size: 14px; color: #999">游记</a> <a href="/blog/tags/算子/" style="font-size: 14px; color: #999">算子</a> <a href="/blog/tags/翻墙/" style="font-size: 14px; color: #999">翻墙</a> <a href="/blog/tags/翻译/" style="font-size: 14px; color: #999">翻译</a> <a href="/blog/tags/自行车/" style="font-size: 14px; color: #999">自行车</a> <a href="/blog/tags/读书笔记/" style="font-size: 14px; color: #999">读书笔记</a>
     </div>
   </section>
 
