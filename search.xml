@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>jupyter notebook添加conda环境</title>
+      <link href="/blog/jupyter-noteboot-add-conda-env/"/>
+      <url>/blog/jupyter-noteboot-add-conda-env/</url>
+      
+        <content type="html"><![CDATA[<p>本篇博客介绍如何将conda中python环境添加到Jupyter notebook中.</p><ol><li>安装ipykernel</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure><a id="more"></a><ol start="2"><li>激活对应的conda环境</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate $&#123;环境名称&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>将环境写入notebook的kernel中</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m ipykernel install --user --name $&#123;环境名称&#125; --display-name &quot;$&#123;jupyter noteboot中显示的名称&#125;&quot;</span><br></pre></td></tr></table></figure><ol start="4"><li>启动jupyter notebook</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> jupyter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何修改mongo文档中数组元素的内容</title>
       <link href="/blog/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9mongo%E6%96%87%E6%A1%A3%E4%B8%AD%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%86%85%E5%AE%B9/"/>
       <url>/blog/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9mongo%E6%96%87%E6%A1%A3%E4%B8%AD%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%86%85%E5%AE%B9/</url>
@@ -464,6 +491,31 @@
     
     
     <entry>
+      <title>nginx编译报错</title>
+      <link href="/blog/2014-04-10-install-nginx-on-ubuntu/"/>
+      <url>/blog/2014-04-10-install-nginx-on-ubuntu/</url>
+      
+        <content type="html"><![CDATA[<p>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：</p><pre><code>./configure: error: the HTTP rewrite module requires the PCRE library.You can either disable the module by using --without-http_rewrite_moduleoption, or install the PCRE library into the system, or build the PCRE librarystatically from the source with nginx by using --with-pcre=&lt;path&gt; option.</code></pre><p>貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。<br>可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：</p><pre><code># sudo apt-get install libpcre3 libpcre3-dev</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>横琴岛游记</title>
       <link href="/blog/2014-03-24-cycling-to-hengqin/"/>
       <url>/blog/2014-03-24-cycling-to-hengqin/</url>
@@ -483,31 +535,6 @@
             <tag> 自行车 </tag>
             
             <tag> 游记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>nginx编译报错</title>
-      <link href="/blog/2014-04-10-install-nginx-on-ubuntu/"/>
-      <url>/blog/2014-04-10-install-nginx-on-ubuntu/</url>
-      
-        <content type="html"><![CDATA[<p>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：</p><pre><code>./configure: error: the HTTP rewrite module requires the PCRE library.You can either disable the module by using --without-http_rewrite_moduleoption, or install the PCRE library into the system, or build the PCRE librarystatically from the source with nginx by using --with-pcre=&lt;path&gt; option.</code></pre><p>貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。<br>可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：</p><pre><code># sudo apt-get install libpcre3 libpcre3-dev</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> nginx </tag>
             
         </tags>
       
@@ -545,25 +572,6 @@
     
     
     <entry>
-      <title>Hello World</title>
-      <link href="/blog/hello-world/"/>
-      <url>/blog/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 教程 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>提问的智慧</title>
       <link href="/blog/2014-03-02-smart-questions/"/>
       <url>/blog/2014-03-02-smart-questions/</url>
@@ -583,6 +591,25 @@
             <tag> 提问 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/blog/hello-world/"/>
+      <url>/blog/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
       
     </entry>
     
