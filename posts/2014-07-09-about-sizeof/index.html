@@ -21,7 +21,7 @@ char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr);  本来是计
 
 <meta name="generator" content="Hugo 0.80.0" />
 
-<link rel="canonical" href="https://example.com/posts/2014-07-09-about-sizeof/" />
+<link rel="canonical" href="https://lionel0806.github.io/posts/2014-07-09-about-sizeof/" />
 
 
 <meta property="og:title" content="关于sizeof" />
@@ -29,7 +29,7 @@ char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr);  本来是计
 char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr);  本来是计算buf的大小，但这样写其实只是得到 char指针类型的大小，错误的以为ptr指向buf时，用sizeof获取的也是buf的大小。通过了解，如果sizeof的操作数为指针时，不管指针指向什么类型，值都是指针类型的大小，32位系统为4.具体sizeof的结果如下：　1、当操作数为数据类型时，所得结果为给数据类型的大小。如：32bit系统上，sizeof（char）＝ 1　，sizeof（int） ＝ 4。
 2、当操作数是指针时，sizeof依赖于编译器。例如Microsoft　C/C&#43;&#43;7.0中，near 类指针字节数为2，far、huge类指针字节数为4。一般Unix的指针字节数为4。　3、当操作数具有数组类型时，其结果是数组的总字节数。　4、联合类型操作数的sizeof是其最大字节成员的字节数。结构类型操作数的 sizeof是这种类型对象的总字节数，包括任何垫补在内。　让我们看如下结构：　struct　{ char　b; double　x; }　a;　在某些机器上sizeof（a）=12，而一般sizeof（char）&#43;　sizeof（double）= 9。 这是因为编译器在考虑对齐问题时，在结构中插入空位以控制各成员对象的地址对 齐。如double类型的结构成员x要放在被4整除的地址。　5、如果操作数是函数中的数组形参或函数类型的形参，sizeof给出其指针的大小。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/2014-07-09-about-sizeof/" />
+<meta property="og:url" content="https://lionel0806.github.io/posts/2014-07-09-about-sizeof/" />
 <meta property="article:published_time" content="2014-07-09T00:00:00+00:00" />
 <meta property="article:modified_time" content="2014-07-09T00:00:00+00:00" />
 
@@ -115,7 +115,7 @@ char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr);  本来是计
     <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
   </div>
   <div class="item">
-    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/example.com'"></i>
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/lionel0806.github.io\/'"></i>
   </div>
   
   <div class="item">
@@ -146,10 +146,10 @@ char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr);  本来是计
         <i class="save icon"></i>
       </button>
 
-      <a href="https://twitter.com/intent/tweet?text=%e5%85%b3%e4%ba%8esizeof&url=https%3a%2f%2fexample.com%2fposts%2f2014-07-09-about-sizeof%2f" class="ui circular twitter icon button">
+      <a href="https://twitter.com/intent/tweet?text=%e5%85%b3%e4%ba%8esizeof&url=https%3a%2f%2flionel0806.github.io%2fposts%2f2014-07-09-about-sizeof%2f" class="ui circular twitter icon button">
   <i class="twitter icon"></i>
 </a>
-<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2fposts%2f2014-07-09-about-sizeof%2f" class="ui circular facebook icon button">
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flionel0806.github.io%2fposts%2f2014-07-09-about-sizeof%2f" class="ui circular facebook icon button">
   <i class="facebook icon"></i>
 </a>
 
@@ -536,7 +536,7 @@ sizeof是这种类型对象的总字节数，包括任何垫补在内。　
 </div>
 <script>
   $(document).ready(function () {
-    $.getJSON('https:\/\/example.com/index.json', function (data) {
+    $.getJSON('https:\/\/lionel0806.github.io\//index.json', function (data) {
       $('.ui.search').search({
         source: data,
         searchFields: ['title'],

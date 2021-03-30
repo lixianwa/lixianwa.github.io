@@ -25,7 +25,7 @@
 
 <meta name="generator" content="Hugo 0.80.0" />
 
-<link rel="canonical" href="https://example.com/posts/2015-04-10-ldapadmin-design/" />
+<link rel="canonical" href="https://lionel0806.github.io/posts/2015-04-10-ldapadmin-design/" />
 
 
 <meta property="og:title" content="统一账户管理系统RESTful api设计" />
@@ -37,7 +37,7 @@
  用户数据的可靠性，数据由管理员负责维护  ##Low-level Design ###Response Code
    Code Remind Description     200 OK – [GET] 成功返回用户请求的数据   201 CREATED – [POST/PUT] 新建/修改数据成功   204 NO CONTENT – [DELETE] 删除数据成功   400 INVALID REQUEST – [POST/PUT 用户发出请求有误，服务器没有新建/修改数据   401 Unauthorized – [*] token认证失败，token过期等情况   403 Forbidden – [*] 用户认证成功，但没有权限进行相应操作（权限细分）   404 NOT FOUND – [*] 请求的资源（在这里是表、字段不存在等情况）   406 NOT Acceptable – [GET] 用户请求的格式不可得   500 INTERNAL SERVER ERROR – [*] 服务器内部错误，用户无法判断请求是否成功    ###Response| Result #####除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/2015-04-10-ldapadmin-design/" />
+<meta property="og:url" content="https://lionel0806.github.io/posts/2015-04-10-ldapadmin-design/" />
 <meta property="article:published_time" content="2015-04-10T00:00:00+00:00" />
 <meta property="article:modified_time" content="2015-04-10T00:00:00+00:00" />
 
@@ -127,7 +127,7 @@
     <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
   </div>
   <div class="item">
-    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/example.com'"></i>
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/lionel0806.github.io\/'"></i>
   </div>
   
   <div class="item">
@@ -158,10 +158,10 @@
         <i class="save icon"></i>
       </button>
 
-      <a href="https://twitter.com/intent/tweet?text=%e7%bb%9f%e4%b8%80%e8%b4%a6%e6%88%b7%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9fRESTful%20api%e8%ae%be%e8%ae%a1&url=https%3a%2f%2fexample.com%2fposts%2f2015-04-10-ldapadmin-design%2f" class="ui circular twitter icon button">
+      <a href="https://twitter.com/intent/tweet?text=%e7%bb%9f%e4%b8%80%e8%b4%a6%e6%88%b7%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9fRESTful%20api%e8%ae%be%e8%ae%a1&url=https%3a%2f%2flionel0806.github.io%2fposts%2f2015-04-10-ldapadmin-design%2f" class="ui circular twitter icon button">
   <i class="twitter icon"></i>
 </a>
-<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2fposts%2f2015-04-10-ldapadmin-design%2f" class="ui circular facebook icon button">
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flionel0806.github.io%2fposts%2f2015-04-10-ldapadmin-design%2f" class="ui circular facebook icon button">
   <i class="facebook icon"></i>
 </a>
 
@@ -1164,7 +1164,7 @@ HTTP/1.1 204 NO CONTENT
 </div>
 <script>
   $(document).ready(function () {
-    $.getJSON('https:\/\/example.com/index.json', function (data) {
+    $.getJSON('https:\/\/lionel0806.github.io\//index.json', function (data) {
       $('.ui.search').search({
         source: data,
         searchFields: ['title'],

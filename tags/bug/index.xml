@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bug on Lionel&#39;s Blog</title>
-    <link>https://example.com/tags/bug/</link>
+    <link>https://lionel0806.github.io/tags/bug/</link>
     <description>Recent content in bug on Lionel&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;知识共享许可协议&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
-    <lastBuildDate>Mon, 10 Mar 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/bug/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Mar 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://lionel0806.github.io/tags/bug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>内存死机问题</title>
-      <link>https://example.com/posts/2014-03-10-crash-about-memory/</link>
+      <link>https://lionel0806.github.io/posts/2014-03-10-crash-about-memory/</link>
       <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/posts/2014-03-10-crash-about-memory/</guid>
+      <guid>https://lionel0806.github.io/posts/2014-03-10-crash-about-memory/</guid>
       <description>最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。
 Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时间， 最后查出来尽然是珠海有线的码流里边有一个bouquet id是 -256，而代码里边没有处理到这种情况，获取到空指针， 而在使用的时候又没有检测。幸亏有gdb可以用，可以定位到是那个模块出了问题。完了想想本来这个问题要不 了那么长时间，一开始感觉这个变量有点问题，可就被脑子里那种 &amp;ldquo;不可能这儿出问题啊&amp;quot;的想法打消了，也许 很多程序员会犯这种错误，总是很确信的说&amp;quot;这个不可能&amp;rdquo;，难道这个真的不可能吗？其实自己也不知道，不知道 从哪儿来的这种莫名其妙的自信。 由这个问题想到：
 1)不要轻易做任何假设，负责可能会影响你做出准确的判断。

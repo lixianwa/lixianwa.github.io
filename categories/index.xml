@@ -2,54 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Lionel&#39;s Blog</title>
-    <link>https://example.com/categories/</link>
+    <link>https://lionel0806.github.io/categories/</link>
     <description>Recent content in Categories on Lionel&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;知识共享许可协议&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
-    <lastBuildDate>Mon, 10 Jun 2019 19:30:22 +0800</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jun 2019 19:30:22 +0800</lastBuildDate><atom:link href="https://lionel0806.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>技术</title>
-      <link>https://example.com/categories/%E6%8A%80%E6%9C%AF/</link>
+      <link>https://lionel0806.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Mon, 10 Jun 2019 19:30:22 +0800</pubDate>
       
-      <guid>https://example.com/categories/%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://lionel0806.github.io/categories/%E6%8A%80%E6%9C%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>工具</title>
-      <link>https://example.com/categories/%E5%B7%A5%E5%85%B7/</link>
+      <link>https://lionel0806.github.io/categories/%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/categories/%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://lionel0806.github.io/categories/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>笔记</title>
-      <link>https://example.com/categories/%E7%AC%94%E8%AE%B0/</link>
+      <link>https://lionel0806.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Fri, 20 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/categories/%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://lionel0806.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>教程</title>
-      <link>https://example.com/categories/%E6%95%99%E7%A8%8B/</link>
+      <link>https://lionel0806.github.io/categories/%E6%95%99%E7%A8%8B/</link>
       <pubDate>Tue, 13 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/categories/%E6%95%99%E7%A8%8B/</guid>
+      <guid>https://lionel0806.github.io/categories/%E6%95%99%E7%A8%8B/</guid>
       <description></description>
     </item>
     
     <item>
       <title>生活</title>
-      <link>https://example.com/categories/%E7%94%9F%E6%B4%BB/</link>
+      <link>https://lionel0806.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
       <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/categories/%E7%94%9F%E6%B4%BB/</guid>
+      <guid>https://lionel0806.github.io/categories/%E7%94%9F%E6%B4%BB/</guid>
       <description></description>
     </item>
     

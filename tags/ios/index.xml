@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>iOS on Lionel&#39;s Blog</title>
-    <link>https://example.com/tags/ios/</link>
+    <link>https://lionel0806.github.io/tags/ios/</link>
     <description>Recent content in iOS on Lionel&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;知识共享许可协议&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
-    <lastBuildDate>Wed, 28 Oct 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Oct 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://lionel0806.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何解决retain cycle</title>
-      <link>https://example.com/posts/the-solution-of-retain-cycle/</link>
+      <link>https://lionel0806.github.io/posts/the-solution-of-retain-cycle/</link>
       <pubDate>Wed, 28 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/posts/the-solution-of-retain-cycle/</guid>
+      <guid>https://lionel0806.github.io/posts/the-solution-of-retain-cycle/</guid>
       <description>当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题。 我们可以把存在retain cycle的两个对象看成是 父－子 关系。 在这个关系当中，父可以拥有子，但是子不可以拥有父，因此，在这个问题中，我们可以把作为 父 的对象定义为strong， 而作为 子 的对象定义为weak，这样就解决了retain cycle。</description>
     </item>
     
     <item>
       <title>一个iOS View crash问题</title>
-      <link>https://example.com/posts/an-ios-view-crash-error/</link>
+      <link>https://lionel0806.github.io/posts/an-ios-view-crash-error/</link>
       <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/posts/an-ios-view-crash-error/</guid>
+      <guid>https://lionel0806.github.io/posts/an-ios-view-crash-error/</guid>
       <description>[2015-10-15] 用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：
  Terminating app due to uncaught exception &amp;lsquo;UIViewControllerHierarchyInconsistency&amp;rsquo;, reason: &amp;lsquo;A view can only be associated with at most one view controller at a time! View &amp;lt;UIView: 0x7f914af22610; frame = (0 0; 414 736); autoresize = W+H; layer = &amp;lt;CALayer: 0x7f914af22980&amp;raquo; is associated with &amp;lt;UIViewController: 0x7f914ae49a90&amp;gt;. Clear this association before associating this view with &amp;lt;TestViewController: 0x7f914ac7f680&amp;gt;.&amp;rsquo;
  </description>
