@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on Lionel&#39;s Blog</title>
+    <link>https://example.com/tags/markdown/</link>
+    <description>Recent content in markdown on Lionel&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;知识共享许可协议&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
+    <lastBuildDate>Mon, 12 Oct 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>markdown语法</title>
+      <link>https://example.com/posts/markdown%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/markdown%E8%AF%AD%E6%B3%95/</guid>
+      <description>本文转自这里
+使用 Markdown 真的可以写出非常整洁的文档来，看到很多人都在使用，自己也忍不住学习了下。网上有很多讲解 markdown 语法的，资料庞大复杂不够简练，学个基础语法置于这么麻烦么。我做了一些整理，保证你学了这些，就可以使用 markdown 去秀文档了。
+1、标题： #h1级标题 ##h2级标题 ###h3级标题 ####h4级标题 #####h5级标题 ######h6级标题 2、分割线：三个以上的短线 即可作出分割线(需要空行隔开生效) 3、超链接：[连接名称](网址 , 标题) [我是链接名](http://www.izhangbo.cn, “我是标题”) [&amp;lt;i class=”icon-refresh”&amp;gt;&amp;lt;/i&amp;gt; 点我刷新](/sonfilename/) 另一种超链接写法：[链接名][链接代号] [here][3] 然后在别的地方定义 3 这个详细链接信息，[3]: http://www.izhangbo.cn “haode” 4、键盘键 &amp;lt;kbd&amp;gt;Ctrl+[&amp;lt;/kbd&amp;gt; and &amp;lt;kbd&amp;gt;Ctrl+]&amp;lt;/kbd&amp;gt; 5、code格式：反引号 Use the `printf()` function. “There is a literal backtick (`) here.针对在代码区段内插入反引号的情况“ 6、强调： *斜体强调* **粗体强调** 7、图片 ![Alt text](/path/to/img.jpg “Optional title”) 8、上角标 这里加个上角标[^stackedit] [^stackedit]:角标内容详情 9、使用 icon 图标文字 &amp;lt;i class=”icon-cog”&amp;gt;&amp;lt;/i&amp;gt; 10、段落：以一个空行开始，以一个空行结束，中间的就是一个段落。 11、表格：这个稍微有些复杂 Item | Value ——– | — Computer | $1600 Phone | $12 Pipe | $1 12、无序列表：使用 – 加一个空格(需要空行隔开生效) – 无需列表1 – 无序列表2 – 无序列表3 13、有序列表：使用 数字 加一个英文句点(需要空行隔开生效) 1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,1935 +1,952 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>首页 | Lionel&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="归零" />
+<meta name="description" content="收集、总结、分享" />
+
+
+
+<meta name="generator" content="Hugo 0.80.0" />
+
+<link rel="canonical" href="https://example.com/" />
+
+
+<meta property="og:title" content="Lionel&#39;s Blog" />
+<meta property="og:description" content="收集、总结、分享" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://example.com/" />
+<meta property="og:updated_time" content="2019-06-10T19:30:22+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lionel&#39;s Blog"/>
+<meta name="twitter:description" content="收集、总结、分享"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
   
-  <title>Lionel&#39;s Blog</title>
-  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
   
 
   
-
-  <meta name="HandheldFriendly" content="True">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <!-- meta -->
-  
-
-  <!-- link -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
   
 
   
+  body.default {
+    
+    background-color: #f7f7f7;
+    
+
+    
+    background-image: url(/me/background.jpeg);
+    
+  }
+  
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/css/style.css">
-  
+  body.dark {
+    
+    background-color: black;
+    
 
-  <script>
-    function setLoadingBarProgress(num) {
-      document.getElementById('loading-bar').style.width=num+"%";
-    }
-  </script>
-
+    
+  }
   
-  
-</head>
-
-<body>
-  
-  
-  <div class="cover-wrapper">
-    <cover class="cover  ">
-      
-        
-  <h1 class="title">Lionel's Blog</h1>
+</style>
 
 
-  <div class="m_search">
-    <form name="searchform" class="form u-search-form">
-      <input type="text" class="input u-search-input" placeholder>
-      <i class="icon fas fa-search fa-fw"></i>
-    </form>
+     
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/example.com'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+
+<header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/avatar.jpeg" alt="avatar" />
+    
   </div>
 
-<div class="menu navgation">
-  <ul class="h-list">
-    
-      
-        <li>
-          <a class="nav home" href="/" id="home">
-            <i class="fas fa-rss fa-fw"></i>&nbsp;博文
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/blog/archives/" rel="nofollow" id="blogarchives">
-            <i class="fas fa-archive fa-fw"></i>&nbsp;归档
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/blog/categories/" rel="nofollow" id="blogcategories">
-            <i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/blog/tags/" rel="nofollow" id="blogtags">
-            <i class="fas fa-hashtag fa-fw"></i>&nbsp;标签
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/friends/" rel="nofollow" id="friends">
-            <i class="fas fa-link fa-fw"></i>&nbsp;友链
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/about/" rel="nofollow" id="about">
-            <i class="fas fa-info-circle fa-fw"></i>&nbsp;关于
-          </a>
-        </li>
-      
-    
-  </ul>
-</div>
+  <div class="content">
+    <h1 class="ui medium header">归零的小窝<div class="sub header">收集、总结、分享</div>
+    </h1>
 
+    <article class="ui horizontal list">
       
-    </cover>
-    <header class="l_header material">
-  <div id="loading-bar-wrapper">
-    <div id="loading-bar" class="material"></div>
-  </div>
-
-	<div class="wrapper">
-		<div class="nav-main container container--flex">
-      <a class="logo flat-box" href="/">
-        
-          Lionel's Blog
-        
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
       </a>
-			<div class="menu navgation">
-				<ul class="h-list">
-          
-  					
-  						<li>
-								<a class="nav flat-box" href="/" id="home">
-									<i class="fas fa-grin fa-fw"></i>&nbsp;首页
-								</a>
-							</li>
-      			
-  						<li>
-								<a class="nav flat-box" href="/blog/archives/" rel="nofollow" id="blogarchives">
-									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-								</a>
-							</li>
-      			
-  						<li>
-								<a class="nav flat-box" href="/blog/categories/" rel="nofollow" id="blogcategories">
-									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
-								</a>
-							</li>
-      			
-  						<li>
-								<a class="nav flat-box" href="/blog/tags/" rel="nofollow" id="blogtags">
-									<i class="fas fa-hashtag fa-fw"></i>&nbsp;标签
-								</a>
-							</li>
-      			
-      		
-				</ul>
-			</div>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
 
-			
-				<div class="m_search">
-					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜索">
-						<i class="icon fas fa-search fa-fw"></i>
-					</form>
-				</div>
-			
-			<ul class="switcher h-list">
-				
-					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
-				
-				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
-			</ul>
-		</div>
-
-		<div class="nav-sub container container--flex">
-			<a class="logo flat-box"></a>
-			<ul class="switcher h-list">
-				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
-        
-          <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
-        
-			</ul>
-		</div>
-	</div>
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/archlinux/" title="archlinux">
+        archlinux
+      </a>
+    
+      <a class="ui label" href="/tags/bug/" title="bug">
+        bug
+      </a>
+    
+      <a class="ui label" href="/tags/c%E8%AF%AD%E8%A8%80/" title="c语言">
+        c语言
+      </a>
+    
+      <a class="ui label" href="/tags/hexo/" title="Hexo">
+        Hexo
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/jekyll/" title="jekyll">
+        jekyll
+      </a>
+    
+      <a class="ui label" href="/tags/markdown/" title="markdown">
+        markdown
+      </a>
+    
+      <a class="ui label" href="/tags/nginx/" title="nginx">
+        nginx
+      </a>
+    
+      <a class="ui label" href="/tags/pandas/" title="Pandas">
+        Pandas
+      </a>
+    
+      <a class="ui label" href="/tags/reactivecocoa/" title="ReactiveCocoa">
+        ReactiveCocoa
+      </a>
+    
+      <a class="ui label" href="/tags/redis/" title="redis">
+        redis
+      </a>
+    
+      <a class="ui label" href="/tags/restful-api/" title="RESTFul API">
+        RESTFul API
+      </a>
+    
+      <a class="ui label" href="/tags/swift/" title="Swift">
+        Swift
+      </a>
+    
+      <a class="ui label" href="/tags/xcode/" title="Xcode">
+        Xcode
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%86%85%E5%AD%98/" title="内存">
+        内存
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%8D%9A%E5%AE%A2/" title="博客">
+        博客
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">
+        工具
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%BC%80%E6%BA%90/" title="开源">
+        开源
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%8F%90%E9%97%AE/" title="提问">
+        提问
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="数据分析">
+        数据分析
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="“机器学习”">
+        “机器学习”
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%AD%BB%E6%9C%BA/" title="死机">
+        死机
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="“深度学习”">
+        “深度学习”
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%B8%B8%E8%AE%B0/" title="游记">
+        游记
+      </a>
+    
+      <a class="ui label" href="/tags/%E7%AE%97%E5%AD%90/" title="算子">
+        算子
+      </a>
+    
+      <a class="ui label" href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">
+        翻译
+      </a>
+    
+      <a class="ui label" href="/tags/%E8%87%AA%E8%A1%8C%E8%BD%A6/" title="自行车">
+        自行车
+      </a>
+    
+      <a class="ui label" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">
+        读书笔记
+      </a>
+    
+    </article>
+    
+  </div>
 </header>
-	<aside class="menu-phone">
-    <header>
-		<nav class="menu navgation">
-      <ul>
-        
-          
-            <li>
-							<a class="nav flat-box" href="/" id="home">
-								<i class="fas fa-clock fa-fw"></i>&nbsp;近期文章
-							</a>
-            </li>
-          
-            <li>
-							<a class="nav flat-box" href="/blog/archives/" rel="nofollow" id="blogarchives">
-								<i class="fas fa-archive fa-fw"></i>&nbsp;文章归档
-							</a>
-            </li>
-          
-            <li>
-							<a class="nav flat-box" href="/about/" rel="nofollow" id="about">
-								<i class="fas fa-info-circle fa-fw"></i>&nbsp;关于小站
-							</a>
-            </li>
-          
-       
-      </ul>
-		</nav>
-    </header>
-	</aside>
-<script>setLoadingBarProgress(40);</script>
-
-  </div>
 
 
-  <div class="l_body">
-    <div class='body-wrapper'>
-      <div class="l_main">
+<div class="ui relaxed grid dream-grid">
   
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
   
-
-
-  <section class="meta">
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/ml-general-workflow/">
     
+    <img src="/img/default2.jpg" alt="“机器学习通用工作流程”" />
     
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/jupyter-noteboot-add-conda-env/">
-      jupyter notebook添加conda环境
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-27</p>
   </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/工具/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>工具</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/ml-general-workflow/">“机器学习通用工作流程”</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期一，六月 10 日，2019 年</p>
     </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>本篇博客介绍如何将conda中python环境添加到Jupyter notebook中.</p>
-<ol>
-<li>安装ipykernel</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
-      
-        <div class="readmore">
-          <a href="/blog/jupyter-noteboot-add-conda-env/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/工具/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>工具</a>
-        
-          <a href="/blog/tags/jupyter/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>jupyter</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/如何修改mongo文档中数组元素的内容/">
-      如何修改mongo文档中数组元素的内容
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-24</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/技术/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>技术</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>在平时开发中，我们可能会遇到修改mongodb文档数组里边元素的值，那如何修改数组中元素的值呢? 其实mongodb 提供了update set指令，<br>可以实现我们的需求，具体如下：</p>
-<p>比如，我们的文档格式如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"categories"</span>: [<span class="string">"新闻"</span>，<span class="string">"图片"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-        <div class="readmore">
-          <a href="/blog/如何修改mongo文档中数组元素的内容/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/mongo/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>mongo</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/基于v2ray的翻墙服务搭建/">
-      基于v2ray的翻墙服务搭建
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-18</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/工具/教程/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>工具&nbsp;/&nbsp;教程</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="一-服务器配置"><a href="#一-服务器配置" class="headerlink" title="一. 服务器配置"></a>一. 服务器配置</h3><ul>
-<li>阿里云香港</li>
-<li>1Core</li>
-<li>25G</li>
-<li>限速30Mps</li>
-<li>ubuntu 16.04</li>
-</ul>
-<h3 id="二-安装步骤"><a href="#二-安装步骤" class="headerlink" title="二. 安装步骤"></a>二. 安装步骤</h3><h4 id="1-安装加速"><a href="#1-安装加速" class="headerlink" title="1. 安装加速:"></a>1. 安装加速:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh </span><br><span class="line">chmod +x bbr.sh </span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Note: 内核版本选择 4.14内核（其他内核无法启动）</p>
-</blockquote>
-      
-        <div class="readmore">
-          <a href="/blog/基于v2ray的翻墙服务搭建/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/vpn/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>vpn</a>
-        
-          <a href="/blog/tags/翻墙/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>翻墙</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/ml-general-workflow/">
-      “机器学习通用工作流程”
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-10</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/技术/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>技术</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
+    <div class="description">
       <p>机器学习的通用工作流程总结为如下几个步骤：</p>
-<h3 id="1-定义问题，收集数据集"><a href="#1-定义问题，收集数据集" class="headerlink" title="1.   定义问题，收集数据集"></a>1.   定义问题，收集数据集</h3><p>首先我们必须先定义多面对的问题。<br>1)  输入的数据是什么？你要预测什么？<br>2) 你面对的是什么类型的问题？二分类问题、多分类问题、标量回归问题<br>向量回归问题还是其他问题，确定问题类型，有助于选择模型架构，损失函数。<br>同时做出如下<code>假设</code>：</p>
+<h3 id="1---定义问题收集数据集">1.   定义问题，收集数据集</h3>
+<p>首先我们必须先定义多面对的问题。</p>
+<ol>
+<li>输入的数据是什么？你要预测什么？</li>
+<li>你面对的是什么类型的问题？二分类问题、多分类问题、标量回归问题<br>
+向量回归问题还是其他问题，确定问题类型，有助于选择模型架构，损失函数。<br>
+同时做出如下<code>假设</code>：</li>
+</ol>
 <ul>
 <li>假设输出可以根据输入进行预测</li>
 <li>假设可用数据包含足够多的信息，足以学习输入和输出之间的关系</li>
 </ul>
-      
-        <div class="readmore">
-          <a href="/blog/ml-general-workflow/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/“机器学习”/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>“机器学习”</a>
-        
-          <a href="/blog/tags/“深度学习”/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>“深度学习”</a>
-        
-      </div>
-    
-  </section>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
 </article>
 
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/pandas/">
-      Pandas
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
   </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-10</p>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/pandas/">
+    
+    <img src="/img/default2.jpg" alt="Pandas" />
+    
   </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/技术/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>技术</p>
-    </a>
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/pandas/">Pandas</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期三，四月 10 日，2019 年</p>
+    </div>
+    <div class="description">
+      <h3 id="pandas-速查手册">Pandas 速查手册</h3>
+<p>对于数据科学家，无论是数据分析还是数据挖掘，如果用 Python作为工具，Pandas是一个非常重要的Python包，它不仅提供了很多方法，是的数据处理变得非常简单，同时由于底层使用Numpy，使得数据处理的速度也很快，比Python内置的方法有很大优势。</p>
+<h4 id="pandas包导入">Pandas包导入</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+</code></pre></div>
+    </div>
   </div>
 
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="Pandas-速查手册"><a href="#Pandas-速查手册" class="headerlink" title="Pandas 速查手册"></a>Pandas 速查手册</h3><p>对于数据科学家，无论是数据分析还是数据挖掘，如果用 Python作为工具，Pandas是一个非常重要的Python包，它不仅提供了很多方法，是的数据处理变得非常简单，同时由于底层使用Numpy，使得数据处理的速度也很快，比Python内置的方法有很大优势。</p>
-<h4 id="Pandas包导入"><a href="#Pandas包导入" class="headerlink" title="Pandas包导入"></a>Pandas包导入</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
-      
-        <div class="readmore">
-          <a href="/blog/pandas/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/Pandas/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Pandas</a>
-        
-          <a href="/blog/tags/数据分析/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>数据分析</a>
-        
-      </div>
-    
-  </section>
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
 </article>
 
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/conditional-unwrapping-initialization/">
-      Swift条件展开初始化
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
   </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2016-09-06</p>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/conditional-unwrapping-initialization/">
+    
+    <img src="/img/default1.jpg" alt="Swift条件展开初始化" />
+    
   </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/技术/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>技术</p>
-    </a>
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/conditional-unwrapping-initialization/">Swift条件展开初始化</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期二，九月 6 日，2016 年</p>
+    </div>
+    <div class="description">
+      <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/">Idiomatic Swift: conditional unwrapping initialization</a></p>
+<p>Swift-Users上，Dan T 问：<br>
+目前我这样写：</p>
+<pre><code>let dobString: String
+if let dob = dob {
+  dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+  dobString = &quot;&quot;
+}
+</code></pre><p>有没有更好，更通用的方法实现同样的功能？</p>
+    </div>
   </div>
 
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>原文链接：<a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/" target="_blank" rel="noopener">Idiomatic Swift: conditional unwrapping initialization</a></p>
-<p>Swift-Users上，Dan T 问：<br>目前我这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let dobString: String</span><br><span class="line">if let dob = dob &#123;</span><br><span class="line">  dobString = serverDateFormatter.stringFromDate(dob)</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">  dobString = &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>有没有更好，更通用的方法实现同样的功能？</p>
-      
-        <div class="readmore">
-          <a href="/blog/conditional-unwrapping-initialization/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/Swift/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Swift</a>
-        
-          <a href="/blog/tags/翻译/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>翻译</a>
-        
-      </div>
-    
-  </section>
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
 </article>
 
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/how-to-use-curl/">
-      如何使用curl进行http请求
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
   </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2016-09-01</p>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/how-to-use-curl/">
+    
+    <img src="/img/default4.jpg" alt="如何使用curl进行http请求" />
+    
   </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/工具/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>工具</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/how-to-use-curl/">如何使用curl进行http请求</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期四，九月 1 日，2016 年</p>
     </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
+    <div class="description">
       <p>如今的互联网时代，我们在日常开发中经常需要测试HTTP[S] API，有一些含用户界面的工具使用很方便，如Chrome插件Postman等。 但作为码农的我们有时候会觉得带图形的东西还不如命令行下敲一段命令来的简便，今天介绍一款可以在命令行下测试API的工具curl。</p>
-      
-        <div class="readmore">
-          <a href="/blog/how-to-use-curl/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/工具/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>工具</a>
-        
-      </div>
-    
-  </section>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
 </article>
 
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/basic-operators/">
-      ReactiveCocoa中的基本算子
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
   </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2016-08-14</p>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/basic-operators/">
+    
+    <img src="/img/default1.jpg" alt="ReactiveCocoa中的基本算子" />
+    
   </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/技术/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>技术</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/basic-operators/">ReactiveCocoa中的基本算子</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期日，八月 14 日，2016 年</p>
     </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md" target="_blank" rel="noopener">Basic Operators</a></p>
+    <div class="description">
+      <p>原文链接: <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators</a></p>
 <p>这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。</p>
-<h3 id="事件流副作用"><a href="#事件流副作用" class="headerlink" title="事件流副作用"></a>事件流副作用</h3><h4 id="观察（Observation）"><a href="#观察（Observation）" class="headerlink" title="观察（Observation）"></a>观察（Observation）</h4><p>Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">signal.observe(Signal.Observer &#123; event in</span><br><span class="line">  switch event &#123;</span><br><span class="line">    case let .Next(next):</span><br><span class="line">      print(&quot;Next: \(next)&quot;)</span><br><span class="line">    case let .Failed(error):</span><br><span class="line">      print(&quot;Failed: \(error)&quot;)</span><br><span class="line">    case .Completed:</span><br><span class="line">      print(&quot;Completed&quot;)</span><br><span class="line">    case .Interrupted:</span><br><span class="line">      print(&quot;Interrupted&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-      
-        <div class="readmore">
-          <a href="/blog/basic-operators/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
+<h3 id="事件流副作用">事件流副作用</h3>
+<h4 id="观察observation">观察（Observation）</h4>
+<p>Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。</p>
+<pre><code>signal.observe(Signal.Observer { event in
+  switch event {
+    case let .Next(next):
+      print(&quot;Next: \(next)&quot;)
+    case let .Failed(error):
+      print(&quot;Failed: \(error)&quot;)
+    case .Completed:
+      print(&quot;Completed&quot;)
+    case .Interrupted:
+      print(&quot;Interrupted&quot;)
+  }
+})
+</code></pre>
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/算子/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>算子</a>
-        
-          <a href="/blog/tags/ReactiveCocoa/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>ReactiveCocoa</a>
-        
-      </div>
-    
-  </section>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>2 分钟阅读</div>
+  </div>
 </article>
 
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/自控力读书笔记/">
-      <<自控力>>读书笔记
-    </自控力></a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
   </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2016-05-20</p>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/%E8%87%AA%E6%8E%A7%E5%8A%9B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+    
+    <img src="/img/default3.jpg" alt="&lt;&lt;自控力&gt;&gt;读书笔记" />
+    
   </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/blog/categories/笔记/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>笔记</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/%E8%87%AA%E6%8E%A7%E5%8A%9B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">&lt;&lt;自控力&gt;&gt;读书笔记</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期五，五月 20 日，2016 年</p>
     </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="一-意志力是什么？"><a href="#一-意志力是什么？" class="headerlink" title="一. 意志力是什么？"></a>一. 意志力是什么？</h3><p><strong>意志力其实是“我要做”，“我不要”和“我想要”这三种力量。</strong></p>
-<p>深入剖析:   </p>
+    <div class="description">
+      <h3 id="一-意志力是什么">一. 意志力是什么？</h3>
+<p><strong>意志力其实是“我要做”，“我不要”和“我想要”这三种力量。</strong></p>
+<p>深入剖析:</p>
 <ul>
 <li>更难的事是什么？想象你正面临一个意志力挑战，更难的事是什么？它为什么这么困难？</li>
-<li>认清两个自我。你的意志力挑战是，如何描述想抗衡的两个自我？冲动的你想要什么？明智的你想要什么？    </li>
+<li>认清两个自我。你的意志力挑战是，如何描述想抗衡的两个自我？冲动的你想要什么？明智的你想要什么？</li>
 </ul>
 <p>意志力实验:</p>
 <ul>
 <li>记录你的意志力选择。至少一天，注意观察你做的关于意志力的决定。</li>
-<li>5分钟大脑训练冥想。在脑海中默念“呼”和“吸”，把注意力集中在呼吸上。<br>当你走神的时候，重新集中注意力。</li>
+<li>5分钟大脑训练冥想。在脑海中默念“呼”和“吸”，把注意力集中在呼吸上。
+当你走神的时候，重新集中注意力。</li>
 </ul>
-      
-        <div class="readmore">
-          <a href="/blog/自控力读书笔记/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/读书笔记/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>读书笔记</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/blog/Xcode-keyboard-shortcuts/">
-      Xcode-keyboard-shortcuts
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://lionel0806.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>归零</p>
-    </a>
   </div>
 
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
+</article>
 
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2016-03-10</p>
+  </div>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/xcode-keyboard-shortcuts/">
+    
+    <img src="/img/default1.jpg" alt="Xcode-keyboard-shortcuts" />
+    
   </a>
-</div>
 
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/xcode-keyboard-shortcuts/">Xcode-keyboard-shortcuts</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期四，三月 10 日，2016 年</p>
     </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><strong>Xcode提供很多快捷键，我们不可能都记住，但平时的开发中如果能尽可能多的使用快捷键，效率会提高不少，下面总结了Xcode的一些常用快捷键：</strong></p>
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>功能</th>
-<th>星级</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>command + shift + O</td>
-<td>打开搜索窗口</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>command + 0</td>
-<td>显示／隐藏导航区</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>command + 1~n</td>
-<td>选择不同的导航器</td>
-<td>＊＊＊＊</td>
-</tr>
-<tr>
-<td>command + option + J</td>
-<td>过滤导航结果</td>
-<td>＊＊＊</td>
-</tr>
-<tr>
-<td>command + shift + Y</td>
-<td>显示／隐藏调试区</td>
-<td>＊＊＊＊</td>
-</tr>
-<tr>
-<td>command + option + 0</td>
-<td>显示／隐藏实用工具区选项卡</td>
-<td>＊＊＊</td>
-</tr>
-<tr>
-<td>command + option + 1~n</td>
-<td>切换使用工具区选项卡</td>
-<td>＊＊＊</td>
-</tr>
-<tr>
-<td>control + 6</td>
-<td>方法跳转菜单</td>
-<td>＊＊＊＊</td>
-</tr>
-<tr>
-<td>control + command + Up／Down</td>
-<td>对应文件导航</td>
-<td>＊＊＊＊</td>
-</tr>
-<tr>
-<td>control + command + Left／Right</td>
-<td>查看历史文件</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>control + command + E</td>
-<td>重构符</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>control + command + J</td>
-<td>查看符号来源</td>
-<td>＊＊＊</td>
-</tr>
-<tr>
-<td>command + shift + ]／[</td>
-<td>移动到上一个／下一个标签</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>command + option + ]／［</td>
-<td>整行代码上／下移动</td>
-<td>＊＊＊</td>
-</tr>
-<tr>
-<td>command + R</td>
-<td>运行应用</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>command + B</td>
-<td>构建应用</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>control + .</td>
-<td>停止运行的应用</td>
-<td>＊＊＊＊＊</td>
-</tr>
-<tr>
-<td>control + i</td>
-<td>格式化应用</td>
-<td>＊＊＊</td>
-</tr>
-</tbody></table>
-
-      
+    <div class="description">
+      Xcode提供很多快捷键，我们不可能都记住，但平时的开发中如果能尽可能多的使用快捷键，效率会提高不少，下面总结了Xcode的一些常用快捷键：
+   快捷键 功能 星级     command + shift + O 打开搜索窗口 ＊＊＊＊＊   command + 0 显示／隐藏导航区 ＊＊＊＊＊   command + 1~n 选择不同的导航器 ＊＊＊＊   command + option + J 过滤导航结果 ＊＊＊   command + shift + Y 显示／隐藏调试区 ＊＊＊＊   command + option + 0 显示／隐藏实用工具区选项卡 ＊＊＊   command + option + 1~n 切换使用工具区选项卡 ＊＊＊   control + 6 方法跳转菜单 ＊＊＊＊   control + command + Up／Down 对应文件导航 ＊＊＊＊   control + command + Left／Right 查看历史文件 ＊＊＊＊＊   control + command + E 重构符 ＊＊＊＊＊   control + command + J 查看符号来源 ＊＊＊   command + shift + ]／[ 移动到上一个／下一个标签 ＊＊＊＊＊   command + option + ]／［ 整行代码上／下移动 ＊＊＊   command + R 运行应用 ＊＊＊＊＊   command + B 构建应用 ＊＊＊＊＊   control + .
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/blog/tags/Xcode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Xcode</a>
-        
-      </div>
-    
-  </section>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
 </article>
 
+  </div>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/the-solution-of-retain-cycle/">
+    
+    <img src="/img/default3.jpg" alt="如何解决retain cycle" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/the-solution-of-retain-cycle/">如何解决retain cycle</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期三，十月 28 日，2015 年</p>
+    </div>
+    <div class="description">
+      当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题。 我们可以把存在retain cycle的两个对象看成是 父－子 关系。 在这个关系当中，父可以拥有子，但是子不可以拥有父，因此，在这个问题中，我们可以把作为 父 的对象定义为strong， 而作为 子 的对象定义为weak，这样就解决了retain cycle。
+    </div>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
+</article>
+
+  </div>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/an-ios-view-crash-error/">
+    
+    <img src="/img/default2.jpg" alt="一个iOS View crash问题" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/an-ios-view-crash-error/">一个iOS View crash问题</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期四，十月 15 日，2015 年</p>
+    </div>
+    <div class="description">
+      [2015-10-15] 用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：
+ Terminating app due to uncaught exception &lsquo;UIViewControllerHierarchyInconsistency&rsquo;, reason: &lsquo;A view can only be associated with at most one view controller at a time! View &lt;UIView: 0x7f914af22610; frame = (0 0; 414 736); autoresize = W+H; layer = &lt;CALayer: 0x7f914af22980&raquo; is associated with &lt;UIViewController: 0x7f914ae49a90&gt;. Clear this association before associating this view with &lt;TestViewController: 0x7f914ac7f680&gt;.&rsquo;
+ 
+    </div>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
+</article>
+
+  </div>
+  
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    <article class="ui attached segment card dream-card">
+  <a class="image" href="https://example.com/posts/blog-from-jekyll-to-hexo/">
+    
+    <img src="/img/default2.jpg" alt="开始使用hexo生成blog" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/posts/blog-from-jekyll-to-hexo/">开始使用hexo生成blog</a>
+    </h2>
+    <div class="meta">
+      <p class="date">星期二，十月 13 日，2015 年</p>
+    </div>
+    <div class="description">
+      hello, hexo ！
+    </div>
+  </div>
+
+  <div class="extra content">
+    <div class="author">@&nbsp;归零</div>
+    <div class="reading-time">
+      <i class="clock icon"></i>1 分钟阅读</div>
+  </div>
+</article>
+
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    
+
+
+<article class="ui center aligned attached segment card dream-card">
+  <div class="content">
+    <div class="ui medium header">
+      <a href="/page/2/" title="下一页">
+        下一页
+      </a>
+    </div>
+  </div>
+</article>
+
+
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2014 - 2021 Lionel&#39;s Blog</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
           </div>
-        
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/avatar.jpeg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">归零的小窝<div class="sub header">收集、总结、分享</div>
+    </h1>
+
+    <article class="ui horizontal list">
       
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
     
-  </section>
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/archlinux/" title="archlinux">
+        archlinux
+      </a>
+    
+      <a class="ui label" href="/tags/bug/" title="bug">
+        bug
+      </a>
+    
+      <a class="ui label" href="/tags/c%E8%AF%AD%E8%A8%80/" title="c语言">
+        c语言
+      </a>
+    
+      <a class="ui label" href="/tags/hexo/" title="Hexo">
+        Hexo
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/jekyll/" title="jekyll">
+        jekyll
+      </a>
+    
+      <a class="ui label" href="/tags/markdown/" title="markdown">
+        markdown
+      </a>
+    
+      <a class="ui label" href="/tags/nginx/" title="nginx">
+        nginx
+      </a>
+    
+      <a class="ui label" href="/tags/pandas/" title="Pandas">
+        Pandas
+      </a>
+    
+      <a class="ui label" href="/tags/reactivecocoa/" title="ReactiveCocoa">
+        ReactiveCocoa
+      </a>
+    
+      <a class="ui label" href="/tags/redis/" title="redis">
+        redis
+      </a>
+    
+      <a class="ui label" href="/tags/restful-api/" title="RESTFul API">
+        RESTFul API
+      </a>
+    
+      <a class="ui label" href="/tags/swift/" title="Swift">
+        Swift
+      </a>
+    
+      <a class="ui label" href="/tags/xcode/" title="Xcode">
+        Xcode
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%86%85%E5%AD%98/" title="内存">
+        内存
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%8D%9A%E5%AE%A2/" title="博客">
+        博客
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">
+        工具
+      </a>
+    
+      <a class="ui label" href="/tags/%E5%BC%80%E6%BA%90/" title="开源">
+        开源
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%8F%90%E9%97%AE/" title="提问">
+        提问
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="数据分析">
+        数据分析
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="“机器学习”">
+        “机器学习”
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%AD%BB%E6%9C%BA/" title="死机">
+        死机
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="“深度学习”">
+        “深度学习”
+      </a>
+    
+      <a class="ui label" href="/tags/%E6%B8%B8%E8%AE%B0/" title="游记">
+        游记
+      </a>
+    
+      <a class="ui label" href="/tags/%E7%AE%97%E5%AD%90/" title="算子">
+        算子
+      </a>
+    
+      <a class="ui label" href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">
+        翻译
+      </a>
+    
+      <a class="ui label" href="/tags/%E8%87%AA%E8%A1%8C%E8%BD%A6/" title="自行车">
+        自行车
+      </a>
+    
+      <a class="ui label" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">
+        读书笔记
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
   
-    
-      <br>
-      <div class="prev-next">
-        <div class="prev-next">
-          
-          <p class="current">
-            1 / 3
-          </p>
-          
-            <a class="next" rel="next" href="/page/2/">
-              <section class="post next">
-                &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-              </section>
-            </a>
-          
-        </div>
-      </div>
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于</div>
+      <p>要么忙着生活，要么赶着去死！</p>
 
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lixianwa@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
 
   
 
+  
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+    <article class="ui segment">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+    </article>
+    
+  </div>
+
+  
+  
+  
 </div>
-<aside class="l_side">
-  
-    
-    
-      
-        
-          
-          
-            <section class="widget author">
-  <div class="content material">
-    
-      <div class="avatar">
-        <img class="avatar" src="http://p2.music.126.net/oD42lF5C5lGyMvVCkkT6CA==/109951163142013528.jpg?param=180y180">
+
+          </div>
+        </section>
       </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark = "black"
+  window.backgroundImageDark =  null 
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
     
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
     
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/grid.js"></script>
+
+
     
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml" class="social fas fa-rss flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="mailto:woshilixian@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://github.com/lionel0806" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=49006729" class="social fas fa-headphones-alt flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
   </div>
-</section>
-
-          
-        
-      
-        
-          
-          
-            
-
-          
-        
-      
-        
-          
-          
-            <section class="widget grid">
-  
-<header class="material">
-  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
-  
-</header>
-
-  <div class="content material">
-    <ul class="grid navgation">
-      
-        <li><a class="flat-box" title="/" href="/" id="home">
-          
-            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
-          
-          近期文章
-        </a></li>
-      
-        <li><a class="flat-box" title="/blog/archives/" href="/blog/archives/" rel="nofollow" id="blogarchives">
-          
-            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
-          
-          文章归档
-        </a></li>
-      
-        <li><a class="flat-box" title="/about/" href="/about/" rel="nofollow" id="about">
-          
-            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
-          
-          关于小站
-        </a></li>
-      
-    </ul>
-  </div>
-</section>
-
-          
-        
-      
-        
-          
-          
-            
-  <section class="widget category">
-    
-<header class="material">
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
-  
-    <a class="rightBtn" rel="nofollow" href="/blog/categories/" title="blog/categories/">
-    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
-  
-</header>
-
-    <div class="content material">
-      <ul class="entry">
-        
-          <li><a class="flat-box" title="/blog/categories/工具/" href="/blog/categories/工具/"><div class="name">工具</div><div class="badge">(4)</div></a></li>
-        
-          <li><a class="flat-box child" title="/blog/categories/工具/教程/" href="/blog/categories/工具/教程/"><div class="name">教程</div><div class="badge">(1)</div></a></li>
-        
-          <li><a class="flat-box" title="/blog/categories/技术/" href="/blog/categories/技术/"><div class="name">技术</div><div class="badge">(15)</div></a></li>
-        
-          <li><a class="flat-box" title="/blog/categories/教程/" href="/blog/categories/教程/"><div class="name">教程</div><div class="badge">(3)</div></a></li>
-        
-          <li><a class="flat-box" title="/blog/categories/生活/" href="/blog/categories/生活/"><div class="name">生活</div><div class="badge">(1)</div></a></li>
-        
-          <li><a class="flat-box" title="/blog/categories/笔记/" href="/blog/categories/笔记/"><div class="name">笔记</div><div class="badge">(1)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-          
-        
-      
-        
-          
-          
-            
-  <section class="widget tagcloud">
-    
-<header class="material">
-  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
-  
-    <a class="rightBtn" rel="nofollow" href="/blog/tags/" title="blog/tags/">
-    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
-  
-</header>
-
-    <div class="content material">
-      <a href="/blog/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/blog/tags/Pandas/" style="font-size: 14px; color: #999">Pandas</a> <a href="/blog/tags/RESTFul-API/" style="font-size: 14px; color: #999">RESTFul API</a> <a href="/blog/tags/ReactiveCocoa/" style="font-size: 14px; color: #999">ReactiveCocoa</a> <a href="/blog/tags/Swift/" style="font-size: 14px; color: #999">Swift</a> <a href="/blog/tags/Xcode/" style="font-size: 14px; color: #999">Xcode</a> <a href="/blog/tags/archlinux/" style="font-size: 14px; color: #999">archlinux</a> <a href="/blog/tags/bug/" style="font-size: 14px; color: #999">bug</a> <a href="/blog/tags/c语言/" style="font-size: 14px; color: #999">c语言</a> <a href="/blog/tags/iOS/" style="font-size: 19px; color: #777">iOS</a> <a href="/blog/tags/jekyll/" style="font-size: 14px; color: #999">jekyll</a> <a href="/blog/tags/jupyter/" style="font-size: 14px; color: #999">jupyter</a> <a href="/blog/tags/markdown/" style="font-size: 14px; color: #999">markdown</a> <a href="/blog/tags/mongo/" style="font-size: 14px; color: #999">mongo</a> <a href="/blog/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/blog/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/blog/tags/vpn/" style="font-size: 14px; color: #999">vpn</a> <a href="/blog/tags/“机器学习”/" style="font-size: 14px; color: #999">“机器学习”</a> <a href="/blog/tags/“深度学习”/" style="font-size: 14px; color: #999">“深度学习”</a> <a href="/blog/tags/内存/" style="font-size: 19px; color: #777">内存</a> <a href="/blog/tags/博客/" style="font-size: 14px; color: #999">博客</a> <a href="/blog/tags/工具/" style="font-size: 24px; color: #555">工具</a> <a href="/blog/tags/开源/" style="font-size: 14px; color: #999">开源</a> <a href="/blog/tags/提问/" style="font-size: 14px; color: #999">提问</a> <a href="/blog/tags/数据分析/" style="font-size: 14px; color: #999">数据分析</a> <a href="/blog/tags/死机/" style="font-size: 14px; color: #999">死机</a> <a href="/blog/tags/游记/" style="font-size: 14px; color: #999">游记</a> <a href="/blog/tags/算子/" style="font-size: 14px; color: #999">算子</a> <a href="/blog/tags/翻墙/" style="font-size: 14px; color: #999">翻墙</a> <a href="/blog/tags/翻译/" style="font-size: 14px; color: #999">翻译</a> <a href="/blog/tags/自行车/" style="font-size: 14px; color: #999">自行车</a> <a href="/blog/tags/读书笔记/" style="font-size: 14px; color: #999">读书笔记</a>
-    </div>
-  </section>
-
-
-          
-        
-      
-        
-          
-          
-            
-
-          
-        
-      
-        
-          
-          
-            
-
-
-  <section class="widget music">
-    
-<header class="material">
-  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
-  
-    <a class="rightBtn" rel="external nofollow noopener noreferrer" target="_blank" href="https://music.163.com/#/user/home?id=49006729" title="https://music.163.com/#/user/home?id=49006729">
-    <i class="far fa-heart fa-fw"></i></a>
-  
-</header>
-
-    <div class="content material">
-      
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-  <div class="aplayer" data-theme="#1BCDFC" data-mode="circulation" data-server="netease" data-type="playlist" data-id="44889875" data-volume="0.7">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
-
-
-    </div>
-  </section>
-
-
-          
-        
-      
-    
-
-  
-</aside>
-
-<footer id="footer" class="clearfix">
-  
-  
-    <div class="social-wrapper">
-      
-        
-          <a href="/atom.xml" class="social fas fa-rss flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-          </a>
-        
-      
-        
-          <a href="mailto:woshilixian@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-          </a>
-        
-      
-        
-          <a href="https://github.com/lionel0806" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-          </a>
-        
-      
-        
-          <a href="https://music.163.com/#/user/home?id=49006729" class="social fas fa-headphones-alt flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
-          </a>
-        
-      
-    </div>
-  
-  <br>
-  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
-  <div>
-    本站使用
-    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
-    作为主题
-    
-      ，
-      总访问量为
-      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-      次
-    
-    。
-  </div>
-</footer>
-<script>setLoadingBarProgress(80);</script>
-
-
-      <script>setLoadingBarProgress(60);</script>
-    </div>
-    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-
-  <script>
-    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
-    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
-    var ALGOLIA_API_KEY = "";
-    var ALGOLIA_APP_ID = "";
-    var ALGOLIA_INDEX_NAME = "";
-    var AZURE_SERVICE_NAME = "";
-    var AZURE_INDEX_NAME = "";
-    var AZURE_QUERY_KEY = "";
-    var BAIDU_API_ID = "";
-    var SEARCH_SERVICE = "hexo" || "hexo";
-    var ROOT = "/"||"/";
-    if(!ROOT.endsWith('/'))ROOT += '/';
-  </script>
-
-<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
-
-
-  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      const $reveal = $('.reveal');
-      if ($reveal.length === 0) return;
-      const sr = ScrollReveal({ distance: 0 });
-      sr.reveal('.reveal');
-    });
-  </script>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      Waves.attach('.flat-btn', ['waves-button']);
-      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
-      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
-      Waves.attach('.flat-box', ['waves-block']);
-      Waves.attach('.float-box', ['waves-block', 'waves-float']);
-      Waves.attach('.waves-image');
-      Waves.init();
-    });
-  </script>
-
-
-  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
-
-
-
-
-  
-  
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-    <script type="text/javascript">
-      $(function(){
-        if ('.cover') {
-          $('.cover').backstretch(
-          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
-          {
-            duration: "6000",
-            fade: "2500"
-          });
-        } else {
-          $.backstretch(
-          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
-          {
-            duration: "6000",
-            fade: "2500"
-          });
-        }
-      });
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/app.js"></script>
-
-
-  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/search.js"></script>
-
-
-
-
-<!-- 复制 -->
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "复制成功";
-  let COPY_FAILURE = "复制失败";
-  /*页面载入完成后，创建复制按钮*/
-  !function (e, t, a) {
-    /* code */
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-
-      clipboard.on('success', function(e) {
-        //您可以加入成功提示
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-        success_prompt(COPY_SUCCESS);
-        e.clearSelection();
-      });
-      clipboard.on('error', function(e) {
-        //您可以加入失败提示
-        console.error('Action:', e.action);
-        console.error('Trigger:', e.trigger);
-        fail_prompt(COPY_FAILURE);
-      });
-    }
-    initCopyCode();
-
-  }(window, document);
-
-  /**
-   * 弹出式提示框，默认1.5秒自动消失
-   * @param message 提示信息
-   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
-   * @param time 消失时间
-   */
-  var prompt = function (message, style, time)
-  {
-      style = (style === undefined) ? 'alert-success' : style;
-      time = (time === undefined) ? 1500 : time*1000;
-      $('<div>')
-          .appendTo('body')
-          .addClass('alert ' + style)
-          .html(message)
-          .show()
-          .delay(time)
-          .fadeOut();
-  };
-
-  // 成功提示
-  var success_prompt = function(message, time)
-  {
-      prompt(message, 'alert-success', time);
-  };
-
-  // 失败提示
-  var fail_prompt = function(message, time)
-  {
-      prompt(message, 'alert-danger', time);
-  };
-
-  // 提醒
-  var warning_prompt = function(message, time)
-  {
-      prompt(message, 'alert-warning', time);
-  };
-
-  // 信息提示
-  var info_prompt = function(message, time)
-  {
-      prompt(message, 'alert-info', time);
-  };
-
+  $(document).ready(function () {
+    $.getJSON('https:\/\/example.com/index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
 </script>
+<script src="/js/search.js"></script>
 
+    
 
-<!-- fancybox -->
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-  let LAZY_LOAD_IMAGE = "";
-  $(".article-entry").find("fancybox").find("img").each(function () {
-      var element = document.createElement("a");
-      $(element).attr("data-fancybox", "gallery");
-      $(element).attr("href", $(this).attr("src"));
-      /* 图片采用懒加载处理时,
-       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
-       * 那么此处将原本的属性名src替换为对应属性名data-original,
-       * 修改如下
-       */
-       if (LAZY_LOAD_IMAGE) {
-         $(element).attr("href", $(this).attr("data-original"));
-       }
-      $(this).wrap(element);
-  });
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '172168556', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-
-
-
-
-  <script>setLoadingBarProgress(100);</script>
-</body>
+    
+  </body>
 </html>

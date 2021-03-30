@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on Lionel&#39;s Blog</title>
+    <link>https://example.com/tags/%E5%8D%9A%E5%AE%A2/</link>
+    <description>Recent content in 博客 on Lionel&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;知识共享许可协议&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
+    <lastBuildDate>Wed, 26 Feb 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开始我的博客之旅</title>
+      <link>https://example.com/posts/2014-02-26-startup-my-blog/</link>
+      <pubDate>Wed, 26 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/2014-02-26-startup-my-blog/</guid>
+      <description>目的 有人曾说，其实每个人都有好的想法，只是我们当中的大多数人不善于跟踪它而已，此博客主要记录平时的一些想法， 一些技术问题以及分享一切美好的人和事&amp;hellip;
+为什么使用 github pages &amp;amp; jekyll 来创建博客 昨天突然兴起，想创建一个属于自己的博客，于是就在google上搜索如何创建自己博客之类的话题， 搜到一篇写的非常详细的博文 搭建一个免费的，无限流量的Blog&amp;mdash;-github Pages和Jekyll入门，免费而且无限流量，太符合我的需求了（是不是有点贱），于是就有了此博。
+主题 此博客的主题是在Michael Rose的 Minimal Mistakes主题的基础上修改的，在此感谢Michael Rose！</description>
+    </item>
+    
+  </channel>
+</rss>
