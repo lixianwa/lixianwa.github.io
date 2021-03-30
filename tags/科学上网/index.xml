@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>科学上网 on Lionel&#39;s Blog</title>
+    <link>https://lionel0806.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</link>
+    <description>Recent content in 科学上网 on Lionel&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;知识共享许可协议&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
+    <lastBuildDate>Tue, 18 Jun 2019 10:46:18 +0800</lastBuildDate><atom:link href="https://lionel0806.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于v2ray的科学上网服务器搭建</title>
+      <link>https://lionel0806.github.io/posts/%E5%9F%BA%E4%BA%8Ev2ray%E7%9A%84%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Tue, 18 Jun 2019 10:46:18 +0800</pubDate>
+      
+      <guid>https://lionel0806.github.io/posts/%E5%9F%BA%E4%BA%8Ev2ray%E7%9A%84%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;h2 id=&#34;一-服务器配置&#34;&gt;一. 服务器配置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;阿里云香港&lt;/li&gt;
+&lt;li&gt;1Core&lt;/li&gt;
+&lt;li&gt;25G&lt;/li&gt;
+&lt;li&gt;限速30Mps&lt;/li&gt;
+&lt;li&gt;ubuntu 16.04&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
