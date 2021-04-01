@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Lionel's Blog</title><link>https://lionel0806.github.io/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Lionel's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">&lt;img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />&lt;/a>&lt;br />本作品采用&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a>进行许可。</copyright><lastBuildDate>Mon, 10 Jun 2019 19:30:22 +0800</lastBuildDate><atom:link href="https://lionel0806.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>“机器学习通用工作流程”</title><link>https://lionel0806.github.io/posts/ml-general-workflow/</link><pubDate>Mon, 10 Jun 2019 19:30:22 +0800</pubDate><guid>https://lionel0806.github.io/posts/ml-general-workflow/</guid><description>&lt;p>机器学习的通用工作流程总结为如下几个步骤：&lt;/p>
+&lt;h3 id="1---定义问题收集数据集">1. 定义问题，收集数据集&lt;/h3>
+&lt;p>首先我们必须先定义多面对的问题。&lt;/p>
+&lt;ol>
+&lt;li>输入的数据是什么？你要预测什么？&lt;/li>
+&lt;li>你面对的是什么类型的问题？二分类问题、多分类问题、标量回归问题&lt;br>
+向量回归问题还是其他问题，确定问题类型，有助于选择模型架构，损失函数。&lt;br>
+同时做出如下&lt;code>假设&lt;/code>：&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>假设输出可以根据输入进行预测&lt;/li>
+&lt;li>假设可用数据包含足够多的信息，足以学习输入和输出之间的关系&lt;/li>
+&lt;/ul></description></item><item><title>Pandas</title><link>https://lionel0806.github.io/posts/pandas/</link><pubDate>Wed, 10 Apr 2019 22:58:49 +0800</pubDate><guid>https://lionel0806.github.io/posts/pandas/</guid><description>&lt;h3 id="pandas-速查手册">Pandas 速查手册&lt;/h3>
+&lt;p>对于数据科学家，无论是数据分析还是数据挖掘，如果用 Python作为工具，Pandas是一个非常重要的Python包，它不仅提供了很多方法，是的数据处理变得非常简单，同时由于底层使用Numpy，使得数据处理的速度也很快，比Python内置的方法有很大优势。&lt;/p>
+&lt;h4 id="pandas包导入">Pandas包导入&lt;/h4>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">import&lt;/span> pandas &lt;span style="color:#f92672">as&lt;/span> pd
+&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#f92672">as&lt;/span> np
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Swift条件展开初始化</title><link>https://lionel0806.github.io/posts/conditional-unwrapping-initialization/</link><pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/conditional-unwrapping-initialization/</guid><description>&lt;p>原文链接：&lt;a href="http://ericasadun.com/2016/08/04/idiomatic-swift-conditional-unwrapping-initialization/">Idiomatic Swift: conditional unwrapping initialization&lt;/a>&lt;/p>
+&lt;p>Swift-Users上，Dan T 问：&lt;br>
+目前我这样写：&lt;/p>
+&lt;pre>&lt;code>let dobString: String
+if let dob = dob {
+dobString = serverDateFormatter.stringFromDate(dob)
+}
+else {
+dobString = &amp;quot;&amp;quot;
+}
+&lt;/code>&lt;/pre>&lt;p>有没有更好，更通用的方法实现同样的功能？&lt;/p></description></item><item><title>ReactiveCocoa中的基本算子</title><link>https://lionel0806.github.io/posts/basic-operators/</link><pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/basic-operators/</guid><description>&lt;p>原文链接: &lt;a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators&lt;/a>&lt;/p>
+&lt;p>这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。&lt;/p>
+&lt;h3 id="事件流副作用">事件流副作用&lt;/h3>
+&lt;h4 id="观察observation">观察（Observation）&lt;/h4>
+&lt;p>Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。&lt;/p>
+&lt;pre>&lt;code>signal.observe(Signal.Observer { event in
+switch event {
+case let .Next(next):
+print(&amp;quot;Next: \(next)&amp;quot;)
+case let .Failed(error):
+print(&amp;quot;Failed: \(error)&amp;quot;)
+case .Completed:
+print(&amp;quot;Completed&amp;quot;)
+case .Interrupted:
+print(&amp;quot;Interrupted&amp;quot;)
+}
+})
+&lt;/code>&lt;/pre></description></item><item><title>如何解决retain cycle</title><link>https://lionel0806.github.io/posts/the-solution-of-retain-cycle/</link><pubDate>Wed, 28 Oct 2015 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/the-solution-of-retain-cycle/</guid><description>当遇到retain cycle是，一般我们的解决办法是让一个变为weak reference，而选择让那个变成weak reference是个问题。 我们可以把存在retain cycle的两个对象看成是 父－子 关系。 在这个关系当中，父可以拥有子，但是子不可以拥有父，因此，在这个问题中，我们可以把作为 父 的对象定义为strong， 而作为 子 的对象定义为weak，这样就解决了retain cycle。</description></item><item><title>一个iOS View crash问题</title><link>https://lionel0806.github.io/posts/an-ios-view-crash-error/</link><pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/an-ios-view-crash-error/</guid><description>[2015-10-15] 用xib做了一个简单的界面，程序启动时会crash掉，xcode error打印信息：
+Terminating app due to uncaught exception &amp;lsquo;UIViewControllerHierarchyInconsistency&amp;rsquo;, reason: &amp;lsquo;A view can only be associated with at most one view controller at a time! View &amp;lt;UIView: 0x7f914af22610; frame = (0 0; 414 736); autoresize = W+H; layer = &amp;lt;CALayer: 0x7f914af22980&amp;raquo; is associated with &amp;lt;UIViewController: 0x7f914ae49a90&amp;gt;. Clear this association before associating this view with &amp;lt;TestViewController: 0x7f914ac7f680&amp;gt;.&amp;rsquo;</description></item><item><title>统一账户管理系统RESTful api设计</title><link>https://lionel0806.github.io/posts/2015-04-10-ldapadmin-design/</link><pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2015-04-10-ldapadmin-design/</guid><description>LDAPAdmin, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。
+下面主要对LDAPAdmin 的REST Api做个简单介绍：
+##Functionality ###Terminology ###User stories
+利用该组件的HTTP API，通过提交一组描述 用户／部门／系统／管理员的JSON数据，添加、删除、更新、查询数据； 利用该组件的HTTP API，可以方便的添加一条 用户／部门／系统／管理员记录； 利用该组件的HTTP API，可以方便的更新一条指定的 用户／部门／系统／管理员记录； 利用该组件的HTTP API，可以方便的将指定的 用户／部门／系统／管理员删除； ###Scope and Non-Scope ####Scope
+用户／部门／系统／管理员 信息相关数据的添加、更新、删除； 查询 用户／部门／系统／管理员的信息； 用户／部门／系统／管理员 的有效性； ###Non-Scope
+用户数据的可靠性，数据由管理员负责维护 ##Low-level Design ###Response Code
+Code Remind Description 200 OK – [GET] 成功返回用户请求的数据 201 CREATED – [POST/PUT] 新建/修改数据成功 204 NO CONTENT – [DELETE] 删除数据成功 400 INVALID REQUEST – [POST/PUT 用户发出请求有误，服务器没有新建/修改数据 401 Unauthorized – [*] token认证失败，token过期等情况 403 Forbidden – [*] 用户认证成功，但没有权限进行相应操作（权限细分） 404 NOT FOUND – [*] 请求的资源（在这里是表、字段不存在等情况） 406 NOT Acceptable – [GET] 用户请求的格式不可得 500 INTERNAL SERVER ERROR – [*] 服务器内部错误，用户无法判断请求是否成功 ###Response| Result #####除了每个响应都携带的返回码和可选的description字段，以下为该API的返回结果（具体形式在每种请求中都有举例）：</description></item><item><title>关于sizeof</title><link>https://lionel0806.github.io/posts/2014-07-09-about-sizeof/</link><pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-07-09-about-sizeof/</guid><description>前两天犯了一个愚蠢的错误，由于对sizeof理解的错误，导致代码出现了一个bug,具体代码逻辑如下：
+char buf[512]; char *ptr; int size; ptr = buf; size = sizeof(ptr); 本来是计算buf的大小，但这样写其实只是得到 char指针类型的大小，错误的以为ptr指向buf时，用sizeof获取的也是buf的大小。通过了解，如果sizeof的操作数为指针时，不管指针指向什么类型，值都是指针类型的大小，32位系统为4.具体sizeof的结果如下：　1、当操作数为数据类型时，所得结果为给数据类型的大小。如：32bit系统上，sizeof（char）＝ 1　，sizeof（int） ＝ 4。
+2、当操作数是指针时，sizeof依赖于编译器。例如Microsoft　C/C++7.0中，near 类指针字节数为2，far、huge类指针字节数为4。一般Unix的指针字节数为4。　3、当操作数具有数组类型时，其结果是数组的总字节数。　4、联合类型操作数的sizeof是其最大字节成员的字节数。结构类型操作数的 sizeof是这种类型对象的总字节数，包括任何垫补在内。　让我们看如下结构：　struct　{ char　b; double　x; }　a;　在某些机器上sizeof（a）=12，而一般sizeof（char）+　sizeof（double）= 9。 这是因为编译器在考虑对齐问题时，在结构中插入空位以控制各成员对象的地址对 齐。如double类型的结构成员x要放在被4整除的地址。　5、如果操作数是函数中的数组形参或函数类型的形参，sizeof给出其指针的大小。</description></item><item><title>安装archlinux</title><link>https://lionel0806.github.io/posts/2014-04-26-install-archlinux/</link><pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-04-26-install-archlinux/</guid><description>活着就是为了折腾，Ubuntu已经用了4年多了吧，从最近几年看来，ubuntu的发展目的是要面向大众化，由于要适合大众，所以他的操作更简单，图形界面更美观，这就导致它越来越笨重。对于一个追求速度，喜欢命令模式的程序猿，ubuntu已然不能满足我的要求，所以安装archlinux的想法产生了，活着不就是为了折腾嘛，于是一步一步定制专属自己的linux系统。
+1.下载archlinux镜像文件 2.制作usb安装盘
+# dd bs=4M if=&amp;lt;/archlinux-2014.04.01-dual.iso/的/路径&amp;gt; of=/dev/&amp;lt;U盘文件&amp;gt; &amp;amp;&amp;amp; sync 3.从U盘启动选择Boot Arch Linux 4.配置安装 1)连接网络 有线连接：
+# dhcpcd 无线连接：
+# wifi-menu ADSL 宽带连接： 配置：
+# pppoe-setup 连接：
+# systemctl start adsl 2)选择软件源
+# vi /etc/pacman.d/mirrorlist 更新本地数据库： # pacman -Syy 5.分区 1)分区方案：
+$ lsblk /dev/sda -o NAME,FSTYPE,SIZE,MOUNTPOINT NAME FSTYPE SIZE MOUNTPOINT sda 120G ├─sda1 ext4 36G / ├─sda2 ext4 80G /home └─sda3 swap 4G [SWAP] 注意：swap分区大小建议等于或两倍于内存。 2)分区： MBR 分区：</description></item><item><title>关于开源软件redis</title><link>https://lionel0806.github.io/posts/2014-04-04-about-redis/</link><pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-04-04-about-redis/</guid><description>最近读redis代码，redis是一个key-value存储系统,详情请看官网介绍redis，仅2万多行代码，实现如此强大的 功能，真是让人不由的惊叹！而且代码是非常之漂亮, 《redis设计与实现》可以帮助你了解redis 的具体实现，redis的github地址。</description></item><item><title>nginx编译报错</title><link>https://lionel0806.github.io/posts/2014-04-10-install-nginx-on-ubuntu/</link><pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-04-10-install-nginx-on-ubuntu/</guid><description>在ubuntu(32bit)上安装nginx执行configure时遇到错误如下：
+./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library into the system, or build the PCRE library statically from the source with nginx by using --with-pcre=&amp;lt;path&amp;gt; option. 貌似缺少pcre库，在网上搜了，说是需要安装pcre-devel,可是ubuntu上安装是找不到pcre-devel。 可能是名字变了，后来终于找到解决办法，需要安装 libpcre3 libpcre3-dev：
+# sudo apt-get install libpcre3 libpcre3-dev</description></item><item><title>内存死机问题</title><link>https://lionel0806.github.io/posts/2014-03-10-crash-about-memory/</link><pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-03-10-crash-about-memory/</guid><description>最近遇到一个内存导致死机的问题，这种问题总是让人很恼火。
+Mstar linux方案，由于对指针的检测不够完善，导致使用了空指针。一个问题整了我一天多时间， 最后查出来尽然是珠海有线的码流里边有一个bouquet id是 -256，而代码里边没有处理到这种情况，获取到空指针， 而在使用的时候又没有检测。幸亏有gdb可以用，可以定位到是那个模块出了问题。完了想想本来这个问题要不 了那么长时间，一开始感觉这个变量有点问题，可就被脑子里那种 &amp;ldquo;不可能这儿出问题啊&amp;quot;的想法打消了，也许 很多程序员会犯这种错误，总是很确信的说&amp;quot;这个不可能&amp;rdquo;，难道这个真的不可能吗？其实自己也不知道，不知道 从哪儿来的这种莫名其妙的自信。 由这个问题想到：
+1)不要轻易做任何假设，负责可能会影响你做出准确的判断。
+2)时时刻刻在使用指针时要检测是否为空，这个构建健壮软件的必要条件。
+3)要让程序能经得起一些意味发生的情况，比如获取到错误变量等。</description></item><item><title>提问的智慧</title><link>https://lionel0806.github.io/posts/2014-03-02-smart-questions/</link><pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-03-02-smart-questions/</guid><description>作为一个技术人员，在学习和工作中，经常会遇到各种各样的问题，有时候我们没法解答的时候？也许最好的办法就是去 求助与他人，不管是通过网络，还是面对面的方式。 于是如何问问题就变的尤为重要，下面这篇 How to Ask Questions The Smart Way会给你答案，相信看完之后你会有很大收获。</description></item><item><title>开始我的博客之旅</title><link>https://lionel0806.github.io/posts/2014-02-26-startup-my-blog/</link><pubDate>Wed, 26 Feb 2014 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/2014-02-26-startup-my-blog/</guid><description>目的 有人曾说，其实每个人都有好的想法，只是我们当中的大多数人不善于跟踪它而已，此博客主要记录平时的一些想法， 一些技术问题以及分享一切美好的人和事&amp;hellip;
+为什么使用 github pages &amp;amp; jekyll 来创建博客 昨天突然兴起，想创建一个属于自己的博客，于是就在google上搜索如何创建自己博客之类的话题， 搜到一篇写的非常详细的博文 搭建一个免费的，无限流量的Blog&amp;mdash;-github Pages和Jekyll入门，免费而且无限流量，太符合我的需求了（是不是有点贱），于是就有了此博。
+主题 此博客的主题是在Michael Rose的 Minimal Mistakes主题的基础上修改的，在此感谢Michael Rose！</description></item></channel></rss>

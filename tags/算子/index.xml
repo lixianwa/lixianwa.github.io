@@ -1,62 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>算子 on Lionel的博客</title>
-    <link>http://lionel0806.github.io/tags/%E7%AE%97%E5%AD%90/</link>
-    <description>Recent content in 算子 on Lionel的博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sun, 14 Aug 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://lionel0806.github.io/tags/%E7%AE%97%E5%AD%90/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>ReactiveCocoa中的基本算子</title>
-      <link>http://lionel0806.github.io/post/basic-operators/</link>
-      <pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://lionel0806.github.io/post/basic-operators/</guid>
-      <description>&lt;p&gt;原文链接: &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md&#34;&gt;Basic Operators&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。&lt;/p&gt;
-
-&lt;h3 id=&#34;事件流副作用&#34;&gt;事件流副作用&lt;/h3&gt;
-
-&lt;h4 id=&#34;观察-observation&#34;&gt;观察（Observation）&lt;/h4&gt;
-
-&lt;p&gt;Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;signal.observe(Signal.Observer { event in
-  switch event {
-    case let .Next(next):
-      print(&amp;#34;Next: \(next)&amp;#34;)
-    case let .Failed(error):
-      print(&amp;#34;Failed: \(error)&amp;#34;)
-    case .Completed:
-      print(&amp;#34;Completed&amp;#34;)
-    case .Interrupted:
-      print(&amp;#34;Interrupted&amp;#34;)
-  }
-})&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>算子 on Lionel's Blog</title><link>https://lionel0806.github.io/tags/%E7%AE%97%E5%AD%90/</link><description>Recent content in 算子 on Lionel's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">&lt;img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />&lt;/a>&lt;br />本作品采用&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a>进行许可。</copyright><lastBuildDate>Sun, 14 Aug 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://lionel0806.github.io/tags/%E7%AE%97%E5%AD%90/index.xml" rel="self" type="application/rss+xml"/><item><title>ReactiveCocoa中的基本算子</title><link>https://lionel0806.github.io/posts/basic-operators/</link><pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate><guid>https://lionel0806.github.io/posts/basic-operators/</guid><description>&lt;p>原文链接: &lt;a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md">Basic Operators&lt;/a>&lt;/p>
+&lt;p>这个文档解释ReactiveCocoa中最常用的Operator，以及一些用例。注意Operators，在这里指的是signal和signal producers之间的转换，不是Swift中的操作符，换句话说，这些是ReactiveCocoa提供处理事件流的组合原语。该文档使用术语“事件流”来描述Signal和SignalProducer的概念。&lt;/p>
+&lt;h3 id="事件流副作用">事件流副作用&lt;/h3>
+&lt;h4 id="观察observation">观察（Observation）&lt;/h4>
+&lt;p>Signal可以被观察通过observe函数，需要一个Observer作为参数，任何事件流都会发送给它。&lt;/p>
+&lt;pre>&lt;code>signal.observe(Signal.Observer { event in
+switch event {
+case let .Next(next):
+print(&amp;quot;Next: \(next)&amp;quot;)
+case let .Failed(error):
+print(&amp;quot;Failed: \(error)&amp;quot;)
+case .Completed:
+print(&amp;quot;Completed&amp;quot;)
+case .Interrupted:
+print(&amp;quot;Interrupted&amp;quot;)
+}
+})
+&lt;/code>&lt;/pre></description></item></channel></rss>

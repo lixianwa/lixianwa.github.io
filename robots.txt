@@ -1,2 +1,1 @@
 User-agent: *
-Sitemap: http://lionel0806.github.io/sitemap.xml
