@@ -2,10 +2,6 @@
 &lt;ul>
 &lt;li>通过dlv工具远程debug 用Go写的服务&lt;/li>
 &lt;li>vscode配置远程debug&lt;/li>
-&lt;/ul></description></item><item><title>Kubernetes中Go服务的远程debug</title><link>https://lixianwa.github.io/posts/%E5%85%B3%E4%BA%8Ego1.18%E4%BD%A0%E6%83%B3%E7%9F%A5%E9%81%93%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/</link><pubDate>Tue, 07 Dec 2021 20:01:09 +0800</pubDate><guid>https://lixianwa.github.io/posts/%E5%85%B3%E4%BA%8Ego1.18%E4%BD%A0%E6%83%B3%E7%9F%A5%E9%81%93%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/</guid><description>&lt;p>作为开发人员，我们总是会遇到一些bug本地无法模拟，需要在通过远程方式排查，本教程介绍如何配置远程debug Kubernetes上的Go服务，通过本教程，你会学到：&lt;/p>
-&lt;ul>
-&lt;li>通过dlv工具远程debug 用Go写的服务&lt;/li>
-&lt;li>vscode配置远程debug&lt;/li>
 &lt;/ul></description></item><item><title>Arthas反编译更新线上代码</title><link>https://lixianwa.github.io/posts/arthas%E5%8F%8D%E7%BC%96%E8%AF%91%E6%9B%B4%E6%96%B0%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 12 Apr 2021 15:22:37 +0800</pubDate><guid>https://lixianwa.github.io/posts/arthas%E5%8F%8D%E7%BC%96%E8%AF%91%E6%9B%B4%E6%96%B0%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81/</guid><description>&lt;p>很多时候，出现线上问题，我们需要紧急修复程序并立马生效，使线上问题影响最小，所以我们需要线上更新部分程序，今天就以热更新com.example.demo.arthas.user.UserController为例，介绍Arthas工具如何热更新线上代码。&lt;/p>
 &lt;h4 id="1-下载arthas工具并运行">1. 下载arthas工具并运行&lt;/h4>
 &lt;pre>&lt;code>curl -O https://arthas.aliyun.com/arthas-boot.jar
