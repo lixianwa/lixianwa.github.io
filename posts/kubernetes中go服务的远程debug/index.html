@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>Kubernetes中Go服务的远程debug | Lionel's Blog</title><link href=/favicon.ico rel="shortcut icon" type=image/x-icon><meta name=author content="Author Name"><meta name=description content="作为开发人员，我们总是会遇到一些bug本地无法模拟，需要在通过远程方式排查，本教程介绍如何配置远程debug Kubernetes上的Go服务，通过本教程，你会学到：
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>Kubernetes中Go服务的远程debug | Lionel's Blog</title><link href=/favicon.ico rel="shortcut icon" type=image/x-icon><meta name=author content="归零"><meta name=description content="作为开发人员，我们总是会遇到一些bug本地无法模拟，需要在通过远程方式排查，本教程介绍如何配置远程debug Kubernetes上的Go服务，通过本教程，你会学到：
  通过dlv工具远程debug 用Go写的服务 vscode配置远程debug "><meta name=generator content="Hugo 0.81.0"><link rel=canonical href=https://lixianwa.github.io/posts/kubernetes%E4%B8%ADgo%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%9C%E7%A8%8Bdebug/><meta property="og:title" content="Kubernetes中Go服务的远程debug"><meta property="og:description" content="作为开发人员，我们总是会遇到一些bug本地无法模拟，需要在通过远程方式排查，本教程介绍如何配置远程debug Kubernetes上的Go服务，通过本教程，你会学到：
 
 通过dlv工具远程debug 用Go写的服务
@@ -9,8 +9,8 @@ vscode配置远程debug
 vscode配置远程debug
 "><link rel=stylesheet href=/css/semantic.min.css><link rel=stylesheet href=/css/icomoon.css><link rel=stylesheet href=/css/OverlayScrollbars.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/site.css><style>a:not(.ui.button):hover{text-decoration:underline}a:not(.ui.button){color:#2e8b57!important}.inverted a:not(.ui.button),.inverted a:not(.ui.button):hover{color:#8fbc8f!important}body.default{background-color:#f7f7f7;background-image:url(/me/background.jpeg)}body.dark{background-color:#000}</style><link rel=stylesheet data-highlight href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css><link rel=stylesheet href=/css/custom.css></head><body class=default><nav class="ui secondary menu dream-menu"><div class=item><i class="large link bullseye icon dream-flip-toggle" title=翻转！></i></div><div class=item><i class="large link home icon" title=首页 onclick="window.location.href='https://lixianwa.github.io/'"></i></div><div class=item><i class="large link icon theme-switch" onclick=themeSwitch()></i></div><div class=item><i class="large link search icon" onclick=toggleSearch()></i></div></nav><div class=flip-container><div class=flipper><section class=front><div class=dream-max-width><div class="ui relaxed grid dream-grid dream-grid-single"><aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside"><div class="ui segment toc"><nav id=TableOfContents><ul><li><ul><li><a href=#1-进入服务容器>1. 进入服务容器</a></li><li><a href=#2-获取进程id>2. 获取进程id</a></li><li><a href=#3-启动dlv远程debug服务>3. 启动dlv远程debug服务</a></li><li><a href=#4-在本地通过kubectl-port-forward端口转发debug服务到本地>4. 在本地通过kubectl port-forward端口转发debug服务到本地</a></li><li><a href=#5-配置vscode>5. 配置vscode</a></li><li><a href=#6-启动远程debug>6. 启动远程debug</a></li></ul></li></ul></nav></div><div class="ui segment actions"><button class="ui circular icon button save-as-image" title=保存为图片 onclick=savePostAsImg()>
 <i class="save icon"></i></button>
-<a href="https://twitter.com/intent/tweet?text=Kubernetes%e4%b8%adGo%e6%9c%8d%e5%8a%a1%e7%9a%84%e8%bf%9c%e7%a8%8bdebug&url=https%3a%2f%2flixianwa.github.io%2fposts%2fkubernetes%25E4%25B8%25ADgo%25E6%259C%258D%25E5%258A%25A1%25E7%259A%2584%25E8%25BF%259C%25E7%25A8%258Bdebug%2f" class="ui circular twitter icon button"><i class="twitter icon"></i></a><a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flixianwa.github.io%2fposts%2fkubernetes%25E4%25B8%25ADgo%25E6%259C%258D%25E5%258A%25A1%25E7%259A%2584%25E8%25BF%259C%25E7%25A8%258Bdebug%2f" class="ui circular facebook icon button"><i class="facebook icon"></i></a></div></aside><div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id=dream-save-post-as-img><div class="ui top attached segment cover"><div class=cover-img style=background-image:url(/img/cover.jpg)></div></div><section class="ui attached segment"><header><h1 class="ui large header">Kubernetes中Go服务的远程debug<div class="sub header">@
-Author Name
+<a href="https://twitter.com/intent/tweet?text=Kubernetes%e4%b8%adGo%e6%9c%8d%e5%8a%a1%e7%9a%84%e8%bf%9c%e7%a8%8bdebug&url=https%3a%2f%2flixianwa.github.io%2fposts%2fkubernetes%25E4%25B8%25ADgo%25E6%259C%258D%25E5%258A%25A1%25E7%259A%2584%25E8%25BF%259C%25E7%25A8%258Bdebug%2f" class="ui circular twitter icon button"><i class="twitter icon"></i></a><a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flixianwa.github.io%2fposts%2fkubernetes%25E4%25B8%25ADgo%25E6%259C%258D%25E5%258A%25A1%25E7%259A%2584%25E8%25BF%259C%25E7%25A8%258Bdebug%2f" class="ui circular facebook icon button"><i class="facebook icon"></i></a></div></aside><div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id=dream-save-post-as-img><section class="ui attached segment"><header><h1 class="ui large header">Kubernetes中Go服务的远程debug<div class="sub header">@
+归零
 |
 星期二，十二月 7 日，2021 年
 | 1 分钟阅读
@@ -39,11 +39,14 @@ Author Name
 <a class="ui label" href=/tags/debug/ title=debug>debug</a>
 <a class="ui label" href=/tags/dlv/ title=dlv>dlv</a>
 <a class="ui label" href=/tags/go/ title=Go>Go</a>
+<a class="ui label" href=/tags/grpc/ title=gRPC>gRPC</a>
+<a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
 <a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
 <a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
 <a class="ui label" href=/tags/java/ title=java>java</a>
 <a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
 <a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
+<a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
 <a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
 <a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
 <a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
