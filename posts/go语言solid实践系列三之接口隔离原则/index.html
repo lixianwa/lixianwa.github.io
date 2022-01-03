@@ -1,0 +1,338 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>Go语言SOLID实践系列三之接口隔离原则 | Lionel's Blog</title><link href=/favicon.ico rel="shortcut icon" type=image/x-icon><meta name=author content="归零"><meta name=description content="引用wikipedia上对接口隔离原则的解释：
+ 接口隔离原则（英语：interface-segregation principles， 缩写：ISP）指明客户（client）不应被迫使用对其而言无用的方法或功能。接口隔离原则（ISP）拆分非常庞大臃肿的接口成为更小的和更具体的接口，这样客户将会只需要知道他们感兴趣的方法。这种缩小的接口也被称为角色接口（role interfaces）。接口隔离原则（ISP）的目的是系统解开耦合，从而容易重构，更改和重新部署。接口隔离原则是在SOLID中五个面向对象设计（OOD）的原则之一，类似于在GRASP中的高内聚性。
+"><meta name=generator content="Hugo 0.81.0"><link rel=canonical href=https://lixianwa.github.io/posts/go%E8%AF%AD%E8%A8%80solid%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97%E4%B8%89%E4%B9%8B%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/><meta property="og:title" content="Go语言SOLID实践系列三之接口隔离原则"><meta property="og:description" content="引用wikipedia上对接口隔离原则的解释：
+
+接口隔离原则（英语：interface-segregation principles， 缩写：ISP）指明客户（client）不应被迫使用对其而言无用的方法或功能。接口隔离原则（ISP）拆分非常庞大臃肿的接口成为更小的和更具体的接口，这样客户将会只需要知道他们感兴趣的方法。这种缩小的接口也被称为角色接口（role interfaces）。接口隔离原则（ISP）的目的是系统解开耦合，从而容易重构，更改和重新部署。接口隔离原则是在SOLID中五个面向对象设计（OOD）的原则之一，类似于在GRASP中的高内聚性。
+"><meta property="og:type" content="article"><meta property="og:url" content="https://lixianwa.github.io/posts/go%E8%AF%AD%E8%A8%80solid%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97%E4%B8%89%E4%B9%8B%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-01-02T17:22:59+08:00"><meta property="article:modified_time" content="2022-01-02T17:22:59+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Go语言SOLID实践系列三之接口隔离原则"><meta name=twitter:description content="引用wikipedia上对接口隔离原则的解释：
+
+接口隔离原则（英语：interface-segregation principles， 缩写：ISP）指明客户（client）不应被迫使用对其而言无用的方法或功能。接口隔离原则（ISP）拆分非常庞大臃肿的接口成为更小的和更具体的接口，这样客户将会只需要知道他们感兴趣的方法。这种缩小的接口也被称为角色接口（role interfaces）。接口隔离原则（ISP）的目的是系统解开耦合，从而容易重构，更改和重新部署。接口隔离原则是在SOLID中五个面向对象设计（OOD）的原则之一，类似于在GRASP中的高内聚性。
+"><link rel=stylesheet href=/css/semantic.min.css><link rel=stylesheet href=/css/icomoon.css><link rel=stylesheet href=/css/OverlayScrollbars.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/site.css><style>a:not(.ui.button):hover{text-decoration:underline}a:not(.ui.button){color:#2e8b57!important}.inverted a:not(.ui.button),.inverted a:not(.ui.button):hover{color:#8fbc8f!important}body.default{background-color:#f7f7f7;background-image:url(/me/background.jpeg)}body.dark{background-color:#000}</style><link rel=stylesheet data-highlight href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css><link rel=stylesheet href=/css/custom.css></head><body class=default><nav class="ui secondary menu dream-menu"><div class=item><i class="large link bullseye icon dream-flip-toggle" title=翻转！></i></div><div class=item><i class="large link home icon" title=首页 onclick="window.location.href='https://lixianwa.github.io/'"></i></div><div class=item><i class="large link icon theme-switch" onclick=themeSwitch()></i></div><div class=item><i class="large link search icon" onclick=toggleSearch()></i></div></nav><div class=flip-container><div class=flipper><section class=front><div class=dream-max-width><div class="ui relaxed grid dream-grid dream-grid-single"><aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside"><div class="ui segment toc"><nav id=TableOfContents><ul><li><a href=#如何遵守接口隔离>如何遵守接口隔离</a></li><li><a href=#其他例子>其他例子</a></li><li><a href=#总结>总结</a></li></ul></nav></div><div class="ui segment actions"><button class="ui circular icon button save-as-image" title=保存为图片 onclick=savePostAsImg()>
+<i class="save icon"></i></button>
+<a href="https://twitter.com/intent/tweet?text=Go%e8%af%ad%e8%a8%80SOLID%e5%ae%9e%e8%b7%b5%e7%b3%bb%e5%88%97%e4%b8%89%e4%b9%8b%e6%8e%a5%e5%8f%a3%e9%9a%94%e7%a6%bb%e5%8e%9f%e5%88%99&url=https%3a%2f%2flixianwa.github.io%2fposts%2fgo%25E8%25AF%25AD%25E8%25A8%2580solid%25E5%25AE%259E%25E8%25B7%25B5%25E7%25B3%25BB%25E5%2588%2597%25E4%25B8%2589%25E4%25B9%258B%25E6%258E%25A5%25E5%258F%25A3%25E9%259A%2594%25E7%25A6%25BB%25E5%258E%259F%25E5%2588%2599%2f" class="ui circular twitter icon button"><i class="twitter icon"></i></a><a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flixianwa.github.io%2fposts%2fgo%25E8%25AF%25AD%25E8%25A8%2580solid%25E5%25AE%259E%25E8%25B7%25B5%25E7%25B3%25BB%25E5%2588%2597%25E4%25B8%2589%25E4%25B9%258B%25E6%258E%25A5%25E5%258F%25A3%25E9%259A%2594%25E7%25A6%25BB%25E5%258E%259F%25E5%2588%2599%2f" class="ui circular facebook icon button"><i class="facebook icon"></i></a></div></aside><div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id=dream-save-post-as-img><section class="ui attached segment"><header><h1 class="ui large header">Go语言SOLID实践系列三之接口隔离原则<div class="sub header">@
+归零
+|
+星期日，一月 2 日，2022 年
+| 4 分钟阅读
+| 更新于
+星期日，一月 2 日，2022 年</div></h1></header><article class=main><p>引用wikipedia上对<a href=https://zh.wikipedia.org/wiki/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99>接口隔离原则</a>的解释：</p><blockquote><p>接口隔离原则（英语：interface-segregation principles， 缩写：ISP）指明客户（client）不应被迫使用对其而言无用的方法或功能。接口隔离原则（ISP）拆分非常庞大臃肿的接口成为更小的和更具体的接口，这样客户将会只需要知道他们感兴趣的方法。这种缩小的接口也被称为角色接口（role interfaces）。接口隔离原则（ISP）的目的是系统解开耦合，从而容易重构，更改和重新部署。接口隔离原则是在SOLID中五个面向对象设计（OOD）的原则之一，类似于在GRASP中的高内聚性。</p></blockquote><p>保持小的接口，这样用户就不会最终依赖他们不需要的东西了。
+Bob大叔创造了这个原则，关于它的更多细节你可以在他的<a href=https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html>博客</a>上找到。这个原则清楚地定义了它的要求，可能是所有其他SOLID原则中最好的一个。
+我们不应该把它简单地理解为仅仅是一个方法接口，而应该更多地从接口所拥有的功能内聚的角度来看待它。让我们来看看下面的代码。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>User</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>)
+	<span style=color:#a6e22e>IsLoggedIn</span>() <span style=color:#66d9ef>bool</span>
+	<span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span>
+	<span style=color:#a6e22e>HasPremium</span>() <span style=color:#66d9ef>bool</span>
+	<span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>bool</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional methods
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Guest</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>cart</span> <span style=color:#a6e22e>ShoppingCart</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>g</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Guest</span>) <span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) {
+	<span style=color:#a6e22e>g</span>.<span style=color:#a6e22e>cart</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>product</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>g</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Guest</span>) <span style=color:#a6e22e>IsLoggedIn</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>g</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Guest</span>) <span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>New</span>(<span style=color:#e6db74>&#34;user is not logged in&#34;</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>g</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Guest</span>) <span style=color:#a6e22e>HasPremium</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>g</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Guest</span>) <span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NormalCustomer</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>cart</span>   <span style=color:#a6e22e>ShoppingCart</span>
+	<span style=color:#a6e22e>wallet</span> <span style=color:#a6e22e>Wallet</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) {
+	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>cart</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>product</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>IsLoggedIn</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>wallet</span>.<span style=color:#a6e22e>Deduct</span>(<span style=color:#a6e22e>money</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>HasPremium</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>PremiumCustomer</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>cart</span>     <span style=color:#a6e22e>ShoppingCart</span>
+	<span style=color:#a6e22e>wallet</span>   <span style=color:#a6e22e>Wallet</span>
+	<span style=color:#a6e22e>policies</span> []<span style=color:#a6e22e>DiscountPolicy</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) {
+	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>cart</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>product</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>IsLoggedIn</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>wallet</span>.<span style=color:#a6e22e>Deduct</span>(<span style=color:#a6e22e>money</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>HasPremium</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>p</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>policies</span> {
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>IsApplicableFor</span>(<span style=color:#a6e22e>c</span>, <span style=color:#a6e22e>product</span>) {
+			<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>
+		}
+	}
+	
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserService</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>u</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>UserService</span>) <span style=color:#a6e22e>Checkout</span>(<span style=color:#a6e22e>ctx</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Context</span>, <span style=color:#a6e22e>user</span> <span style=color:#a6e22e>User</span>, <span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>IsLoggedIn</span>() {
+		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>New</span>(<span style=color:#e6db74>&#34;user is not logged in&#34;</span>)	
+	}
+	
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some calculation
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>product</span>) {
+		<span style=color:#75715e>//
+</span><span style=color:#75715e></span>		<span style=color:#75715e>// apply discount
+</span><span style=color:#75715e></span>		<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	}
+	
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span>)
+}
+</code></pre></div><p>让我们假设我们想提供一个购物的应用程序。其中一种方法是定义一个接口<code>User</code>，就像我们在代码例子中做的那样。这个界面拥有一个用户可以拥有的许多功能。</p><p>在我们的平台上，一个用户可以在ShoppingCart上添加一个产品。他们可以购买它。他们可以获得某个产品的折扣。唯一的问题是，只有一个特定的用户可以做所有这些事情。</p><p>这个接口的实际实现是三个结构。第一个是Guest结构。它应该是一个没有登录到我们系统的用户，但至少他们可以向ShoppingCart添加产品。</p><p>第二个实现是NormalCustomer。它可以做任何Guest可以做的事情，另外还可以购买产品。</p><p>第三个实现是PremiumCustomer，它可以使用我们系统的所有功能。</p><p>现在，请看所有这三个结构。只有PremiumCustomer需要所有三个方法。也许我们可以把所有这些方法都分配给NormalCustomer，但可以肯定的是，Guest需要的方法不超过两个。</p><p>HasPremium和HasDiscountFor方法对Guest没有任何意义。如果该结构代表未登录的用户，我们为什么还要考虑实现折扣方法？</p><p>在这里，我们甚至可以调用带有“method is not implemented”的panic方法。在通常情况下，我们甚至不应该从Guest调用HasPremium方法。</p><p>我们所做的这一切是为了在UserService内部增加通用性，以便在同一个地方用相同的代码处理所有类型的用户。但是，正因为如此，我们需要实现一堆不用的方法。</p><p>所以，为了有更好的通用性，导致：</p><ul><li>许多struct有未使用的方法。</li><li>需要以某种方式标记方法，以便其他人不使用这些方法。</li><li>额外的单元测试代码。</li><li>奇怪的多态性。</li><li>&mldr;</li></ul><p>下面，我们遵循接口隔离原则重构下以上代码。</p><h2 id=如何遵守接口隔离>如何遵守接口隔离</h2><blockquote><p>围绕最小的内聚特性组构建接口。</p></blockquote><p>我们不需要在这里发明一些空间科学。唯一需要的是定义一个提供完整功能集的最小接口。让我们检查下面的代码：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>User</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>)
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional methods
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>LoggedInUser</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>User</span>
+	<span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional methods
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>PremiumUser</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>LoggedInUser</span>
+	<span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>bool</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional methods
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Guest</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>cart</span> <span style=color:#a6e22e>ShoppingCart</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>g</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Guest</span>) <span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) {
+	<span style=color:#a6e22e>g</span>.<span style=color:#a6e22e>cart</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>product</span>)
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NormalCustomer</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>cart</span>   <span style=color:#a6e22e>ShoppingCart</span>
+	<span style=color:#a6e22e>wallet</span> <span style=color:#a6e22e>Wallet</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) {
+	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>cart</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>product</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>NormalCustomer</span>) <span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>wallet</span>.<span style=color:#a6e22e>Deduct</span>(<span style=color:#a6e22e>money</span>)
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>PremiumCustomer</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>cart</span>     <span style=color:#a6e22e>ShoppingCart</span>
+	<span style=color:#a6e22e>wallet</span>   <span style=color:#a6e22e>Wallet</span>
+	<span style=color:#a6e22e>policies</span> []<span style=color:#a6e22e>DiscountPolicy</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some additional fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>AddToShoppingCart</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) {
+	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>cart</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>product</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>wallet</span>.<span style=color:#a6e22e>Deduct</span>(<span style=color:#a6e22e>money</span>)
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PremiumCustomer</span>) <span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>bool</span> {
+	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>p</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>policies</span> {
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>IsApplicableFor</span>(<span style=color:#a6e22e>c</span>, <span style=color:#a6e22e>product</span>) {
+			<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>
+		}
+	}
+
+	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserService</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some fields
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>u</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>UserService</span>) <span style=color:#a6e22e>Checkout</span>(<span style=color:#a6e22e>ctx</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Context</span>, <span style=color:#a6e22e>user</span> <span style=color:#a6e22e>User</span>, <span style=color:#a6e22e>product</span> <span style=color:#a6e22e>Product</span>) <span style=color:#66d9ef>error</span> {
+	<span style=color:#a6e22e>loggedIn</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>user</span>.(<span style=color:#a6e22e>LoggedInUser</span>)
+	<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>ok</span> {
+		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>New</span>(<span style=color:#e6db74>&#34;user is not logged in&#34;</span>)
+	}
+
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>money</span> <span style=color:#a6e22e>Money</span>
+	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#75715e>// some calculation
+</span><span style=color:#75715e></span>	<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>premium</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>loggedIn</span>.(<span style=color:#a6e22e>PremiumUser</span>); <span style=color:#a6e22e>ok</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>premium</span>.<span style=color:#a6e22e>HasDiscountFor</span>(<span style=color:#a6e22e>product</span>)  {
+		<span style=color:#75715e>//
+</span><span style=color:#75715e></span>		<span style=color:#75715e>// apply discount
+</span><span style=color:#75715e></span>		<span style=color:#75715e>//
+</span><span style=color:#75715e></span>	}
+
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>loggedIn</span>.<span style=color:#a6e22e>Pay</span>(<span style=color:#a6e22e>money</span>)
+}
+</code></pre></div><p>现在，我们有三个接口，而不是一个。<code>PremiumUser</code>嵌入<code>LoggedInUser</code>，后者嵌入<code>User</code>。此外，它们中的每一个都引入了一种方法。</p><p><code>User</code>现在仅代表尚未在我们的平台上进行身份验证的客户。对于此类类型，我们知道他们可以使用购物车的功能。
+新的<code>LoggedInUser</code>接口代表所有经过身份验证的客户，而<code>PremiumUser</code>接口代表所有具有付费高级帐户的经过身份验证的客户。</p><p>请注意这一点：我们确实添加了另外两个接口，但我们删除了两个方法：IsLoggedIn和HasPremium。这些方法不是我们接口签名的一部分。但是，没有它们，我们怎么能工作呢？</p><p>正如您在UserService中看到的那样，我们没有使用bool返回值方法，而是阐明了用户接口的子类型。如果<code>User</code>实现了 <code>LoggedInUser</code>，我们就知道该客户是经过身份验证的。</p><p>此外，如果用户实现<code>PremiumUser</code>，我们知道我们谈论的是具有高级帐户的客户。因此，通过转换，我们已经检查了一些业务规则。</p><p>除了这两种方法之外，之前的所有struct现在都更加轻量级。他们每个人都有五种方法，其中许多方法根本没有使用，现在他们只有他们真正需要的方法。</p><h2 id=其他例子>其他例子</h2><p>尽管提供小而灵活的接口总是好的，但我们应该考虑到它们的目的来介绍它们。添加小接口以使它们更简单，但仍然在同一结构中将它们一起实现并没有太多意义。</p><p>让我们检查下面的例子：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#75715e>// too much splitting
+</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserWithFirstName</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>FirstName</span>() <span style=color:#66d9ef>string</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserWithLastName</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>LastName</span>() <span style=color:#66d9ef>string</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserWithFullName</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>FullName</span>() <span style=color:#66d9ef>string</span>
+}
+
+<span style=color:#75715e>// optimal splitting
+</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserWithName</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>FirstName</span>() <span style=color:#66d9ef>string</span>
+  	<span style=color:#a6e22e>LastName</span>() <span style=color:#66d9ef>string</span>
+  	<span style=color:#a6e22e>FullName</span>() <span style=color:#66d9ef>string</span>
+}
+</code></pre></div><p>当我们过多地拆分接口时，就是这种情况。是的，我们可以为每个方法提供一个接口，现在将它们定义为角色接口。这样的单方法接口有时很好，但在这里不是。</p><p>显然，如果客户在我们的平台上注册，他们需要提供他们的名字和姓氏以用于计费目的。因此，我们的用户将需要"名字"和"姓氏"方法，当然，还有"全名"。</p><p>在这种情况下，将这三种方法拆分为三个接口没有意义，因为这三种方法总是在一起。因此，这不是单方法接口的正确示例。</p><p>但是，一个很好的例子是:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#f92672>package</span> <span style=color:#a6e22e>io</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Reader</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>Read</span>(<span style=color:#a6e22e>p</span> []<span style=color:#66d9ef>byte</span>) (<span style=color:#a6e22e>n</span> <span style=color:#66d9ef>int</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>)
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Writer</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>Write</span>(<span style=color:#a6e22e>p</span> []<span style=color:#66d9ef>byte</span>) (<span style=color:#a6e22e>n</span> <span style=color:#66d9ef>int</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>)
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Closer</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>Close</span>() <span style=color:#66d9ef>error</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Seeker</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>Seek</span>(<span style=color:#a6e22e>offset</span> <span style=color:#66d9ef>int64</span>, <span style=color:#a6e22e>whence</span> <span style=color:#66d9ef>int</span>) (<span style=color:#66d9ef>int64</span>, <span style=color:#66d9ef>error</span>)
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>WriteCloser</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>Writer</span>
+	<span style=color:#a6e22e>Closer</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ReadWriteCloser</span> <span style=color:#66d9ef>interface</span> {
+	<span style=color:#a6e22e>Reader</span>
+	<span style=color:#a6e22e>Writer</span>
+	<span style=color:#a6e22e>Closer</span>
+}
+
+</code></pre></div><p>Go中的完美例子是IO包。它提供了许多用于处理 I/O 操作的代码和接口，并且可能所有 Go 开发人员都至少使用过一次此包。</p><p>它提供了<code>Reader</code>, <code>Writer</code>, <code>Closer</code>, <code>Seeker</code>接口。它们中的每一个只定义一个方法： <code>Read</code>, <code>Write</code>, <code>Close</code> 和 <code>Seek</code>。我们使用这些方法来读取，写入，从特定源搜索和搜索一段字节，并关闭该源。</p><p>为了使此类源具有更大的灵活性，所有功能都放置在其接口中。后来，他们一起构建更复杂的接口，如<code>WriteCloser</code>，<code>ReadWriteCloser</code>等。</p><h2 id=总结>总结</h2><p>接口隔离原则是第四个<code>SOLID</code>原则，它代表单词<code>SOLID</code>中的字母<code>I</code>。它教会我们尽可能小地定义接口。</p><p>每当我们想要涵盖更多类型时，我们应该使用不同的接口来保护它们。我们应该避免将接口做得太小，而是提供完整的功能。</p><p>参考：</p><p>1、https://levelup.gitconnected.com/practical-solid-in-golang-interface-segregation-principle-f272c2a9a270</p><p>2、https://zh.wikipedia.org/wiki/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99</p></article></section><article class="ui segment utterances-comments" data-html2canvas-ignore><script src=https://utteranc.es/client.js repo=lixianwa/comments-for-myblog issue-term=og:title theme=github-light crossorigin=anonymous async></script></article></div></div><footer class="ui basic center aligned segment" style=background-color:initial><p>© 2014 - 2022 Lionel's Blog</p><p>Powered by <a href=https://gohugo.io/ target=_blank>Hugo</a> with theme <a href=https://github.com/g1eny0ung/hugo-theme-dream target=_blank>Dream</a>.</p></footer></div></section><section class=back><div class=dream-max-width><header class="ui basic very padded segment dream-header"><div class="ui small circular image"><img src=/me/avatar.jpeg alt=avatar></div><div class=content><h1 class="ui medium header">归零的小窝<div class="sub header">收集、总结、分享</div></h1><article class="ui horizontal list"><a class=item href=/posts><i class="archive icon" title=归档></i></a><a class=item href=/categories><i class="th list icon" title=所有分类></i></a><a class=item href=/tags><i class="tags icon" title=所有标签></i></a></article><article class=dream-tags><a class="ui label" href=/tags/archlinux/ title=archlinux>archlinux</a>
+<a class="ui label" href=/tags/arthas/ title=arthas>arthas</a>
+<a class="ui label" href=/tags/bug/ title=bug>bug</a>
+<a class="ui label" href=/tags/c%E8%AF%AD%E8%A8%80/ title=c语言>c语言</a>
+<a class="ui label" href=/tags/dapr/ title=Dapr>Dapr</a>
+<a class="ui label" href=/tags/debug/ title=debug>debug</a>
+<a class="ui label" href=/tags/dlv/ title=dlv>dlv</a>
+<a class="ui label" href=/tags/go/ title=Go>Go</a>
+<a class="ui label" href=/tags/grpc/ title=gRPC>gRPC</a>
+<a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
+<a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
+<a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
+<a class="ui label" href=/tags/java/ title=java>java</a>
+<a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
+<a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
+<a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
+<a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
+<a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
+<a class="ui label" href=/tags/pandas/ title=Pandas>Pandas</a>
+<a class="ui label" href=/tags/reactivecocoa/ title=ReactiveCocoa>ReactiveCocoa</a>
+<a class="ui label" href=/tags/redis/ title=redis>redis</a>
+<a class="ui label" href=/tags/restful-api/ title="RESTFul API">RESTFul API</a>
+<a class="ui label" href=/tags/solid/ title=SOLID>SOLID</a>
+<a class="ui label" href=/tags/swift/ title=Swift>Swift</a>
+<a class="ui label" href=/tags/v2ray/ title=v2ray>v2ray</a>
+<a class="ui label" href=/tags/xcode/ title=Xcode>Xcode</a>
+<a class="ui label" href=/tags/%E5%86%85%E5%AD%98/ title=内存>内存</a>
+<a class="ui label" href=/tags/%E5%8D%9A%E5%AE%A2/ title=博客>博客</a>
+<a class="ui label" href=/tags/%E5%B7%A5%E5%85%B7/ title=工具>工具</a>
+<a class="ui label" href=/tags/%E5%BC%80%E6%BA%90/ title=开源>开源</a>
+<a class="ui label" href=/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/ title=微服务>微服务</a>
+<a class="ui label" href=/tags/%E6%8F%90%E9%97%AE/ title=提问>提问</a>
+<a class="ui label" href=/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/ title=数据分析>数据分析</a>
+<a class="ui label" href=/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/ title=数据库>数据库</a>
+<a class="ui label" href=/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/ title=最佳实践>最佳实践</a>
+<a class="ui label" href=/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ title=“机器学习”>“机器学习”</a>
+<a class="ui label" href=/tags/%E6%AD%BB%E6%9C%BA/ title=死机>死机</a>
+<a class="ui label" href=/tags/%E6%B3%9B%E5%9E%8B/ title=泛型>泛型</a>
+<a class="ui label" href=/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/ title=“深度学习”>“深度学习”</a>
+<a class="ui label" href=/tags/%E6%B8%B8%E8%AE%B0/ title=游记>游记</a>
+<a class="ui label" href=/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/ title=科学上网>科学上网</a>
+<a class="ui label" href=/tags/%E7%AE%97%E5%AD%90/ title=算子>算子</a>
+<a class="ui label" href=/tags/%E7%BF%BB%E8%AF%91/ title=翻译>翻译</a>
+<a class="ui label" href=/tags/%E8%87%AA%E8%A1%8C%E8%BD%A6/ title=自行车>自行车</a>
+<a class="ui label" href=/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ title=读书笔记>读书笔记</a></article></div></header><div class="ui relaxed grid dream-grid dream-back"><div class="sixteen wide mobile eight wide tablet four wide computer column dream-column"><article class="ui segment markdown-body"><div class="ui medium header">关于</div><p>要么忙着生活，要么赶着去死!</p></article></div><div class="sixteen wide mobile eight wide tablet four wide computer column dream-column"><article class="ui segment"><div class="ui medium header">社交链接</div><nav class="ui secondary menu dream-menu dream-socials"><div class=item><a href=/index.xml><i class="large rss square icon" title=RSS></i></a></div><div class=item><a href=mailto:lixianwa@gmail.com><i class="large mail icon" title=Email></i></a></div></nav></article></div><div class="sixteen wide mobile eight wide tablet four wide computer column dream-column"><article class="ui segment"><a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/><img alt=知识共享许可协议 style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a><br>本作品采用<a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/>知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</article></div></div></div></section></div></div><script>window.defaultDark=null,window.backgroundDark="black",window.backgroundImageDark=null,window.darkNav=null,window.hasTwitterEmbed=null,window.hasTwitterEmbed&&(window.twttr=function(c,d,e){var b,f=c.getElementsByTagName(d)[0],a=window.twttr||{};return c.getElementById(e)?a:(b=c.createElement(d),b.id=e,b.src='https://platform.twitter.com/widgets.js',f.parentNode.insertBefore(b,f),a._e=[],a.ready=function(b){a._e.push(b)},a)}(document,'script','twitter-wjs'))</script><script src=/js/jquery.min.js></script><script src=/js/semantic.min.js></script><script src=/js/jquery.overlayScrollbars.min.js></script><script src=/js/header.js></script><script src=/js/main.js></script><script src=/js/theme.js></script><script src=/js/html2canvas.min.js></script><script src=/js/post.js></script><script src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js></script><script src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js></script><script>hljs.initHighlightingOnLoad(),setHighlightTheme();function setHighlightTheme(){var a=localStore.getItem('hugo-theme-dream-is-dark'),b,c,d;a=a?a:window.defaultDark?'y':a,b="gruvbox-light",c="gruvbox-dark",d=a==='y'?c:b,$('link[data-highlight]').attr('href','https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/'+d+'.min.css'),$('pre').css('background',a==='y'?'#333':'')}</script><div class="ui inverted segment" id=dream-search><div class="ui search"><div class="ui transparent input"><input class=prompt type=text placeholder=搜索></div><div class=results></div></div></div><script>$(document).ready(function(){$.getJSON('https://lixianwa.github.io//index.json',function(a){$('.ui.search').search({source:a,searchFields:['title'],showNoResults:!0})})})</script><script src=/js/search.js></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','172168556','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
