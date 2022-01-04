@@ -1,0 +1,122 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>如何使用Kubernetes临时容器进行故障排查 | Lionel's Blog</title><link href=/favicon.ico rel="shortcut icon" type=image/x-icon><meta name=author content="归零"><meta name=description content="容器及其周围的生态系统改变了工程师部署、维护和排查工作负载故障的方式。但是，在 Kubernetes 集群上调试应用程序有时可能会很困难，因为你可能在容器中找不到所需的调试工具。许多工程师使用基于精简、发行版构建无发行版的基础镜像，其中甚至没有包管理器或shell。甚至一些团队使用 scratch 作为基础镜像，并且只添加应用程序运行所需的文件。这种常见做法的一些原因是：
+ 具有较小的攻击区域。 为了获得更快的扫描性能。 减小了镜像大小。 为了有更快的构建和更短CD/CI周期。 减少依赖关系。 "><meta name=generator content="Hugo 0.81.0"><link rel=canonical href=https://lixianwa.github.io/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8kubernetes%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/><meta property="og:title" content="如何使用Kubernetes临时容器进行故障排查"><meta property="og:description" content="容器及其周围的生态系统改变了工程师部署、维护和排查工作负载故障的方式。但是，在 Kubernetes 集群上调试应用程序有时可能会很困难，因为你可能在容器中找不到所需的调试工具。许多工程师使用基于精简、发行版构建无发行版的基础镜像，其中甚至没有包管理器或shell。甚至一些团队使用 scratch 作为基础镜像，并且只添加应用程序运行所需的文件。这种常见做法的一些原因是：
+
+具有较小的攻击区域。
+为了获得更快的扫描性能。
+减小了镜像大小。
+为了有更快的构建和更短CD/CI周期。
+减少依赖关系。
+"><meta property="og:type" content="article"><meta property="og:url" content="https://lixianwa.github.io/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8kubernetes%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-01-04T09:41:06+08:00"><meta property="article:modified_time" content="2022-01-04T09:41:06+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="如何使用Kubernetes临时容器进行故障排查"><meta name=twitter:description content="容器及其周围的生态系统改变了工程师部署、维护和排查工作负载故障的方式。但是，在 Kubernetes 集群上调试应用程序有时可能会很困难，因为你可能在容器中找不到所需的调试工具。许多工程师使用基于精简、发行版构建无发行版的基础镜像，其中甚至没有包管理器或shell。甚至一些团队使用 scratch 作为基础镜像，并且只添加应用程序运行所需的文件。这种常见做法的一些原因是：
+
+具有较小的攻击区域。
+为了获得更快的扫描性能。
+减小了镜像大小。
+为了有更快的构建和更短CD/CI周期。
+减少依赖关系。
+"><link rel=stylesheet href=/css/semantic.min.css><link rel=stylesheet href=/css/icomoon.css><link rel=stylesheet href=/css/OverlayScrollbars.min.css><link rel=stylesheet href=/css/github-markdown.css><link rel=stylesheet href=/css/site.css><style>a:not(.ui.button):hover{text-decoration:underline}a:not(.ui.button){color:#2e8b57!important}.inverted a:not(.ui.button),.inverted a:not(.ui.button):hover{color:#8fbc8f!important}body.default{background-color:#f7f7f7;background-image:url(/me/background.jpeg)}body.dark{background-color:#000}</style><link rel=stylesheet data-highlight href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css><link rel=stylesheet href=/css/custom.css></head><body class=default><nav class="ui secondary menu dream-menu"><div class=item><i class="large link bullseye icon dream-flip-toggle" title=翻转！></i></div><div class=item><i class="large link home icon" title=首页 onclick="window.location.href='https://lixianwa.github.io/'"></i></div><div class=item><i class="large link icon theme-switch" onclick=themeSwitch()></i></div><div class=item><i class="large link search icon" onclick=toggleSearch()></i></div></nav><div class=flip-container><div class=flipper><section class=front><div class=dream-max-width><div class="ui relaxed grid dream-grid dream-grid-single"><aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside"><div class="ui segment toc"><nav id=TableOfContents><ul><li><a href=#临时容器的配置>临时容器的配置</a></li><li><a href=#启动临时容器>启动临时容器</a></li><li><a href=#使用临时容器>使用临时容器</a></li><li><a href=#与临时容器共享进程命名空间>与临时容器共享进程命名空间</a></li><li><a href=#结论>结论</a></li></ul></nav></div><div class="ui segment actions"><button class="ui circular icon button save-as-image" title=保存为图片 onclick=savePostAsImg()>
+<i class="save icon"></i></button>
+<a href="https://twitter.com/intent/tweet?text=%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8Kubernetes%e4%b8%b4%e6%97%b6%e5%ae%b9%e5%99%a8%e8%bf%9b%e8%a1%8c%e6%95%85%e9%9a%9c%e6%8e%92%e6%9f%a5&url=https%3a%2f%2flixianwa.github.io%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E4%25BD%25BF%25E7%2594%25A8kubernetes%25E4%25B8%25B4%25E6%2597%25B6%25E5%25AE%25B9%25E5%2599%25A8%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%2585%25E9%259A%259C%25E6%258E%2592%25E6%259F%25A5%2f" class="ui circular twitter icon button"><i class="twitter icon"></i></a><a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flixianwa.github.io%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E4%25BD%25BF%25E7%2594%25A8kubernetes%25E4%25B8%25B4%25E6%2597%25B6%25E5%25AE%25B9%25E5%2599%25A8%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%2585%25E9%259A%259C%25E6%258E%2592%25E6%259F%25A5%2f" class="ui circular facebook icon button"><i class="facebook icon"></i></a></div></aside><div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id=dream-save-post-as-img><section class="ui attached segment"><header><h1 class="ui large header">如何使用Kubernetes临时容器进行故障排查<div class="sub header">@
+归零
+|
+星期二，一月 4 日，2022 年
+| 2 分钟阅读
+| 更新于
+星期二，一月 4 日，2022 年</div></h1></header><article class=main><p>容器及其周围的生态系统改变了工程师部署、维护和排查工作负载故障的方式。但是，在 Kubernetes 集群上调试应用程序有时可能会很困难，因为你可能在容器中找不到所需的调试工具。许多工程师使用基于精简、发行版构建无发行版的基础镜像，其中甚至没有包管理器或shell。甚至一些团队使用 scratch 作为基础镜像，并且只添加应用程序运行所需的文件。这种常见做法的一些原因是：</p><ul><li>具有较小的攻击区域。</li><li>为了获得更快的扫描性能。</li><li>减小了镜像大小。</li><li>为了有更快的构建和更短CD/CI周期。</li><li>减少依赖关系。</li></ul><p>这些精简的基础镜像不包括用于对应用程序或其依赖项进行故障排查的工具。这是 Kubernetes 临时容器功能最大用途。临时容器允许创建包含可能需要的所有调试工具的容器镜像。一旦需要调试，就可以将临时容器部署到所选的正在运行的 Pod 中。</p><p>我们不能将容器添加到已部署的容器;您需要更新spec，并重新创建资源。但是，可以将临时容器添加到现有 Pod 中，以便对线上问题进行故障排查。</p><p>本文介绍如何使用临时容器进行Kubernetes上工作负载的问题排查。</p><h2 id=临时容器的配置>临时容器的配置</h2><p>临时容器与常规容器共享相同的spec。但是，某些字段被禁用，并且某些行为被更改。下面列出了一些重大变化;检查临时容器规范以获取完整列表。</p><ul><li>它们不会重新启动。</li><li>不允许定义资源。</li><li>不允许使用端口。</li><li>不允许使用启动、活动和就绪探测。</li></ul><h2 id=启动临时容器>启动临时容器</h2><p>首先，检查是否启用了临时容器功能。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Bash data-lang=Bash>kubectl debug -it &lt;POD_NAME&gt; --image<span style=color:#f92672>=</span>busybox
+</code></pre></div><p>如果未启用该功能，您将看到类似下面的消息。</p><pre><code>Defaulting debug container name to debugger-wg54p.
+error: ephemeral containers are disabled for this cluster (error from server: &quot;the server could not find the requested resource&quot;).
+</code></pre><p>将 EphemeralContainers=true 附加到 kubelet、kube-apiserver、kube-controller-manager、kube-proxy、kube-scheduler 参数中的<code>--feature-gates=</code>后, 例如：</p><pre><code>...
+--feature-gates=RemoveSelfLink=false,EphemeralContainers=true
+...
+</code></pre><h2 id=使用临时容器>使用临时容器</h2><p>现在，集群支持临时容器功能，让我们来试试吧。要创建临时容器，使用 kubectl 命令行工具的 debug 子命令。
+首先，创建一个Deployment</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Bash data-lang=Bash>kubectl create deployment nginx-deployment --image<span style=color:#f92672>=</span>nginx
+</code></pre></div><p>获取需要debug的Pod的名称</p><pre><code>$ kubectl get pods
+
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-66b6c48dd5-frsv9   1/1     Running   6          62d
+</code></pre><p>以下命令将在 pod nginx-deployment-66b6c48dd5-frsv9 中创建一个新的临时容器。临时容器的镜像是busybox。-i 和 -t 参数允许我们附加到新创建的容器。</p><pre><code>$ kubectl debug -it pods/nginx-deployment-66b6c48dd5-frsv9 --image=busybox
+</code></pre><p>现在我们可以debug了</p><pre><code>/ # ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: seq=0 ttl=112 time=9.797 ms
+64 bytes from 8.8.8.8: seq=1 ttl=112 time=9.809 ms
+^C
+/ # nc --help
+BusyBox v1.34.1 (2021-11-11 01:55:05 UTC) multi-call binary.
+
+Usage: nc [OPTIONS] HOST PORT  - connect
+nc [OPTIONS] -l -p PORT [HOST] [PORT]  - listen
+...
+</code></pre><p>当使用 kubectl describe pod &lt;POD_NAME> 命令时，可以看到一个新字段 &ldquo;Ephemeral Containers&rdquo;，此部分包含临时容器及其属性。</p><pre><code>$ kubectl describe pods &lt;POD_NAME&gt;
+
+...
+...
+Ephemeral Containers:
+  debugger-thwrn:
+    Container ID:   containerd://eec23aa9ee63d96b82970bb947b29cbacc30685bbc3418ba840dee109f871bf0
+    Image:          busybox
+    Image ID:       docker.io/library/busybox@sha256:e7157b6d7ebbe2cce5eaa8cfe8aa4fa82d173999b9f90a9ec42e57323546c353
+    Port:           &lt;none&gt;
+    Host Port:      &lt;none&gt;
+
+</code></pre><h2 id=与临时容器共享进程命名空间>与临时容器共享进程命名空间</h2><p>进程命名空间共享一直是一个很好的故障排查选项，此功能可用于临时容器。进程命名空间共享不能应用于现有容器，因此必须创建目标容器的副本。
+&ndash;share-processesflag 在与 &ndash;copy-to 一起使用时，可实现进程命名空间共享。这些标志将现有的 Pod spec定义复制到新定义中，并在spec中启用了进程命名空间共享。</p><pre><code>$ kubectl debug -it &lt;POD_NAME&gt; --image=busybox --share-processes --copy-to=debug-pod
+</code></pre><p>运行 ps 命令以查看正在运行的进程。
+正如您所期望的那样，您可以从 busybox 容器中看到 /pause，从 nginx-deployment 容器中看到 nginx 进程。</p><pre><code># ps aux
+
+PID   USER     TIME  COMMAND
+    1 root      0:00 /pause
+    6 root      0:00 nginx: master process nginx -g daemon off;
+   11 101       0:00 nginx: worker process
+   12 root      0:00 sh
+   17 root      0:00 ps aux
+</code></pre><p>使用进程命名空间，共享容器文件系统也是可访问的，这对于调试非常有用。
+您可以使用 /proc//root 链接访问容器。从上面的输出中，我们知道nginx的PID为6。</p><pre><code># ls /proc/6/root/etc/nginx
+
+conf.d koi-utf mime.types nginx.conf uwsgi_params fastcgi_params koi-win modules scgi_params win-utf
+
+</code></pre><p>在这里，我们可以看到目标容器上的Nginx目录结构和配置文件。</p><h2 id=结论>结论</h2><p>临时容器功能无疑给调试排查问题带来了很大便利，而进程命名空间共享允许高级调试功能。如果你也使用在 Kubernetes 集群中运行的应用程序，那么值得花时间尝试这些功能。不难想象，一些团队甚至使用这些工具自动执行工作流，例如在readiness probes探针失败时自动修复其他容器。</p><p>原文链接：https://loft-sh.medium.com/using-kubernetes-ephemeral-containers-for-troubleshooting-f50439fdaf12</p></article></section><article class="ui segment utterances-comments" data-html2canvas-ignore><script src=https://utteranc.es/client.js repo=lixianwa/comments-for-myblog issue-term=og:title theme=github-light crossorigin=anonymous async></script></article></div></div><footer class="ui basic center aligned segment" style=background-color:initial><p>© 2014 - 2022 Lionel's Blog</p><p>Powered by <a href=https://gohugo.io/ target=_blank>Hugo</a> with theme <a href=https://github.com/g1eny0ung/hugo-theme-dream target=_blank>Dream</a>.</p></footer></div></section><section class=back><div class=dream-max-width><header class="ui basic very padded segment dream-header"><div class="ui small circular image"><img src=/me/avatar.jpeg alt=avatar></div><div class=content><h1 class="ui medium header">归零的小窝<div class="sub header">收集、总结、分享</div></h1><article class="ui horizontal list"><a class=item href=/posts><i class="archive icon" title=归档></i></a><a class=item href=/categories><i class="th list icon" title=所有分类></i></a><a class=item href=/tags><i class="tags icon" title=所有标签></i></a></article><article class=dream-tags><a class="ui label" href=/tags/archlinux/ title=archlinux>archlinux</a>
+<a class="ui label" href=/tags/arthas/ title=arthas>arthas</a>
+<a class="ui label" href=/tags/bug/ title=bug>bug</a>
+<a class="ui label" href=/tags/c%E8%AF%AD%E8%A8%80/ title=c语言>c语言</a>
+<a class="ui label" href=/tags/dapr/ title=Dapr>Dapr</a>
+<a class="ui label" href=/tags/debug/ title=debug>debug</a>
+<a class="ui label" href=/tags/dlv/ title=dlv>dlv</a>
+<a class="ui label" href=/tags/go/ title=Go>Go</a>
+<a class="ui label" href=/tags/grpc/ title=gRPC>gRPC</a>
+<a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
+<a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
+<a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
+<a class="ui label" href=/tags/java/ title=java>java</a>
+<a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
+<a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
+<a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
+<a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
+<a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
+<a class="ui label" href=/tags/pandas/ title=Pandas>Pandas</a>
+<a class="ui label" href=/tags/reactivecocoa/ title=ReactiveCocoa>ReactiveCocoa</a>
+<a class="ui label" href=/tags/redis/ title=redis>redis</a>
+<a class="ui label" href=/tags/restful-api/ title="RESTFul API">RESTFul API</a>
+<a class="ui label" href=/tags/solid/ title=SOLID>SOLID</a>
+<a class="ui label" href=/tags/swift/ title=Swift>Swift</a>
+<a class="ui label" href=/tags/v2ray/ title=v2ray>v2ray</a>
+<a class="ui label" href=/tags/xcode/ title=Xcode>Xcode</a>
+<a class="ui label" href=/tags/%E5%86%85%E5%AD%98/ title=内存>内存</a>
+<a class="ui label" href=/tags/%E5%8D%9A%E5%AE%A2/ title=博客>博客</a>
+<a class="ui label" href=/tags/%E5%B7%A5%E5%85%B7/ title=工具>工具</a>
+<a class="ui label" href=/tags/%E5%BC%80%E6%BA%90/ title=开源>开源</a>
+<a class="ui label" href=/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/ title=微服务>微服务</a>
+<a class="ui label" href=/tags/%E6%8F%90%E9%97%AE/ title=提问>提问</a>
+<a class="ui label" href=/tags/%E6%95%99%E7%A8%8B/ title=教程>教程</a>
+<a class="ui label" href=/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/ title=数据分析>数据分析</a>
+<a class="ui label" href=/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/ title=数据库>数据库</a>
+<a class="ui label" href=/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/ title=最佳实践>最佳实践</a>
+<a class="ui label" href=/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ title=“机器学习”>“机器学习”</a>
+<a class="ui label" href=/tags/%E6%AD%BB%E6%9C%BA/ title=死机>死机</a>
+<a class="ui label" href=/tags/%E6%B3%9B%E5%9E%8B/ title=泛型>泛型</a>
+<a class="ui label" href=/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/ title=“深度学习”>“深度学习”</a>
+<a class="ui label" href=/tags/%E6%B8%B8%E8%AE%B0/ title=游记>游记</a>
+<a class="ui label" href=/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/ title=科学上网>科学上网</a>
+<a class="ui label" href=/tags/%E7%AE%97%E5%AD%90/ title=算子>算子</a>
+<a class="ui label" href=/tags/%E7%BF%BB%E8%AF%91/ title=翻译>翻译</a>
+<a class="ui label" href=/tags/%E8%87%AA%E8%A1%8C%E8%BD%A6/ title=自行车>自行车</a>
+<a class="ui label" href=/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ title=读书笔记>读书笔记</a></article></div></header><div class="ui relaxed grid dream-grid dream-back"><div class="sixteen wide mobile eight wide tablet four wide computer column dream-column"><article class="ui segment markdown-body"><div class="ui medium header">关于</div><p>要么忙着生活，要么赶着去死!</p></article></div><div class="sixteen wide mobile eight wide tablet four wide computer column dream-column"><article class="ui segment"><div class="ui medium header">社交链接</div><nav class="ui secondary menu dream-menu dream-socials"><div class=item><a href=/index.xml><i class="large rss square icon" title=RSS></i></a></div><div class=item><a href=mailto:lixianwa@gmail.com><i class="large mail icon" title=Email></i></a></div></nav></article></div><div class="sixteen wide mobile eight wide tablet four wide computer column dream-column"><article class="ui segment"><a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/><img alt=知识共享许可协议 style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a><br>本作品采用<a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/>知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</article></div></div></div></section></div></div><script>window.defaultDark=null,window.backgroundDark="black",window.backgroundImageDark=null,window.darkNav=null,window.hasTwitterEmbed=null,window.hasTwitterEmbed&&(window.twttr=function(c,d,e){var b,f=c.getElementsByTagName(d)[0],a=window.twttr||{};return c.getElementById(e)?a:(b=c.createElement(d),b.id=e,b.src='https://platform.twitter.com/widgets.js',f.parentNode.insertBefore(b,f),a._e=[],a.ready=function(b){a._e.push(b)},a)}(document,'script','twitter-wjs'))</script><script src=/js/jquery.min.js></script><script src=/js/semantic.min.js></script><script src=/js/jquery.overlayScrollbars.min.js></script><script src=/js/header.js></script><script src=/js/main.js></script><script src=/js/theme.js></script><script src=/js/html2canvas.min.js></script><script src=/js/post.js></script><script src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js></script><script src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js></script><script>hljs.initHighlightingOnLoad(),setHighlightTheme();function setHighlightTheme(){var a=localStore.getItem('hugo-theme-dream-is-dark'),b,c,d;a=a?a:window.defaultDark?'y':a,b="gruvbox-light",c="gruvbox-dark",d=a==='y'?c:b,$('link[data-highlight]').attr('href','https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/'+d+'.min.css'),$('pre').css('background',a==='y'?'#333':'')}</script><div class="ui inverted segment" id=dream-search><div class="ui search"><div class="ui transparent input"><input class=prompt type=text placeholder=搜索></div><div class=results></div></div></div><script>$(document).ready(function(){$.getJSON('https://lixianwa.github.io//index.json',function(a){$('.ui.search').search({source:a,searchFields:['title'],showNoResults:!0})})})</script><script src=/js/search.js></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','172168556','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
