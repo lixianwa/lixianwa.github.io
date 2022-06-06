@@ -12,10 +12,12 @@
 <a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
 <a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
 <a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
+<a class="ui label" href=/tags/istio/ title=Istio>Istio</a>
 <a class="ui label" href=/tags/java/ title=java>java</a>
 <a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
 <a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
 <a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="ui label" href=/tags/letsencrypt/ title=Letsencrypt>Letsencrypt</a>
 <a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
 <a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
 <a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
@@ -24,6 +26,7 @@
 <a class="ui label" href=/tags/redis/ title=redis>redis</a>
 <a class="ui label" href=/tags/restful-api/ title="RESTFul API">RESTFul API</a>
 <a class="ui label" href=/tags/solid/ title=SOLID>SOLID</a>
+<a class="ui label" href=/tags/ssl%E8%AF%81%E4%B9%A6/ title=SSL证书>SSL证书</a>
 <a class="ui label" href=/tags/swift/ title=Swift>Swift</a>
 <a class="ui label" href=/tags/v2ray/ title=v2ray>v2ray</a>
 <a class="ui label" href=/tags/xcode/ title=Xcode>Xcode</a>
@@ -46,7 +49,7 @@
 <a class="ui label" href=/tags/%E7%AE%97%E5%AD%90/ title=算子>算子</a>
 <a class="ui label" href=/tags/%E7%BF%BB%E8%AF%91/ title=翻译>翻译</a>
 <a class="ui label" href=/tags/%E8%87%AA%E8%A1%8C%E8%BD%A6/ title=自行车>自行车</a>
-<a class="ui label" href=/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ title=读书笔记>读书笔记</a></article></div></header><div class="ui relaxed grid dream-grid"><div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column"><article class="ui attached segment card dream-card"><a class=image href=https://lixianwa.github.io/posts/2014-04-26-install-archlinux/><img src=/img/default6.jpg alt=安装archlinux></a><div class=content><h2 class="ui medium header"><a href=/posts/2014-04-26-install-archlinux/>安装archlinux</a></h2><div class=meta><p class=date>星期六，四月 26 日，2014 年</p></div><div class=description>活着就是为了折腾，Ubuntu已经用了4年多了吧，从最近几年看来，ubuntu的发展目的是要面向大众化，由于要适合大众，所以他的操作更简单，图形界面更美观，这就导致它越来越笨重。对于一个追求速度，喜欢命令模式的程序猿，ubuntu已然不能满足我的要求，所以安装archlinux的想法产生了，活着不就是为了折腾嘛，于是一步一步定制专属自己的linux系统。
+<a class="ui label" href=/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ title=读书笔记>读书笔记</a></article></div></header><div class="ui relaxed grid dream-grid"><div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column"><article class="ui attached segment card dream-card"><a class=image href=https://lixianwa.github.io/posts/2014-04-26-install-archlinux/><img src=/img/default2.jpg alt=安装archlinux></a><div class=content><h2 class="ui medium header"><a href=/posts/2014-04-26-install-archlinux/>安装archlinux</a></h2><div class=meta><p class=date>星期六，四月 26 日，2014 年</p></div><div class=description>活着就是为了折腾，Ubuntu已经用了4年多了吧，从最近几年看来，ubuntu的发展目的是要面向大众化，由于要适合大众，所以他的操作更简单，图形界面更美观，这就导致它越来越笨重。对于一个追求速度，喜欢命令模式的程序猿，ubuntu已然不能满足我的要求，所以安装archlinux的想法产生了，活着不就是为了折腾嘛，于是一步一步定制专属自己的linux系统。
 1.下载archlinux镜像文件 2.制作usb安装盘
 # dd bs=4M if=&lt;/archlinux-2014.04.01-dual.iso/的/路径> of=/dev/&lt;U盘文件> && sync 3.从U盘启动选择Boot Arch Linux 4.配置安装 1)连接网络 有线连接：
 # dhcpcd 无线连接：
@@ -68,10 +71,12 @@ $ lsblk /dev/sda -o NAME,FSTYPE,SIZE,MOUNTPOINT NAME FSTYPE SIZE MOUNTPOINT sda 
 <a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
 <a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
 <a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
+<a class="ui label" href=/tags/istio/ title=Istio>Istio</a>
 <a class="ui label" href=/tags/java/ title=java>java</a>
 <a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
 <a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
 <a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="ui label" href=/tags/letsencrypt/ title=Letsencrypt>Letsencrypt</a>
 <a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
 <a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
 <a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
@@ -80,6 +85,7 @@ $ lsblk /dev/sda -o NAME,FSTYPE,SIZE,MOUNTPOINT NAME FSTYPE SIZE MOUNTPOINT sda 
 <a class="ui label" href=/tags/redis/ title=redis>redis</a>
 <a class="ui label" href=/tags/restful-api/ title="RESTFul API">RESTFul API</a>
 <a class="ui label" href=/tags/solid/ title=SOLID>SOLID</a>
+<a class="ui label" href=/tags/ssl%E8%AF%81%E4%B9%A6/ title=SSL证书>SSL证书</a>
 <a class="ui label" href=/tags/swift/ title=Swift>Swift</a>
 <a class="ui label" href=/tags/v2ray/ title=v2ray>v2ray</a>
 <a class="ui label" href=/tags/xcode/ title=Xcode>Xcode</a>

@@ -12,10 +12,12 @@
 <a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
 <a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
 <a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
+<a class="ui label" href=/tags/istio/ title=Istio>Istio</a>
 <a class="ui label" href=/tags/java/ title=java>java</a>
 <a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
 <a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
 <a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="ui label" href=/tags/letsencrypt/ title=Letsencrypt>Letsencrypt</a>
 <a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
 <a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
 <a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
@@ -24,6 +26,7 @@
 <a class="ui label" href=/tags/redis/ title=redis>redis</a>
 <a class="ui label" href=/tags/restful-api/ title="RESTFul API">RESTFul API</a>
 <a class="ui label" href=/tags/solid/ title=SOLID>SOLID</a>
+<a class="ui label" href=/tags/ssl%E8%AF%81%E4%B9%A6/ title=SSL证书>SSL证书</a>
 <a class="ui label" href=/tags/swift/ title=Swift>Swift</a>
 <a class="ui label" href=/tags/v2ray/ title=v2ray>v2ray</a>
 <a class="ui label" href=/tags/xcode/ title=Xcode>Xcode</a>
@@ -46,7 +49,7 @@
 <a class="ui label" href=/tags/%E7%AE%97%E5%AD%90/ title=算子>算子</a>
 <a class="ui label" href=/tags/%E7%BF%BB%E8%AF%91/ title=翻译>翻译</a>
 <a class="ui label" href=/tags/%E8%87%AA%E8%A1%8C%E8%BD%A6/ title=自行车>自行车</a>
-<a class="ui label" href=/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ title=读书笔记>读书笔记</a></article></div></header><div class="ui relaxed grid dream-grid"><div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column"><article class="ui attached segment card dream-card"><a class=image href=https://lixianwa.github.io/posts/2015-04-10-ldapadmin-design/><img src=/img/default9.jpg alt="统一账户管理系统RESTful api设计"></a><div class=content><h2 class="ui medium header"><a href=/posts/2015-04-10-ldapadmin-design/>统一账户管理系统RESTful api设计</a></h2><div class=meta><p class=date>星期五，四月 10 日，2015 年</p></div><div class=description>LDAPAdmin, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。
+<a class="ui label" href=/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ title=读书笔记>读书笔记</a></article></div></header><div class="ui relaxed grid dream-grid"><div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column"><article class="ui attached segment card dream-card"><a class=image href=https://lixianwa.github.io/posts/2015-04-10-ldapadmin-design/><img src=/img/default7.jpg alt="统一账户管理系统RESTful api设计"></a><div class=content><h2 class="ui medium header"><a href=/posts/2015-04-10-ldapadmin-design/>统一账户管理系统RESTful api设计</a></h2><div class=meta><p class=date>星期五，四月 10 日，2015 年</p></div><div class=description>LDAPAdmin, 为用户管理提供一组API，以HTTP-based RESTful API的形式提供服务，提供了对ldap数据的增删改查功能。主要用到了HTTP的四种方法：GET， POST， PUT和 DELETE。
 下面主要对LDAPAdmin 的REST Api做个简单介绍：
 ##Functionality ###Terminology ###User stories
 利用该组件的HTTP API，通过提交一组描述 用户／部门／系统／管理员的JSON数据，添加、删除、更新、查询数据； 利用该组件的HTTP API，可以方便的添加一条 用户／部门／系统／管理员记录； 利用该组件的HTTP API，可以方便的更新一条指定的 用户／部门／系统／管理员记录； 利用该组件的HTTP API，可以方便的将指定的 用户／部门／系统／管理员删除； ###Scope and Non-Scope ####Scope
@@ -66,10 +69,12 @@ Code Remind Description 200 OK – [GET] 成功返回用户请求的数据 201 C
 <a class="ui label" href=/tags/headless-service/ title="Headless service">Headless service</a>
 <a class="ui label" href=/tags/hexo/ title=Hexo>Hexo</a>
 <a class="ui label" href=/tags/ios/ title=iOS>iOS</a>
+<a class="ui label" href=/tags/istio/ title=Istio>Istio</a>
 <a class="ui label" href=/tags/java/ title=java>java</a>
 <a class="ui label" href=/tags/jekyll/ title=jekyll>jekyll</a>
 <a class="ui label" href=/tags/jupyter-notebook/ title="Jupyter notebook">Jupyter notebook</a>
 <a class="ui label" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="ui label" href=/tags/letsencrypt/ title=Letsencrypt>Letsencrypt</a>
 <a class="ui label" href=/tags/markdown/ title=markdown>markdown</a>
 <a class="ui label" href=/tags/mongodb/ title=mongodb>mongodb</a>
 <a class="ui label" href=/tags/nginx/ title=nginx>nginx</a>
@@ -78,6 +83,7 @@ Code Remind Description 200 OK – [GET] 成功返回用户请求的数据 201 C
 <a class="ui label" href=/tags/redis/ title=redis>redis</a>
 <a class="ui label" href=/tags/restful-api/ title="RESTFul API">RESTFul API</a>
 <a class="ui label" href=/tags/solid/ title=SOLID>SOLID</a>
+<a class="ui label" href=/tags/ssl%E8%AF%81%E4%B9%A6/ title=SSL证书>SSL证书</a>
 <a class="ui label" href=/tags/swift/ title=Swift>Swift</a>
 <a class="ui label" href=/tags/v2ray/ title=v2ray>v2ray</a>
 <a class="ui label" href=/tags/xcode/ title=Xcode>Xcode</a>
